@@ -1,0 +1,8 @@
+Testsuite: de.tbuchloh.kiskis.persistence.exporter.XHTMLExporterTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0,594 sec
+------------- Standard Error -----------------
+2013-02-13 23:54:23,293 WARN  [main                              ][XMLProcessing] - Info: The document "export.xml" was created with version "1.0.0-RC7" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:54:23,298 WARN  [main                              ][TestErrorHandler] - Info: The document "export.xml" was created with version "1.0.0-RC7" but "1.0.2" is expected! Make a backup ...
+------------- ---------------- ---------------
+
+Testcase: testExportHtml took 0,574 sec

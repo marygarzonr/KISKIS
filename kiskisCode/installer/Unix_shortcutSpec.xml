@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<shortcuts>
+
+	<skipIfNotSupported />
+
+	<defaultCurrentUser />
+
+	<programGroup defaultName="KisKis" location="applications" />
+
+	<shortcut name="Start KisKis" programGroup="yes" desktop="yes"
+		applications="yes" startMenu="yes" startup="yes" target="$INSTALL_PATH/kiskis.sh"
+		workingDirectory="$INSTALL_PATH/" description="This starts the KisKis-Application"
+		iconFile="$INSTALL_PATH/icons/kiskis.png" iconIndex="0" type="Application"
+		encoding="UTF-8" terminal="false" KdeSubstUID="false" initialState="normal">
+	</shortcut>
+
+	<shortcut name="Start KisKis in system-tray" programGroup="yes"
+		desktop="no" applications="no" startMenu="no" startup="no"
+		target="$INSTALL_PATH/kiskis.sh" commandLine="-hide" workingDirectory="$INSTALL_PATH/"
+		description="This starts the KisKis-Application" iconFile="$INSTALL_PATH/icons/kiskis.png"
+		iconIndex="0" type="Application" encoding="UTF-8" terminal="false"
+		KdeSubstUID="false" initialState="normal">
+	</shortcut>
+
+	<shortcut name="Start KisKis with the most recently opened file"
+		programGroup="yes" desktop="no" applications="no" startMenu="no"
+		startup="no" target="$INSTALL_PATH/kiskis.sh" commandLine="-lastFile"
+		workingDirectory="$INSTALL_PATH/" description="This starts the KisKis-Application"
+		iconFile="$INSTALL_PATH/icons/kiskis.png" iconIndex="0" type="Application"
+		encoding="UTF-8" terminal="false" KdeSubstUID="false" initialState="normal">
+	</shortcut>
+
+	<shortcut name="Documentation" target="kfmclient"
+		commandLine="exec $INSTALL_PATH/doc/manual/index.html" iconFile="help"
+		iconIndex="1" type="Application" description="See some nice informations"
+		encoding="UTF-8" programGroup="yes">
+	</shortcut>
+
+	<shortcut name="README" target="konqueror" url="$INSTALL_PATH/doc/README"
+		type="Link" description="See some nice informations" initialState="noShow"
+		iconFile="help" iconIndex="2" encoding="UTF-8" startMenu="yes"
+		programGroup="yes">
+	</shortcut>
+
+	<shortcut name="LICENSE" target="konqueror" url="$INSTALL_PATH/doc/LICENSE"
+		type="Link" description="See some nice informations" encoding="UTF-8"
+		programGroup="yes">
+	</shortcut>
+
+	<shortcut name="CHANGELOG" target="konqueror"
+		url="$INSTALL_PATH/doc/CHANGELOG" type="Link" description="See some nice informations"
+		encoding="UTF-8" programGroup="yes">
+	</shortcut>
+
+	<shortcut name="Uninstaller" programGroup="yes" desktop="no"
+		applications="no" startMenu="no" startup="no" target="java"
+		commandLine="-jar &quot;$INSTALL_PATH/Uninstaller/uninstaller.jar&quot;"
+		initialState="noShow" iconFile="trashcan_full" iconIndex="3"
+		workingDirectory="" type="Application" encoding="UTF-8" description="KisKis uninstaller">
+	</shortcut>
+
+</shortcuts>

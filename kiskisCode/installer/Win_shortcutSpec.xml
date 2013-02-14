@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<shortcuts>
+	<skipIfNotSupported />
+
+	<defaultCurrentUser />
+
+	<programGroup defaultName="KisKis" location="startMenu" />
+
+	<shortcut name="Start KisKis" target="javaw.exe" commandLine="-jar kiskis.jar"
+		workingDirectory="$INSTALL_PATH\" description="This starts the KisKis-Application"
+		iconFile="$INSTALL_PATH\icons\kiskis.ico" iconIndex="0" initialState="normal"
+		programGroup="yes" desktop="yes" applications="yes" startMenu="no"
+		startup="no" terminal="no">
+	</shortcut>
+
+	<shortcut name="Start KisKis in system-tray" target="javaw.exe"
+		commandLine="-jar kiskis.jar -hide" workingDirectory="$INSTALL_PATH\"
+		description="This starts the KisKis-Application and hides the window in the system-tray"
+		iconFile="$INSTALL_PATH\icons\kiskis.ico" iconIndex="0" initialState="minimized"
+		programGroup="yes" desktop="no" applications="no" startMenu="no"
+		startup="no" terminal="no">
+	</shortcut>
+
+	<shortcut name="Start KisKis with the most recently opened file"
+		target="javaw.exe" commandLine="-jar kiskis.jar -lastFile"
+		workingDirectory="$INSTALL_PATH\"
+		description="This starts the KisKis-Application and hides the window in the system-tray"
+		iconFile="$INSTALL_PATH\icons\kiskis.ico" iconIndex="0" initialState="minimized"
+		programGroup="yes" desktop="no" applications="no" startMenu="no"
+		startup="no" terminal="no">
+	</shortcut>
+
+	<shortcut name="Documentation" target="explorer.exe"
+		commandLine="$INSTALL_PATH\doc\manual\index.html" iconFile="help"
+		iconIndex="0" type="Application" description="See some nice information"
+		encoding="UTF-8" programGroup="yes">
+	</shortcut>
+
+	<shortcut name="README" target="wordpad.exe" commandLine="$INSTALL_PATH\doc\README"
+		workingDirectory="$INSTALL_PATH\" description="See some nice informations"
+		programGroup="yes">
+	</shortcut>
+
+	<shortcut name="LICENSE" target="wordpad.exe" commandLine="$INSTALL_PATH\doc\LICENSE"
+		workingDirectory="$INSTALL_PATH\" description="See some nice informations"
+		programGroup="yes">
+	</shortcut>
+
+	<shortcut name="Uninstaller" programGroup="yes" desktop="no"
+		applications="no" startMenu="no" startup="no" target="java"
+		commandLine="-jar &quot;$INSTALL_PATH/Uninstaller/uninstaller.jar&quot;"
+		initialState="noShow" iconFile="trashcan_full" iconIndex="0"
+		workingDirectory="" type="Application" encoding="UTF-8" description="KisKis uninstaller">
+	</shortcut>
+
+</shortcuts>

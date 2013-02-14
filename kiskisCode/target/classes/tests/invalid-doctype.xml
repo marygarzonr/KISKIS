@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TPMDocument SYSTEM "kiskis-32.2.dtd">
+<TPMDocument version="0.19.2"><AccountType name="My Template 1"><AccountProperty name="My Date Property" type="Date"/><AccountProperty name="My Password Property" type="Password"/><AccountProperty name="My String Property" type="String"/><AccountProperty name="My URL Property" type="URL"/></AccountType><AccountType name="My Template 2"><AccountProperty name="mpd" type="Date"/><AccountProperty name="mpd1" type="Date"/><AccountProperty name="mpp" type="Password"/><AccountProperty name="mpp2" type="Password"/><AccountProperty name="msp" type="String"/><AccountProperty name="msp2" type="String"/><AccountProperty name="mup" type="URL"/><AccountProperty name="mup2" type="URL"/></AccountType><Group name="My Passwords"><Comment/><Group name="Group 1"><Comment>34
+23rweefsdvyd
+vcawdqwde
+d
+s
+fa
+sdf
+
+
+
+
+fsdffewwe</Comment><Group name="Group 1.1"><Comment>dsadsad
+sad
+asdsd
+g5z
+65#
+uj
+hnm
+jgk
+jf
+f</Comment><CreditCard deployer="SSK Foobar" number="2737278189343" pin="3604"><SecuredElement name="My Credit Card" creationDate="2006-09-07T17:55:50" lastChangeDate="2006-09-07T17:56:38" expiresNever="false" lastViewedDate="2006-09-07T17:55:50" viewCounter="0"><Comment>ewqeqweqwewqewqeqwe
+wq
+ewq
+e
+wq
+ewq
+re
+wqre
+r
+ewr</Comment><Password pwd="%B/RF^/&gt;N\Z0e" expires="2007-07-07" created="2006-09-07T17:56:38"/><PasswordHistory><Password pwd="%B/RF^/&gt;N\Z0" expires="2007-07-07" created="2006-09-07T17:56:31"/><Password pwd="%B/RF^/&gt;N\Z0ewqe" expires="2007-07-07" created="2006-09-07T17:56:34"/></PasswordHistory></SecuredElement></CreditCard></Group><Group name="Group 1.2"><Comment>dsadsadsad
+sad
+sa
+d
+asdasdsadasd
+</Comment><BankAccount bank="SSK Foobar" bankID="266647372" number="28883929211119" telebankingPin="66372"><TANList id="My TAN-List" created="2006-11-07T17:58:22"><TAN id="1" number="2312322" used="2006-09-07T17:58:56"/><TAN id="2" number="3232322" used="2006-09-07T17:58:57"/><TAN id="3" number="3332221" used="2006-09-07T17:58:57"/><TAN id="4" number="3334432"/><TAN id="5" number="223342"/><TAN id="6" number="2233342"/></TANList><TANList id="My TAN-List 2" created="2006-05-07T17:59:12"><TAN id="1" number="323123"/><TAN id="2" number="321313"/><TAN id="3" number="4235345"/><TAN id="4" number="32323" used="2006-09-07T17:59:36"/><TAN id="5" number="32457657" used="2006-09-07T17:59:35"/><TAN id="6" number="07898876" used="2006-09-07T17:59:35"/></TANList><SecuredElement name="My Bank Account" creationDate="2006-09-07T17:57:30" lastChangeDate="2006-09-07T17:59:40" expiresNever="true" lastViewedDate="2006-09-07T17:57:30" viewCounter="0"><Comment>ewewqewqe	we
+w
+ewq
+e
+qweewqeqwe</Comment><Password pwd="16CDPiaA53" expires="2007-09-07" created="2006-09-07T17:59:40"/><PasswordHistory/></SecuredElement></BankAccount></Group><SecuredFile file="/mnt/hda8/apps/projects/KisKis/build.xml"><SecuredElement name="My File" creationDate="2006-09-07T17:46:53" lastChangeDate="2006-09-07T17:47:16" expiresNever="true" lastViewedDate="2006-09-07T17:46:53" viewCounter="0"><Comment>ewqeqwewqewqe
+ewq
+e
+qw
+e
+qw
+e
+qwe</Comment><Password pwd="JOMECu53" expires="2007-09-07" created="2006-09-07T17:47:16"/><PasswordHistory/></SecuredElement></SecuredFile></Group><Group name="Group 2"><Comment/><GenericAccount type="My Template 1"><AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:04:06"/><AccountPropertyValue name="My String Property" type="String" value="string"/><AccountPropertyValue name="My Password Property" type="Password" value="password"/><AccountPropertyValue name="My URL Property" type="URL" value="http://www.url.de"/><SecuredElement name="My Template Account 1" creationDate="2006-09-07T18:02:30" lastChangeDate="2006-09-07T18:04:10" expiresNever="true" lastViewedDate="2006-09-07T18:02:30" viewCounter="0"><Comment>dwqesadsdasd
+</Comment><Password pwd="yekiVU810445" expires="2007-09-07" created="2006-09-07T18:04:10"/><PasswordHistory/></SecuredElement></GenericAccount><GenericAccount type="My Template 1"><AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:03:19"/><AccountPropertyValue name="My String Property" type="String" value="deiwqeoiq"/><AccountPropertyValue name="My Password Property" type="Password" value="passw"/><AccountPropertyValue name="My URL Property" type="URL" value="http://wwjfjd.de"/><SecuredElement name="My Template Account 2" creationDate="2006-09-07T18:03:19" lastChangeDate="2006-09-07T18:04:04" expiresNever="false" lastViewedDate="2006-09-07T18:03:19" viewCounter="0"><Comment>rerewrewr
+ewr
+we
+r
+ewr
+werew</Comment><Password pwd="geheim" expires="2007-09-07" created="2006-09-07T18:04:04"/><PasswordHistory/></SecuredElement></GenericAccount><GenericAccount type="My Template 2"><AccountPropertyValue name="mpp" type="Password" value="ewqe"/><AccountPropertyValue name="mpp2" type="Password" value="efdsf"/><AccountPropertyValue name="mup" type="URL" value="http://www.123.de"/><AccountPropertyValue name="mpd" type="Date" value="2006-10-07T18:04:18"/><AccountPropertyValue name="mup2" type="URL" value="http://www.abc.de"/><AccountPropertyValue name="msp" type="String" value="qwe213e12"/><AccountPropertyValue name="msp2" type="String" value="eqwewqeqweqwe"/><AccountPropertyValue name="mpd1" type="Date" value="2006-08-07T18:04:18"/><SecuredElement name="My Template Account 2" creationDate="2006-09-07T18:04:18" lastChangeDate="2006-09-07T18:05:07" expiresNever="true" lastViewedDate="2006-09-07T18:04:18" viewCounter="0"><Comment>43242342w
+wqewe
+wq
+edwq
+re
+</Comment><Password pwd="AtArosAzu174" expires="2007-09-07" created="2006-09-07T18:05:07"/><PasswordHistory/></SecuredElement></GenericAccount></Group><NetAccount email="foo@bar.de" username="My_User_Name" url="http://www.url.de/foo/bar"><SecuredElement name="My Net Account" creationDate="2006-09-07T17:45:14" lastChangeDate="2006-09-07T17:46:06" expiresNever="false" lastViewedDate="2006-09-07T17:45:14" viewCounter="0"><Comment>eqweqewqeqew
+qwe
+qw
+e
+qweqwewqewqewqeqw
+e
+qwe
+qweqw</Comment><Password pwd="pUbUW191eqweqw" expires="2007-11-07" created="2006-09-07T17:46:06"/><PasswordHistory><Password pwd="pUbUW191" expires="2007-11-07" created="2006-09-07T17:45:31"/></PasswordHistory></SecuredElement></NetAccount></Group></TPMDocument>

@@ -1,0 +1,99 @@
+<installation version="1.0">
+
+	<info>
+		<appname>KisKis</appname>
+		<appversion>@project.version@</appversion>
+		<authors>
+			<author email="@project.author.email@" name="@project.author.name@" />
+		</authors>
+		<url>@project.website@</url>
+		<webdir>@project.update.site@</webdir>
+		<javaversion>1.6</javaversion>
+	</info>
+
+	<guiprefs height="480" resizable="yes" width="640" />
+
+	<variables>
+	</variables>
+
+	<native type="izpack" name="ShellLink.dll" stage="both">
+		<os family="windows" />
+	</native>
+
+	<native type="izpack" name="ShellLink_x64.dll" stage="both">
+		<os family="windows" />
+	</native>
+
+	<locale>
+		<langpack iso3="eng" />
+	</locale>
+
+	<resources>
+		<res src="README" id="InfoPanel.info" />
+		<res src="CHANGELOG" id="HTMLInfoPanel.changelog" />
+		<res src="LICENSE" id="LicencePanel.licence" />
+		<res src="installer/ProcessPanel.startKiskis.xml" id="ProcessPanel.Spec.xml" />
+		<res src="installer/Win_shortcutSpec.xml" id="shortcutSpec.xml" />
+		<res src="installer/Unix_shortcutSpec.xml" id="Unix_shortcutSpec.xml" />
+	</resources>
+
+	<panels>
+		<panel classname="HelloPanel" />
+		<panel classname="InfoPanel" id="info" />
+		<panel classname="LicencePanel" />
+		<panel classname="HTMLInfoPanel" id="changelog" />
+		<panel classname="TargetPanel" />
+		<panel classname="PacksPanel" />
+		<panel classname="ShortcutPanel" />
+		<panel classname="InstallPanel" />
+		<panel classname="ProcessPanel" id="startKiskis" />
+		<panel classname="FinishPanel" />
+	</panels>
+
+	<packs>
+		<pack name="Core" required="yes">
+			<description>The main application</description>
+			<file targetdir="$INSTALL_PATH/doc" src="README" />
+			<file targetdir="$INSTALL_PATH/doc" src="LICENSE" />
+			<file targetdir="$INSTALL_PATH/doc" src="AUTHORS" />
+			<file targetdir="$INSTALL_PATH/doc" src="CHANGELOG" />
+			<fileset targetdir="$INSTALL_PATH/icons" dir="icons"
+				defaultexcludes="yes" />
+			<file targetdir="$INSTALL_PATH" src="target/dist/kiskis.bat"
+				overwrite="asktrue" />
+			<file targetdir="$INSTALL_PATH" src="target/dist/kiskis.sh"
+				overwrite="asktrue" />
+			<file targetdir="$INSTALL_PATH" src="target/dist/kiskis.jar" />
+			<file targetdir="$INSTALL_PATH" src="target/dist/kiskis.jar.sig" />
+            <file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/commons-lang.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/commons-logging.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/log4j.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/de.tbuchloh.util.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/xom-1.1.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/kunststoff.jar" />
+            <file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/opencsv.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/cracklib-0.5.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/aspectjrt.jar" />
+			<executable targetfile="$INSTALL_PATH/kiskis.bat" stage="never" />
+			<executable targetfile="$INSTALL_PATH/kiskis.sh" stage="never" />
+		</pack>
+		<pack name="Documentation" required="no" preselected="yes">
+			<description>Some HTML-documentation</description>
+			<fileset targetdir="$INSTALL_PATH/doc/manual" dir="target/doc/manual"
+				defaultexcludes="yes" />
+		</pack>
+		<pack name="Encryption Libraries" required="no" preselected="yes">
+			<description>The libraries from BouncyCastle.org (v1.45). If you have
+				installed them globally before, just say no.</description>
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/bcprov.jar" />
+			<file targetdir="$INSTALL_PATH/lib" src="target/dist/lib/bcpg.jar" />
+		</pack>
+		<pack name="Cracklib Dictionary" required="no" preselected="yes">
+			<description>The default cracklib dictionary for KisKis. Contains
+				many words in English, German, French and Spanish. You can use your
+				own dictionary if you want to.</description>
+			<file targetdir="$INSTALL_PATH" src="target/dist/tools/" />
+		</pack>
+	</packs>
+
+</installation>

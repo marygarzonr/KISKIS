@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc//DTD JNLP Descriptor 6.0//EN" "http://java.sun.com/dtd/JNLP-6.0.dtd">
+<jnlp
+  spec="1.6+"
+  codebase="@project.website@/jaws/@project.version@"
+  href="kiskis.jnlp">
+  <information>
+    <title>@project.title@ - @project.version@</title>
+    <vendor>@project.author.name@ &lt;@project.author.email@&gt;</vendor>
+    <homepage
+      href="@project.website@" />
+    <description>@project.subtitle@</description>
+    <offline-allowed />
+    <shortcut
+      online="false">
+      <desktop />
+      <menu
+        submenu="@project.title@" />
+    </shortcut>
+  </information>
+  <security>
+    <all-permissions />
+  </security>
+  <update
+    check="background" />
+  <resources>
+    <java
+      version="1.6+"
+      java-vm-args="-esa -Xnoclassgc" />
+    <jar
+      href="kiskis.jar"
+      main="true" />
+    <jar
+      href="kiskis-cracklib-default.jar" />
+    <jar
+      href="lib/aspectjrt.jar" />
+    <jar
+      href="lib/commons-lang.jar" />      
+    <jar
+      href="lib/commons-logging.jar" />
+    <jar
+      href="lib/cracklib-0.5.jar" />
+    <jar
+      href="lib/bcpg.jar" />
+    <jar
+      href="lib/bcprov.jar" />
+    <jar
+      href="lib/log4j.jar" />
+    <jar
+      href="lib/de.tbuchloh.util.jar" />
+    <jar
+      href="lib/kunststoff.jar" />
+    <jar
+      href="lib/xom-1.1.jar" />
+    <jar
+      href="lib/opencsv.jar" />
+  </resources>
+  <application-desc
+    main-class="de.tbuchloh.kiskis.KisKis">
+    <argument>-installCracklibDict</argument>
+  </application-desc>
+
+</jnlp>

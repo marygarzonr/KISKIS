@@ -1,0 +1,90 @@
+<!--
+    DTD for Keep It Secret! Keep It Safe! from Tobias Buchloh
+    $Id: kiskis-0.21.dtd,v 1.1 2007/03/11 22:14:15 tbuchloh Exp $
+-->
+
+<!ELEMENT Password EMPTY >
+<!ATTLIST Password created CDATA #REQUIRED
+			       expires CDATA #REQUIRED
+                   pwd CDATA #REQUIRED >
+
+<!ELEMENT Attachments (Attachment*) >
+
+<!ELEMENT Attachment EMPTY >
+<!ATTLIST Attachment id CDATA #REQUIRED
+			         key CDATA #REQUIRED
+                     description CDATA #REQUIRED 
+                     uuid CDATA #REQUIRED>
+                     
+<!ELEMENT AttachmentRef EMPTY >
+<!ATTLIST AttachmentRef attachmentUuid CDATA #REQUIRED >                     
+
+<!ELEMENT PasswordHistory ( Password* ) >
+
+<!ELEMENT Comment ( #PCDATA ) >
+
+<!ELEMENT SecuredElement ( Comment, ( Password, PasswordHistory, AttachmentRef* ) ) >
+<!ATTLIST SecuredElement creationDate CDATA #REQUIRED
+                         expiresNever ( false | true ) #REQUIRED
+                         lastChangeDate CDATA #REQUIRED
+                         lastViewedDate CDATA #REQUIRED
+                         viewCounter CDATA #REQUIRED
+                         name CDATA #REQUIRED
+                         archivedOnDate CDATA #IMPLIED
+                         uuid CDATA #REQUIRED >
+
+<!ELEMENT BankAccount
+				(( SecuredElement, TANList* )
+                 | ( TANList*, SecuredElement )) >
+<!ATTLIST BankAccount bank CDATA #REQUIRED
+                      bankID CDATA #REQUIRED
+                      number CDATA #REQUIRED
+                      telebankingPin CDATA #REQUIRED >
+
+<!ELEMENT CreditCard ( SecuredElement ) >
+<!ATTLIST CreditCard deployer CDATA #REQUIRED
+                     number CDATA #REQUIRED
+                     pin CDATA #REQUIRED 
+                     cardValidationCode CDATA #REQUIRED >
+
+<!ELEMENT Group (Comment, ( BankAccount | CreditCard | GenericAccount | Group | NetAccount | SecuredFile )* ) >
+<!ATTLIST Group name CDATA #REQUIRED 
+                     archivedOnDate CDATA #IMPLIED
+					 uuid CDATA #REQUIRED>
+
+<!ELEMENT NetAccount ( SecuredElement ) >
+<!ATTLIST NetAccount email CDATA #REQUIRED
+                     url CDATA #REQUIRED
+                     username CDATA #REQUIRED >
+
+<!ELEMENT SecuredFile ( SecuredElement ) >
+<!ATTLIST SecuredFile file CDATA #REQUIRED >
+
+<!ELEMENT TAN EMPTY >
+<!ATTLIST TAN id CDATA #REQUIRED
+			  number CDATA #REQUIRED
+              used CDATA #IMPLIED >
+
+<!ELEMENT TANList ( TAN* ) >
+<!ATTLIST TANList created CDATA #REQUIRED
+                  id CDATA #REQUIRED >
+
+<!ELEMENT TPMDocument ( AccountType*, Group, Attachments ) >
+<!ATTLIST TPMDocument version CDATA #REQUIRED 
+				  uuid CDATA #REQUIRED >
+
+<!ELEMENT GenericAccount ( AccountPropertyValue*, SecuredElement ) >
+<!ATTLIST GenericAccount type CDATA #REQUIRED >
+
+<!ELEMENT AccountType ( AccountProperty* ) >
+<!ATTLIST AccountType name CDATA #REQUIRED >
+
+<!ELEMENT AccountProperty EMPTY >
+<!ATTLIST AccountProperty name CDATA #REQUIRED
+                          type CDATA #REQUIRED >
+
+<!ELEMENT AccountPropertyValue EMPTY >
+<!ATTLIST AccountPropertyValue name CDATA #REQUIRED
+							   type CDATA #REQUIRED
+                               value CDATA #REQUIRED >
+

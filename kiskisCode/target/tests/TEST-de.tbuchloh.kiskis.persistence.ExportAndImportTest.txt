@@ -1,0 +1,8 @@
+Testsuite: de.tbuchloh.kiskis.persistence.ExportAndImportTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 1,988 sec
+------------- Standard Error -----------------
+2013-02-13 23:53:53,444 WARN  [main                              ][XMLProcessing] - Info: The document "export.xml" was created with version "1.0.0-RC7" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:53:53,445 WARN  [main                              ][TestErrorHandler] - Info: The document "export.xml" was created with version "1.0.0-RC7" but "1.0.2" is expected! Make a backup ...
+------------- ---------------- ---------------
+
+Testcase: exportAndImportCsv took 1,968 sec

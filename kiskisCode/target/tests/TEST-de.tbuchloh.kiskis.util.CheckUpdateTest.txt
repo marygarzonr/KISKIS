@@ -1,0 +1,4 @@
+Testsuite: de.tbuchloh.kiskis.util.CheckUpdateTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0,449 sec
+
+Testcase: testCurrentVersion took 0,442 sec

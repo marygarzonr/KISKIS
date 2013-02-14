@@ -1,0 +1,6 @@
+Testsuite: de.tbuchloh.kiskis.model.TPMDocumentTest
+Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0,075 sec
+
+Testcase: testEquals took 0,05 sec
+Testcase: testMatches took 0,02 sec
+Testcase: testFindLastUsedElement took 0 sec

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Tips
+	xmlns="http://www.tbuchloh.de/util/swing/dialogs" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tbuchloh.de/util/swing/dialogs TipOfTheDayDialog-data.xsd"
+    application_name="de.tbuchloh.kiskis.KisKis" 
+    default_lang="en">
+    
+        <Locale lang="en" >
+        <Tip day="1">A bad chosen password is the most common reason for computer intrusions.</Tip>
+        <Tip day="2">Well chosen master passwords should have the following properties:
+        
+1. private: it is used by a single person only. That means YOU.
+2. secret: it is never written down, not on a note attached to your monitor or saved on your computer in a text file.
+3. easy to remember: so you don't need to write it down ;-)
+4. hard to guess: no personal information. No names of your children, pets, birthdays, etc. Social engineering is easier than you might think.
+</Tip>
+        <Tip day="3">Each account should get its own password. 
+
+If one account is compromised by an intruder, the others will not be affected. Just think about the case for using a common password for Facebook, GMail, eBay, Amazon, ... what would happen if an intruder would hack your Facebook account?       
+</Tip>
+        <Tip day="4">You should not store your password files on network drives, dropboxes or any other public places.
+
+Nobody should be able to access your password files, no matter how good they are encrypted.        
+</Tip>
+        <Tip day="5">Make backups of your password files on other computers or external drives regularly. 
+        
+Regular backups protect of data loss.</Tip>
+        
+        <Tip day="6">You can export your KisKis-data with XML-stylesheets to any other format.
+
+A change to a different password manager would not be a problem ... but I hope you don't think about it ;-)        
+</Tip>
+
+        <Tip day="7">You can archive groups and accounts. 
+
+So you can clean up your main view of passwords you may not need in the near future without physically deleting them.         
+</Tip>
+
+        <Tip day="8">The maximum number of tries a brute-force attack would need to guess your password can be shown by moving the mouse cursor on the password-quality label.       
+</Tip>
+
+        <Tip day="9">You can copy the KisKis installation on an USB-stick to have your passwords available all the time.
+        
+Just copy the KisKis installation folder with its subdirectories on a stick. Finished!       
+</Tip>
+
+        <Tip day="10">Use the option "Help/Check cryptography" to verify the correct functionality of the available encryption algorithms.     
+</Tip>
+
+        <Tip day="11">The quality of new master-passwords will be checked. 
+        
+1. a master-password should not be found in the standard dictionary and
+2. should use so many different charsets that more than 550 billion tries should be needed to guess your password.   
+</Tip>
+
+    </Locale> 
+    <Locale lang="de" >
+        <Tip day="1">Die meisten Einbrüche in Computersysteme durch schlecht gewählte Passwörter zustande kommen.</Tip>
+        <Tip day="2">Gute "Master"-Passwörter sollten folgende Eigenschaften haben:
+        
+1. privat: wird nur von einer Person genutzt, also SIE!
+2. geheim: ist nirgends in einer unverschlüsselten Form hinterlegt, weder mit einem Zettel am Monitor, noch auf dem Rechner in einer Text-Datei.
+3. einfach zu merken: dann braucht man es auch nicht aufschreiben ;-)
+4. nicht erratbar: es sollte nichts mit Ihnen persönlich zu tun haben. Namen von Familienangehörigen, usw. sind einfacher herauszubekommen als Sie denken.
+</Tip>
+        <Tip day="3">Für jeden Zugang sollte ein eigenes Passwort definiert werden. 
+
+Wird ein Zugang gehackt, so sind die anderen Zugänge dann davon nicht betroffen. Stellen Sie sich vor, Sie hätten für Facebook, GMail, eBay und Amazon das gleiche Passwort definiert und ihr Facebook-Passwört würde von einem Eindringling geklaut werden ...       
+</Tip>
+        <Tip day="4">Die Passwortdateien sollten nicht auf Netzlaufwerken, Dropboxen und anderen "öffentlich zugänglichen" Orten gespeichert werden.
+
+Niemand anderes als Sie sollten einen einfachen Zugang zur Datei haben, auch wenn diese stark verschlüsselt ist.        
+</Tip>
+        <Tip day="5">Sichern Sie ihre Passwortdaten regelmäßig auf einen anderen Rechner oder ein externes Laufwerk. 
+        
+Nur ein regelmäßiges Backup schützt vor Datenverlusten zuverlässig.</Tip>
+        
+        <Tip day="6">Sie Ihre Daten mit XML-Stylesheets in beliebige Formate exportieren können.
+
+Ein Wechsel auf andere Passwortmanager wäre somit kein Problem ... was ich aber nicht hoffe ;-)        
+</Tip>
+
+        <Tip day="7">Alle Gruppierungen und Konten können archiviert werden. 
+
+Damit können Sie vorerst nicht mehr benötigte Daten aus der Hauptansicht entfernen und Ordnung schaffen. Bei Bedarf kommen Sie jederzeit wieder an die Daten heran.        
+</Tip>
+
+        <Tip day="8">Sie können sich die Anzahl der maximal notwendigen Versuche anzeigen lassen, die ein "Brute-Force"-Angriff für ihr Passwort benötigen würde.
+        
+Dazu bewegen Sie einfach den Mauszeiger auf die Passworts-Qualitätsanzeige.        
+</Tip>
+
+        <Tip day="9">Sie können die KisKis-Installation ganz einfach auf einen USB-Stick kopieren und somit überall mit hinnehmen.
+        
+Kopieren Sie dazu einfach den KisKis-Installationsordner mit seinen Unterverzeichnissen auf den USB-Stick. Fertig!       
+</Tip>
+
+        <Tip day="10">Mit der Option "Hilfe/Kryptographie testen" können Sie jederzeit die korrekte Funktion der verfügbaren Verschlüsselungsverfahren prüfen.     
+</Tip>
+
+        <Tip day="11">Die Qualität neuer Masterpasswörter wird geprüft. 
+        
+1. Ein Masterpasswort sollte nicht in einem Wörterbuch zu finden sein (hier wird das Standardwörterbuch benutzt) und 
+2. derart viele verschiedene Zeichensätze benutzen, dass mehr als 550 Mrd. Versuche benötigt würden um das Passwort zufällig zu knacken.   
+</Tip>
+
+    </Locale> 
+</Tips>    

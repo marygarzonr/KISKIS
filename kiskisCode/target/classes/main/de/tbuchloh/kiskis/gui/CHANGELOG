@@ -1,0 +1,336 @@
+Version 1.0.2:
+--------------
+
+    BUGS:
+        - [Bug 3595282] NullpointerException on Win8 when in background
+
+Version 1.0.1:
+--------------
+
+    BUGS:
+        - [Bug 3272527] Encrypting a SecuredFile raises Exception
+        - [Bug 3307946]	NullpointerException when MessageDialog should be shown
+        - [Bug 3260451]	NullpointerException after file loaded and folder change
+        - [Bug 3358868] NullpointerException when file is opened
+
+Version 1.0.0:
+--------------
+
+    This release includes many new features and bug fixes. The manual has been rewritten. A lot of automated tests were 
+    added. You can see an excerpt of all changes below.
+    
+    FEATURES:
+        - [Feature 3089207] Filter search results in treeview
+        - [Feature 3089137] Hide tree-items
+        - [Feature 3089923] Make password font configurable. Default is "Monospaced".
+        - [Feature 3089160] Show filename in password dialog
+        - [Feature 1542646] Upgrade to bouncycastle.org OpenPGP-lib 1.45, AES256 and Twofish
+        - [Feature 3091774] Add a nice "progress bar" as password quality display
+        - [Feature 1543595] Option to display the master password 
+        - [Feature 3093632] New document should come up with standards
+        - [Feature 3093635] Add SimplePasswordAccount (as a simple template available)
+        - [Feature 3093634] Add MULTILINE_TEXT to templates
+        - [Feature 3093636] Add card validation number to CreditCard
+        - [Feature 3093637] Improve installer. Cryptographic algorithms will be checked.
+        - [Feature 3101608] Check masterpasswords quality.
+        
+    BUGS:
+        - [Bug 1886794] Are you sure to want to quit is wrong => FIXED
+        - [Bug 3088703] A groups comment is missing if group was copied 
+        - [Bug 3089132] Drag & Drop - Tree-Items will be moved correctly
+        - [Bug 3089214] Update of elements view counter does mark document as dirty
+        - [Bug 3089916] Optionsdialog always notifies user of changes
+        - [Bug 3090450] LRU-files are disabled if an external storage is used
+        - [Bug 1542854] Export to XHTML, XML will not work
+        - [Bug 1832740] When copy group or item with attachments for another group, the attachment is lost
+        
+    MAINTENANCE:
+        - New project structure
+        - Moved to Java 6. Java 4 and Java 5 are no longer supported.
+        - Moved to AspectJ 1.6.9
+        - Moved to IzPack installer 4.3.3
+        - Deprecated DTD. Moved to XSD and XML namespaces.
+ 
+Version 0.23:
+-------------
+
+    FEATURES:
+        - Check password quality with cracklib. 
+          Thanks to Patrick Spinler, et. al. for their contribution.
+
+Version 0.22:
+-------------
+
+    BUGS:
+        - FileDialog: Filename was not changed when written in textfield.
+
+Version 0.21.1:
+---------------
+
+    BUGS:
+        - Jar-Installer was corrupt.
+
+Version 0.21:
+-------------
+
+	FEATURES:
+		- Introduced iTAN
+
+    BUGS:
+        - Made backward-compatible with Java 1.4
+
+Version 0.20:
+-------------
+
+    FEATURES:
+        - [ 1470794 ] Replaced XML-Persistence-Libs DOM4J with XOM v1.1.
+	    - [ 1474599 ] Hide application with auto lock
+
+	BUGS:
+	    - [ 1542854 ] XML/HTML-Export fixed.
+	    - Closing documents fixed.
+	    - [ 1542643 ] Help file: screenshots are not shown
+	    - [ 1548087 ] Consistency of GUI
+	    - "Save as" and "new" for attachments now remember the last path used.
+	    - "Save as" for attachments now suggests the original name as file name.
+	    - Version-check will run in its own thread.
+	    - Elements can be copied via Drag&Drop. Select an element, press
+	      CTRL+LeftMousebutton and move it to the destination. Without CTRL
+	      the element will be moved.
+
+    MAINTENANCE:
+	    - Code Cleanup. Cyclic dependencies removed.
+    	- Parts rewritten for Java 5
+    	- Introduced Aspects for crosscutting concerns.
+	    - Replaced SWT-SystemTray with Java 6 feature.
+
+
+Version 0.19.2:
+---------------
+
+    BUGS:
+        - Password-by-template-generator fixed.
+
+Version 0.19.1:
+---------------
+
+    BUGS:
+        - Broken CSV-Export fixed. Column "name" was renamed to "label".
+        - Search is now case insensitive
+
+Version 0.19:
+-------------
+
+    FEATURES:
+		- Automatic update check implemented. Activate via "Edit/Options" or
+		  manually with "Help/Check for updates".
+
+    BUGS:
+        - Focus won't be lost in while typing in search field.
+        - "Options"-menu moved to "edit"
+
+Version 0.18:
+-------------
+
+	FEATURES:
+		- [ 1475051 ] Import templates from other files
+
+	BUGS:
+		- [ 1474292 ] create a new group, cursor should be set to "Label" field
+		- [ 1474088 ] 'Zuweisen' 'Apply' sometimes don't work
+		- File dialog does not need a double click anymore to select a
+		  file from the directory listing.
+
+Version 0.17:
+-------------
+
+    FEATURES:
+        - Drag & Drop in object tree implemented.
+
+    BUGS:
+        - [ 1467275 ] no chmod-save on linux
+        - Localization of quick-search field fixed.
+        - [ 1269429 ] Better Font choice for password fields.
+
+Version 0.16:
+-------------
+
+	FEATURES:
+	    - New quick search field added.
+		- Web installer only loads packages if necessary.
+		- Recently used files will be stored OS-dependent.
+
+    BUGS:
+    		- Context menu of passwordfield will be shown near the mouse position.
+
+Version 0.15.1:
+---------------
+
+    BUGS:
+        - Fix of [ 1210417 ] caused lost template data.
+
+Version 0.15:
+-------------
+
+	FEATURES:
+		- System-tray contains options for quit, load and lock. Recently used
+		  files can be loaded as well.
+		- [ 1219215 ] Data can be exported to XHTML, CSV and XML. Users can
+		  define and call own XSL-stylesheets too.
+		- SecuredFiles can be encrypted and decrypted via button with the
+		  given account password.
+        - Multiple encryption algortihms can be used (BLOWFISH, AES, CAST5).
+        - All textfields have their own context menu for copy and open actions.
+        - Installer will install SWT if necessary.
+        - New command line option '-lastFile' will open the last opened file
+          on startup.
+        - [ 1166346 ] Request for more flexible password generator
+
+	BUGS:
+		- [ 1151798 ] does not start because of wrong preference settings
+		- [ 1428392 ] Renamed items appear only after clicking on them
+		- [ 1166340 ] Dialog for desktop unlock: Cancel works same as OK
+		- [ 1210417 ] Data corrupted
+
+Version 0.14:
+-------------
+
+	FEATURES:
+		- Application window can be hidden in system tray.
+		- Installer can create shortcuts on desktop and start-menu.
+
+	BUGS:
+		- Line-breaks within comments will be preserved. (#1115266)
+		- kiskis.jar can be run by "java -jar" (#1115268)
+
+Version 0.13.1:
+---------------
+
+    BUGS:
+        - ClassLoader-issue with JDK1.5 resolved. JVM could not find some
+          encryption classes because of a wrong index within a jar-file.
+          Should not have occured with JDK1.4 and Linux.
+          Thanks to Tom Cooper for his help.
+
+Version 0.13:
+-------------
+
+    FEATURES:
+        - user editable account templates. Add your own fields to special items.
+        - extra menu-item for changing the master password.
+        - deleting items must be confirmed.
+        - simple import facility for comma-separated-values-files.
+        - rename option in Edit-menu
+        - warnings while the document is parsed will now be reported to the
+          user directly, not just to the console.
+
+    BUGS:
+        - update detail view after renaming an item in the tree view.
+        - a cut-action does not show a confirmation-dialog.
+
+Version 0.12:
+-------------
+
+    FEATURES:
+        - statistics of how often accounts where viewed are gathered
+          (see "Options" for delay settings).
+        - most recently and last viewed accounts can be opened by shortscuts.
+        - last selected tab-positions within the account view will be remembered.
+        - user preferences can be exported (see "Options") on program exit into
+          a file named "kiskis.preferences". On program start the application
+          will look for it within the working directory and import it
+          automatically. Important for USB-Sticks.
+        - OptionsDialog refactored.
+        - look and feel can be changed by providing a new Look&Feel-classname.
+          default: com.incors.plaf.kunststoff.KunststoffLookAndFeel
+          (see "Options")
+        - a separate pin can be assigned to Credit Cards.
+        - Items can be renamed within the tree view by double click.
+        - new cool and clear layout.
+
+    BUGS:
+        - wrong backup files were deleted, if the upper bound was reached.
+        - critical bcpg-lib error resolved. Under some circumstances it was
+          possible, that larger encrypted files could not be decrypted by the
+          internal PGP-implementation, but by gpg because of flawed buffer
+          handlings. This should be resolved.
+          (Note: JavaLib/classified/bcpg.bug.buffer.xml).
+        - creating a new password in an empty password field now activates the
+          apply-button.
+
+Version 0.11:
+-------------
+
+    FEATURES:
+        - file attachments added.
+        - persistence procedure rewritten.
+        - XML-validation can be activated via "-validate"-parameter but is still
+          disabled as default.
+        - old XML-document versions can now be migrated automatically.
+        - upgrade to Bouncycastle v1.25-lib.
+
+    BUGS:
+        - unencrypted files will be opened without asking for a password.
+        - saveAs now asks for a new password.
+        - XML-doctype-issue when using JRE1.5 solved.
+
+Version 0.10:
+-------------
+
+    FEATURES:
+        - new splitpane-divider position is now saved.
+        - saving a document now creates backup copies.
+        - XML-documents have now a doctype-declaration. (validation will be
+                activated in the next release for compatibility reasons).
+        - the desktop can be locked and hidden.
+        - the program can be locked after n minutes of inactivity.
+        - opened documents can be closed.
+        - opening an invalid document creates better error messages.
+        - upgrade to Bouncycastle v1.24-lib.
+
+    BUGS:
+        - fixed locking problem when using auto save file routine.
+        - XML uses UTF-8 as charset.
+
+Version 0.9:
+------------
+
+    FEATURES:
+        - the last created account type will be stored
+          in SecuredElementCreationDialog.
+        - BankAccounts now store a BankID and a telephone pin.
+
+    BUGS:
+        - the size of the password-create-button is now correct.
+        - if a new file was, it appears now at the LRU-files-menu.
+
+Version 0.8:
+------------
+
+    FEATURES:
+        - new BankAccount added. Provides the ability to keep track of
+          Transaction Numbers (TAN) for homebanking purposes.
+        - starting URLs from NetworkAccounts with an arbitrary application.
+        - button for copying a password into the clipboard directly added.
+        - last recently used file menu added.
+        - nice Look & Feel (kunststoff-theme) added.
+
+    BUGS:
+        - auto save does not ask for the password anymore if the document
+          was not changed since the last save.
+        - confirmation before overwriting existing files added.
+        - empty start-up document now can be saved directly.
+        - cleaned some issues with mnemonics.
+        - information message when trying to delete the root node added.
+        - sorting in TreeView is now case-insensitive.
+
+    TRANSLATION:
+        - de: '&' in password and history button removed.
+
+
+Version 0.6:
+------------
+
+        - initial release for testing purposes.
+
+# $Id: CHANGELOG,v 1.56 2007/12/09 11:24:41 tbuchloh Exp $

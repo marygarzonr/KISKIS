@@ -1,0 +1,15 @@
+"Group","Label","Password","User Name","Email","URL","Created On","Expires On","Comment"
+,"Account placed to the root","hhsgww2l","foo",,,,,
+"Shopping","Amazon",32362187361,"amazon.foo","mail@bar.de","http://www.amazon.de",,,"amazon account"
+"Newly created group","Blahblah",1234,"user@foo.bar","user@foo.bar",,,,
+"Lifestyle##Shopping","eBay","hgfhda4342","buyer","foo@bar.com","http://www.ebay.de",,,
+"Work##Job 1","Computer Job 1","secret","john.doe","john.doe@company.com","http://portal.company.com","2010-10-21",,"Another comment"
+"Work##Job 2","Enterprise Password","foobar","karl.mustermann","karl@mustermann.de","Http://portal.foo.com","2009-12-24","2010-11-23","That is just a comment.
+With
+Multiple lines"
+"##","Account placed to the root 2","ÄÖÜölöö","another@user.de","another@user.de","http://foo.bar",,,"Another comment
+With multiple lines"
+"##Shopping","Bücher.de","3211fssaDD","mybuecher","foo@bar.com","http://www.buecher.de","2008-01-27",,"No comment"
+"Others##Invalid Accounts","Wrong Expiration date","rhiurhewf","foo","foo@bar.com",,,01.01.10,"Wrong expiration date"
+"Others##Invalid Accounts","Wrong creation date","rhiurhewf","foo","foo@bar.com",,01.01.10,,"Wrong creation date"
+"Others##Invalid Accounts",,,,,,,,

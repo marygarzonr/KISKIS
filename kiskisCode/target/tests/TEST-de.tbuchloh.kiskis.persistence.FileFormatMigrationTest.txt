@@ -1,0 +1,48 @@
+Testsuite: de.tbuchloh.kiskis.persistence.FileFormatMigrationTest
+Tests run: 2, Failures: 1, Errors: 0, Time elapsed: 1,727 sec
+------------- Standard Output ---------------
+de.tbuchloh.kiskis.model.TAN@73d32e45
+de.tbuchloh.kiskis.model.TAN@2d82ef6b
+de.tbuchloh.kiskis.model.TAN@6f347124
+de.tbuchloh.kiskis.model.TAN@5bf02b85
+de.tbuchloh.kiskis.model.TAN@74b957ea
+de.tbuchloh.kiskis.model.TAN@343aff84
+de.tbuchloh.kiskis.model.TAN@606f8b2b
+de.tbuchloh.kiskis.model.TAN@3b19e583
+de.tbuchloh.kiskis.model.TAN@212b19c5
+de.tbuchloh.kiskis.model.TAN@14a8e586
+de.tbuchloh.kiskis.model.TAN@5c74cb02
+de.tbuchloh.kiskis.model.TAN@77bc1fb9
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+2013-02-13 23:53:57,018 WARN  [main                              ][XMLProcessing] - Info: The document "kiskis-0.15.xml" was created with version "0.15" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:53:57,983 WARN  [main                              ][XMLProcessing] - Info: The document "kiskis-0.24-w-attachments.xml" was created with version "0.24" but "1.0.2" is expected! Make a backup ...
+------------- ---------------- ---------------
+
+Testcase: testVersion015ToCurrent took 1,617 sec
+Testcase: testVersion024ToCurrent took 0,105 sec
+	FAILED
+null expected:<...entar mit
+Zeilenumbr[Ã¼]chen,
+1
+2
+3
+> but was:<...entar mit
+Zeilenumbr[ü]chen,
+1
+2
+3
+>
+junit.framework.ComparisonFailure: null expected:<...entar mit
+Zeilenumbr[Ã¼]chen,
+1
+2
+3
+> but was:<...entar mit
+Zeilenumbr[ü]chen,
+1
+2
+3
+>
+	at de.tbuchloh.kiskis.persistence.FileFormatMigrationTest.testVersion024ToCurrent(FileFormatMigrationTest.java:248)
+

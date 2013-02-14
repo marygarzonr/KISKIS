@@ -1,0 +1,8 @@
+Testsuite: de.tbuchloh.kiskis.util.VersionToolsTest
+Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0,04 sec
+
+Testcase: isCompatibleOK took 0,015 sec
+Testcase: isCompatibleError1 took 0 sec
+Testcase: isCompatibleError2 took 0 sec
+Testcase: isCompatibleError3 took 0 sec
+Testcase: isCompatibleError4 took 0 sec

@@ -1,0 +1,59 @@
+<!-- 
+    DTD for Keep It Secret! Keep It Safe! from Tobias Buchloh
+    $Id: $
+-->
+
+<!ELEMENT Password EMPTY >
+<!ATTLIST Password created NMTOKEN #REQUIRED 
+			       expires NMTOKEN #REQUIRED 			
+                   pwd CDATA #REQUIRED >
+                   
+<!ELEMENT Attachment EMPTY >
+<!ATTLIST Attachment id NMTOKEN #REQUIRED 
+			         key CDATA #REQUIRED 			
+                     description CDATA #REQUIRED >                   
+
+<!ELEMENT PasswordHistory ( Password* ) >
+
+<!ELEMENT SecuredElement ( Password, PasswordHistory, Attachment* ) >
+<!ATTLIST SecuredElement comment CDATA #REQUIRED  
+                         creationDate NMTOKEN #REQUIRED 
+                         expiresNever ( false | true ) #REQUIRED 
+                         lastChangeDate NMTOKEN #REQUIRED 
+                         name CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.BankAccount 
+				(( SecuredElement, de.tbuchloh.kiskis.model.TANList* )
+                 | ( de.tbuchloh.kiskis.model.TANList*, SecuredElement )) >
+<!ATTLIST de.tbuchloh.kiskis.model.BankAccount bank CDATA #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.BankAccount bankID NMTOKEN #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.BankAccount number NMTOKEN #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.BankAccount telebankingPin CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.CreditCard ( SecuredElement ) >
+<!ATTLIST de.tbuchloh.kiskis.model.CreditCard deployer CDATA #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.CreditCard number CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.Group ( de.tbuchloh.kiskis.model.BankAccount | de.tbuchloh.kiskis.model.CreditCard | de.tbuchloh.kiskis.model.Group | de.tbuchloh.kiskis.model.NetAccount | de.tbuchloh.kiskis.model.SecuredFile )* >
+<!ATTLIST de.tbuchloh.kiskis.model.Group comment CDATA #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.Group name CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.NetAccount ( SecuredElement ) >
+<!ATTLIST de.tbuchloh.kiskis.model.NetAccount email CDATA #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.NetAccount url CDATA #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.NetAccount username CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.SecuredFile ( SecuredElement ) >
+<!ATTLIST de.tbuchloh.kiskis.model.SecuredFile file CDATA #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.TAN EMPTY >
+<!ATTLIST de.tbuchloh.kiskis.model.TAN number NMTOKEN #REQUIRED 
+                                       used CDATA #IMPLIED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.TANList ( de.tbuchloh.kiskis.model.TAN* ) >
+<!ATTLIST de.tbuchloh.kiskis.model.TANList created NMTOKEN #REQUIRED >
+<!ATTLIST de.tbuchloh.kiskis.model.TANList id NMTOKEN #REQUIRED >
+
+<!ELEMENT de.tbuchloh.kiskis.model.TPMDocument ( de.tbuchloh.kiskis.model.BankAccount | de.tbuchloh.kiskis.model.CreditCard | de.tbuchloh.kiskis.model.Group | de.tbuchloh.kiskis.model.NetAccount | de.tbuchloh.kiskis.model.SecuredFile )* >
+<!ATTLIST de.tbuchloh.kiskis.model.TPMDocument version NMTOKEN #REQUIRED >
+

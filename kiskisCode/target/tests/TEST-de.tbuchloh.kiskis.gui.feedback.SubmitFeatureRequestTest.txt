@@ -1,0 +1,7 @@
+Testsuite: de.tbuchloh.kiskis.gui.feedback.SubmitFeatureRequestTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0,105 sec
+
+Testcase: testCreateMailToLinkWithException took 0,065 sec
+Testcase: testCreateMailToLinkWithInfo took 0,015 sec
+Testcase: testCreateMailSubject took 0 sec
+Testcase: testCreateMailBody took 0 sec

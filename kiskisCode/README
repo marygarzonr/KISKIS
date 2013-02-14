@@ -1,0 +1,1361 @@
+Keep It Secret! Keep It Safe!
+
+The Cross Platform Password Manager
+
+Tobias Buchloh
+
+<kiskis [at] gmx [dot] eu>
+
+Latest Build: Version 1.0.1 on Mittwoch Feb 08, 2012 20:49:57
+
+Copyright © 2004-2010 Tobias Buchloh
+
+Abstract
+
+The basic idea of KisKis™ -project is to create an application that allows you
+to store all your passwords and sensitive/personal information in a secure file
+that you can carry with you all the time and that can be opened on different
+computers. So you can access your passwords whenever you need to. You might
+even give this file your worst enemy because it would be useless for him
+without the master password ^[1] .
+
+KisKis™ will help you to follow the rules for secure password usage. It checks
+your passwords quality and enables you to use one password for exactly one
+account, even if you need to access hundreds of different accounts. There is
+only one master password you need to remember.
+
+Please visit our Screencast Tutorial on youtube ^[2] for a short introduction.
+
+Try Java Web Start to run the application without any installation effort on
+your machine.
+
+Have a lot of fun! and let me know if you like KisKis™ .
+
+
+━━━━━━━━━━━━━━
+
+^[1] OK, you need a well chosen master password that cannot be guessed ;-).
+Please read Password Quality chapter.
+
+^[2] http://www.youtube.com/watch?v=N5DtvR056J4
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Table of Contents
+
+Introduction
+Features
+Installation
+
+    Runtime Dependencies
+    Running KisKis™
+    Building from source
+
+Manual
+
+    Getting started
+    Account types explained
+    Generating passwords automatically
+    Checking password quality
+    Importing CSV files
+    Options and preferences
+
+Warranty
+Cryptography Verification
+Download
+Help!
+Contributions
+Contact
+
+Introduction
+
+KisKis™ is an easy to use platform manager written in Java. So it runs on any
+platform with an appropriate Java Virtual Machine (JVM) available (e. g.
+Windows, Linux, Solaris, Mac OS, ...)
+
+KisKis™ allows you to manage passwords and other secret information for many
+different purposes such as network, mail or internet accounts, credit card
+pins, bank accounts witn TAN lists and password secured files. Each account can
+be described by multiple attributes (e. g. user name, URL, expiry date) and
+comments. The history of each password change can be tracked. Multiple file
+attachments can be added to each account. You can define your own account
+templates with custom data fields to meet your needs.
+
+Figure 1. Editing a bank account with TAN-lists and PINs.
+
+                Editing a bank account with TAN-lists and PINs.
+
+
+The accounts can be grouped hierarchically within a tree structure . A simple
+search function filters the tree view for what you are looking for. You will
+not lose track of all your data even if you have hundreds of different
+accounts.
+
+New passwords can be generated automatically in three distinct ways. The first
+one is a secure approach generating totally randomized passwords with many
+special characters - hard to read and hard to remember. The second approach
+generates much more readable passwords. At last you can generate passwords from
+a user defined template. The password quality is visualized as well. You can
+test your passwords with an internal password cracker against a dictionary with
+more than 1.6 million words.
+
+All passwords are stored in a single XML file encrypted by a single "master
+password". AES-{128, 256} ^[3] , Blowfish, Twofish and other encryption
+algorithms can be used. The encryption algorithms suffice the OpenPGP-standard
+^[4] , so you can verify the implementation with GnuPG (GPG) or Pretty Good
+Privacy (PGP) ^[5] . That means you don't have to believe me that your secrets
+are kept safe you can verify it easily ;-)
+
+An open architecture is the key to build up trust and security. You can export
+all your data into different formats if you are fed up with KisKis™ and if you
+switch to another password manager.
+
+Existing data can be imported via comma separated value files (CSV).
+
+Features
+
+Current features
+
+  ● Runs on multiple platforms and fits on an USB-stick
+
+  ● OpenPGP-standard file encryption with AES
+
+  ● XML file format allows easy and automatically migration of your data
+
+  ● Hierarchical tree structure for account organization
+
+  ● Quick search functionality
+
+  ● Different attributes for:
+
+      ○ internet and network accounts
+
+      ○ credit cards
+
+      ○ password secured files
+
+      ○ bank accounts
+
+      ○ user-defined account templates
+
+  ● Multiple file attachments for each account
+
+  ● History of each account (when created, associated passwords, ...)
+
+  ● Comments for each item
+
+  ● Auto lock hides the desktop after N minutes of inactivity
+
+  ● Random password generator for variable length with multiple engines
+
+      ○ human readable passwords
+
+      ○ secure hard-to-read-and-comprehend passwords
+
+      ○ user defined password templates
+
+  ● Password strength analyzer
+
+  ● Password cracker using a cracklib dictionary
+
+  ● Support for transaction numbers (TAN lists)
+
+  ● Ability to start a browser or application associated with an account URL
+
+  ● Quick selection of recently- and most-used accounts
+
+  ● Import of Comma-Separated-Value-Files
+
+  ● Export to XHTML, XML and CSV. User-defined XSLT-stylesheets are supported
+    as well.
+
+  ● Hide the application in system tray
+
+Installation
+
+KisKis™ comes with a simple installation routine. Download the file
+kiskis-installer.jar and run
+
+        
+          $> java -jar kiskis-installer.jar
+        
+
+
+After that you need to follow the instructions. The installer provides all
+libraries needed and will create start links in the start menu if you want to.
+
+Note
+
+You will find a zip-file in the Download chapter as well which requires no
+installation. This zip-file can be unpacked to any USB-stick or directory.
+
+Go to the destination directory and start the application with one of the
+start-scripts provided (Windows: kiskis.bat , *ix: kiskis.sh ).
+
+Runtime Dependencies
+
+For running KisKis™ you have to make sure, that the following libraries are
+available within your CLASSPATH . The installer and zip files contain all
+libraries needed. You need to install a Java Runtime Environment.
+
+KisKis™ is using:
+
+  ● Java Runtime 6 or equivalent with Java Cryptography Extension (JCE) , http:
+    //www.oracle.com/technetwork/java/javase/downloads/index.html
+
+    KisKis™ works fine with OpenJDK as well.
+
+  ● Legion Of The Bouncy Castle Crypto API 1.45 or later, http://
+    www.bouncycastle.org (you will need the provider- and the OpenPGP-library)
+
+  ● xom 1.1 or later, http://www.xom.org
+
+  ● Kunststoff Look&Feel 2.0.2, http://www.incors.org/archive/
+
+  ● Java-based Cracklib-implementation 0.5, http://sourceforge.net/projects/
+    solinger/
+
+How to install Java Cryptography Extension
+
+TODO
+
+Running KisKis™
+
+Go to the KisKis™ installation directory and start the program with the
+following commands
+
+          $> <start-script-name> [-file <datafile>]
+                    
+
+
+or
+
+          $> java -jar kiskis.jar [-file <datafile>]
+
+
+or
+
+          $> java -classpath kiskis.jar:<lib/*.jar>
+            de.tbuchloh.kiskis.KisKis \
+           [-file <datafile>]
+
+
+Note
+
+<lib/*.jar> has to be replaced with a sequence of JAR-files found in the lib
+-directory.
+
+Command line options
+
+Table 1. Command line options
+
+┌──────────┬──────────────────────────────────────────────────────────────────┐
+│ Options  │                           Description                            │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-help     │shows the options supported.                                      │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-file     │open <datafile> immediately.                                      │
+│<datafile>│                                                                  │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-lastFile │open the most recently used file.                                 │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-hide     │hide in system tray at startup.                                   │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-reset    │delete all stored user preferences and exit (window positions and │
+│          │sizes, recently used files, default-look-and-feel, ...).          │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-validate │activate XML-validation for debugging.                            │
+├──────────┼──────────────────────────────────────────────────────────────────┤
+│-selftest │All encryption algorithms will be checked for correct             │
+│          │functionality.                                                    │
+└──────────┴──────────────────────────────────────────────────────────────────┘
+
+
+Building from source
+
+KisKis™ can be compiled easily from source using Ant. Therefore you have to
+install the following libraries and tools:
+
+  ● Apache Ant 1.7 or equivalent, http://ant.apache.org
+
+  ● JUnit 4 or equivalent, http://www.junit.org
+
+  ● Apache Log4J 1.2.8 or equivalent, http://logging.apache.org/log4j/docs
+
+Once installed you only have to type
+
+          $> ant create-dist
+
+
+in the project root directory. Then the binary-jars are build in the target/
+dist/ -directory.
+
+You can obtain the code and libraries from the SVN at sourceforge.net:
+
+          $> svn co
+            https://kiskis.svn.sourceforge.net/svnroot/kiskis/kiskis-application/trunk
+                                        
+
+
+Manual
+
+Getting started
+
+Please take a look on our Screencast Tutorial on youtube for a short
+introduction.
+
+@html.object.youtube@
+
+Account types explained
+
+KisKis™ provides some basic account types for different purposes, such as
+“Network Accounts”, “Bank Accounts”, “Secured Files” and “Credit Cards”.
+However, if the attributes of them doesn't meet your needs, you can define your
+own account types in an easy way.
+
+Figure 2. A network account
+
+                               A network account
+
+
+All accounts can be archived. Select the In archive? -checkbox if the account
+will not be used in the near future. Checked accounts will normally not be
+visible in the tree view. You can make them visible again with the View/Show
+archived items menu item.
+
+The Apply -action will be enabled when the account was changed. Click on this
+button if you want to "commit" your changes.
+
+Common properties
+
+All account types define the following properties in common. That means they
+have a name, password, can expire on a specific date and collect some
+statistics.
+
+Figure 3. Label, password and expiration date
+
+                      Label, password and expiration date
+
+
+Label
+
+    A simple name for the account which is used in the tree view.
+
+Password
+
+    The password used for this account. Normally it will be hidden, but you can
+    display it if necessary.
+
+    You can create new passwords automatically if the password field is empty
+    with the Create -action. Click on Create and a menu with three generators
+    is displayed.
+
+    If a password exists you can display the password using the Show -button.
+
+    You can copy the password to the clipboard even when it is hidden with the 
+    Copy to clipboard -action from the context menu.
+
+    The Test -action checks if the password can be found in a dictionary. You
+    can define your own dictionary to use as described in the Cracklib Options
+    Tab .
+
+Password-Quality
+
+    This progress bar shows the password quality on the fly.
+
+    The tooltip shows you some more detailed information about the quality.
+
+Expires
+
+    A password might expire on a specific date. You can enter this date here or
+    mark the Never -checkbox if it never will expire.
+
+    Expired passwords can be found with the "Reports/Expired Accounts
+    ..."-action from the menu bar.
+
+History
+
+    Displays a dialog with all recent used passwords for this account.
+
+    Figure 4. Password history
+
+                                 Password history
+
+
+
+Attachments are arbitrary files which will be encrypted and stored next to the
+account.
+
+Figure 5. Attachments
+
+                                  Attachments
+
+
+New
+
+    Shows a file selection dialog. Select a file and it will be shown in the
+    list afterwards.
+
+Save as
+
+    Decrypt the attachment and save it on the disc.
+
+Delete
+
+    Delete the attachment from the account. The encrypted file will be removed
+    as well.
+
+All physical operations will be done when the document is saved. An Apply alone
+will not change any data on the disc. The source files will not be touched at
+all. That means you have to remove them from disc manually if necessary.
+
+Technical notes about attachments
+
+Normally you should not be bothered with the manual decryption of attachments,
+but here is how it works.
+
+File attachments are stored as separate files which are associated with the
+password-file (e. g. c:\foo\bar\kiskis.xml.gpg ) by name for efficiency
+reasons. All attachments of c:\foo\bar\kiskis.xml.gpg can be found as c:\foo\
+bar\kiskis.xml.gpg.attachment.<i> encrypted as separate PGP-Messages. Each
+attachment is encrypted with a new random key which you can find within the c:\
+foo\bar\kiskis.xml.gpg -file in the <Attachment>-element.
+
+So, a typical KisKis™ -directory c:\foo\bar with a passwordfile kiskis.xml.gpg
+will look like:
+
+
+
+gandalf@valinor-LINUX:/foo/bar/$ dir
+insgesamt 192
+-rw------- 1 gandalf gandalf 6419 2010-11-15 14:17 kiskis.xml.gpg
+-rw-r--r-- 1 gandalf gandalf  159 2010-11-10 18:00 kiskis.xml.gpg.attachment.1
+-rw-r--r-- 1 gandalf gandalf  543 2010-11-10 15:55 kiskis.xml.gpg.attachment.2
+-rw-r--r-- 1 gandalf gandalf  231 2010-11-10 15:55 kiskis.xml.gpg.attachment.5
+-rw-r--r-- 1 gandalf gandalf 1223 2010-11-10 15:55 kiskis.xml.gpg.attachment.6
+-rw-r--r-- 1 gandalf gandalf  326 2010-11-10 15:55 kiskis.xml.gpg.attachment.7
+-rw-r--r-- 1 gandalf gandalf  492 2010-11-10 18:00 kiskis.xml.gpg.attachment.8
+-rw-r--r-- 1 gandalf gandalf  159 2010-11-10 18:00 kiskis.xml.gpg.attachment.9
+
+
+
+
+Each account collects some statistics. So you can see when it was used the last
+time and how often it has been viewed.
+
+Figure 6. Statistics
+
+                                  Statistics
+
+
+Plain text can be added to each account using the Comment -tab.
+
+Figure 7. Account comment
+
+                                Account comment
+
+
+Network Account
+
+This is the most often used account type. It can be used for computer logins,
+mailserver authentications, internet services and so on.
+
+Figure 8. Network account options
+
+                            Network account options
+
+
+The network account provides additional attributes for:
+
+User name
+
+    Typical use is the login name of an internet service or computer account.
+    This might be an e-mail address as well.
+
+URL
+
+    The location where the service or computer can be found. This URL can be
+    delivered to the Build-in Application Starter , so that you can associate
+    your preferred application to it. Therefore, you would have to click on the
+    button Open URL .
+
+    Example 1. URL with placeholders
+
+    http://www.foo.de/?un=%username&pwd=%pwd or pop://mail.foo.de/
+
+
+E-mail
+
+    If a service wants to know an email address you can type it in here. This
+    is very useful if you have multiple email accounts and if you want to keep
+    track which account knows which email address, especially if you use such
+    services like spamgourmet.com.
+
+Bank Account
+
+This account type models a typical money account on a bank. It provides some
+additional attributes needed for financial transactions such as “telephone
+pin”, “account number”, “TAN lists” and more.
+
+Figure 9. Bank account options
+
+                             Bank account options
+
+
+The bank account provides additional attributes for:
+
+Bank Name
+
+    The name of the bank, e. g. "Deutsche Bank".
+
+Bank Identifier
+
+    The identifier of the bank. This may be a IBAN, BLZ or something else.
+
+Telephone PIN
+
+    This is a password or PIN which is used for telephone banking.
+
+Account Number
+
+    This is the number that identifies the account.
+
+Notice the TAN list field for transaction numbers (TAN). It is used to define
+sets of TANs. Each TAN list is identified by an ID and a creation date. Within
+the following dialog the TANs can be added, removed or marked as used.
+
+TAN lists:
+
+New
+
+    Creates a new empty TAN list.
+
+Edit
+
+    Open the selected TAN list in a TAN list editor dialog.
+
+Delete
+
+    Deletes the selected TAN list.
+
+Figure 10. TAN list dialog
+
+                                TAN list dialog
+
+
+TAN list dialog options:
+
+TAN list ID
+
+    An identifier which is usually written on the TAN list by the bank.
+
+Created on
+
+    The date when the bank created the list.
+
+TAN ID
+
+    A consecutive number which identifies a TAN.
+
+Value
+
+    The value of the TAN, usually a 6-digit random number.
+
+Used?
+
+    Checked if used. When checked is clicked, the field "Used On"" will be
+    updated as well.
+
+Used On
+
+    The date when the TAN was used.
+
+Credit Card
+
+A “Credit Card” is usually associated with a bank and has a tiny pin used for
+ATMs. Though, the most interesting part is its number which can be entered as
+well.
+
+Figure 11. Credit card options
+
+                              Credit card options
+
+
+The credit card account provides additional attributes for:
+
+Bank Name
+
+    The name of the bank, e. g. "Deutsche Bank".
+
+Credit Card Number
+
+    The number written on the card.
+
+PIN
+
+    The PIN needed for ATMs.
+
+Card Validation Code
+
+    The card security code (CSC) provides increased protection against credit
+    card fraud Wikipedia .
+
+Secured File
+
+Sometimes files can be opened with a passphrase only. So you can define an
+account which is linked to the file. This files can be opened with your
+preferred filemanager. You can encrypt or decrypt them with OpenPGP if you want
+to.
+
+Figure 12. Secured file options
+
+                             Secured file options
+
+
+The secured file account provides additional attributes for:
+
+File
+
+    A relative or absolute path to an arbitrary file. This could be "project
+    plan", "word document", "keystore" or something else.
+
+Status
+
+    Shows if the file could be found or if it is a directory or if it is
+    missing.
+
+Decrypt
+
+    Decrypts the file using the password given above. It is activated only if
+    the file is a PGP file. This is checked automatically.
+
+Encrypt
+
+    Encrypts the file using the password given above. It is activated only if
+    the file is not a PGP file. This is checked automatically.
+
+User-defined Account Template
+
+If you need some extra attributes or even simpler accounts you can define your
+own account templates. In the standard KisKis™ document you can find two
+examples. The first example is the "Password only" type, the second example is
+the "Complex type example" type. You can change these examples if you want to.
+Think about an account type as a blueprint for multiple occurences which all
+need some specific properties.
+
+Figure 13. "Password only" type options
+
+                         "Password only" type options
+
+
+As you can see this account type does not define any additional attributes. So,
+the detail area is not visible anymore. You can use this account if you need a
+"label/password" pair only.
+
+Figure 14. "Complex type example" type options
+
+                      "Complex type example" type options
+
+
+This account type is just an example. You can see all field types available.
+Look at Managing your own account templates for further information.
+
+Managing your own account templates
+
+Open the menu item “Edit/Manage account templates” to open the template
+overview dialog.
+
+Warning
+
+Be careful when modifying a template you have already instantiated and filled
+with important data. New properties aren't a problem at all. But keep in mind,
+that deleting a property will delete ALL associated values from the instances
+as well. You should also note that deleting a template will delete all
+instances.
+
+Figure 15. Manage account templates dialog
+
+                        Manage account templates dialog
+
+
+Here you can see all your defined account templates. In this case, two types
+were already defined. Note that an item is uniquely identified by its name
+(case-sensitive). So you cannot have a second item called “Password only” . All
+the templates are stored within your current datafile.
+
+New
+
+    Click New and a newly created template will appear in the list. It will be
+    initially called "new template".
+
+Edit
+
+    Select an existing template and click Edit to manipulate the template. A
+    new "template editor dialog" will appear. You can do a double-click in the
+    list as well.
+
+Delete
+
+    Select an existing template and click Delete to remove the template. If the
+    item is currently instanciated a warning will be shown.
+
+Import
+
+    You can import existing templates from other KisKis™ files with the Import
+    -button. Select a KisKis™ file, enter the password and all the templates
+    will be copied to the current file. In case of naming collisions you can
+    change the template names before OK is pressed.
+
+Figure 16. Template editor dialog
+
+                            Template editor dialog
+
+
+Name your template and add some tiny properties with New . You can order the
+properties using the arrow buttons on the right panel.
+
+Template Name
+
+    Enter a unique name for the template. There is no other constraint for the
+    name.
+
+New
+
+    Opens the property editor dialog .
+
+Edit
+
+    Select an existing property and click Edit . The property editor dialog
+    will be shown.
+
+Delete
+
+    Select an existing property and click Delete . The currently selected item
+    will be removed from the list. If the property is still used by an instance
+    a warning will be shown.
+
+Figure 17. Property editor dialog
+
+                            Property editor dialog
+
+
+Give each property a unqiue name within the template and choose a type out of
+the combo-box. As you can see, the following types are supported:
+
+Date
+
+    Will be rendered as a date field
+
+Password
+
+    Will be rendered as a password field.
+
+String
+
+    Will be rendered as a simple text field.
+
+URL
+
+    Will be rendered as a URL-input field which allows you to start an
+    associated application.
+
+RichText
+
+    Will be rendered as a text area.
+
+Take a look at the Complex template example .
+
+Generating passwords automatically
+
+Secure passwords should be only known by you and the service you are using. It
+is not recommended to reuse passwords for multiple services. That means you
+need one unique password for each account which cannot be derived from another
+password of a different account. Therefor, KisKis™ provides multiple password
+generators which make it easy for you to follow these rules.
+
+Three different generators are available when you want to create a new password
+
+human readable
+
+    Human readable passwords do not use sophisticated special characters.
+    Furthermore the generator mixes consonants and vocals in a friendly manner.
+    The passwords created should always be readable, e. g. NuHuxo770165
+
+secure
+
+    Secure passwords use all displayable characters in a complete random order.
+    These passwords may be hard to read and comprehend but are secure, e. g.
+    du"|]Z0ku&"E .
+
+by template
+
+    This option opens a new password generator dialog.
+
+    Figure 18. Password generator dialog
+
+                             Password generator dialog
+
+
+    Template
+
+        Enter a string, defining your template, here.
+
+        A template consists of a user-defined password pattern string with a
+        length greater than zero. Each pattern character represents a set of
+        characters which can be placed on this position randomly.
+
+
+        c,C - a consonant (b, c, d, ...)
+        v,V - a vocal (a, e, i, o, u)
+        a,A - an alphabetic character
+        9 - a digit (0-9)
+        n,N - a combination of 'a' and '9'
+        # - a special character (+, $, %, ...)
+        ? - any character
+
+
+
+        Example: cVCvaA99#? can generate kIFaaT40[F , wUJan042:% and so on.
+
+    Count
+
+        The number of passwords to generate. You can pick one of them out of
+        the list.
+
+    Mix case
+
+        If upper case and lower case should be chosen randomly you can activate
+        this box.
+
+Checking password quality
+
+When you need to choose a password you may ask yourself "What is a good
+password and how do I know it is well chosen?". However, at first you need to
+know the how an intruder would try to get your password.
+
+The easiest way to get a password is guessing or social engineering . Many
+people are using passwords of things or family members they can remember
+easily. "The name of the pet", "the childs birthday", "an anniversary" or such
+things are often used and can be guessed by an intruder easily. Think about all
+the information the web knows abaout you. Google, Facebook and Xing are a very
+useful source for such information. Even if you did not publish such sensitive
+information, the intruder might know you better than you think.
+
+Important
+
+You can protect yourself from those attacks easily. Do not use any information
+of your social environment as passwords!
+
+An automated way to hack an account is to use a dictionary attack . Therefor a
+computer will try each entry of a dictionary to access your account. Those
+dictionaries contain millions of entries with the most common passwords used
+all over the world. Our fast computers do not need much time to find the right
+solution if the password can be found in the dictionary. Did you know that
+"qwertz" or "{[]}\" are often used passwords? That is the case because these
+character sequences constist of characters which are close to each other on the
+keyboard.
+
+Important
+
+You can protect yourself from those attacks easily. Do not use simple words or
+character sequences, consisting of characters which are close to each other on
+the keyboard, as passwords! Passwords should never be found in a dictionary!
+
+Another way to get your password is to use a brute force attack . The
+algorithms are very simple. "Try each possible variation of characters and
+numbers up to a defined length." The longer your password and the more
+different characters your password contains the more variations need to be
+tried.
+
+Important
+
+You can protect yourself from those attacks easily. Use long passwords with at
+least 10 characters mixed with numbers, special characters, upper case and
+lower case!
+
+You can check your password quality with two internal tools.
+
+The first is a simple password analyzer which tests the strength of your
+password depending on the character set used. A character set describes
+numbers, lower-case letters, upper-case letters, punctuation, ... The more
+different character sets a password uses and the longer it is, the more secure
+the password is because a brute force attack needs to take more possible
+variations into account.
+
+Figure 19. Password quality bar
+
+                             Password quality bar
+
+
+As you type the password in the password element it will be checked
+automatically. Depending on the characters you typed the number of possible
+variations is computed. It is assumed, that an intruder might get the
+information about the character set used, i. e. if you use numbers only as a
+password the intruder would try numbers only in a brute force attack to reduce
+the number of possible variations. The tooltip shows you more information about
+the password quality. So you can see the number of possible variations.
+
+The second way is a dictionary-based check using cracklib. The password is
+validated against a dictionary. If cracklib is able to find parts of the word
+in its dictionary you should use another password because a dictionary-based
+attack on your account could succeed with a high probability.
+
+Figure 20. Password crack dialog
+
+                             Password crack dialog
+
+
+This dialog gives you some information about the password, e. g. if it was
+found in the dictionary or if it violates some other password rules.
+
+Importing CSV files
+
+KisKis™ provides a basic feature to import existent data via
+"comma-separated-value”-files (CSV). You can create CSV files easily with
+Microsoft Excel or OpenOffice Calc .
+
+Open the KisKis™ file you want to add the imported accounts to and activate the
+menu item “File/Import” to start the procedure. A file selection dialog opens.
+Select the CSV file you want to import and click OK . The accounts will be
+added.
+
+A CSV file must start with a header line and may contain multiple data lines.
+Each data line represents one account and must contain as much as fields as
+defined in the header.
+
+The header with pre-defined values must be included:
+
+Group
+
+    The name of the group. An empty group name means that the account should be
+    append to the root. A group path can be defined using the character
+    sequence " ## " as a path separator. A group name " Shopping##Books#My
+    Favorite Bookstores " would result in the following tree path:
+
+                                   [020_csv_im]
+
+    If no group path separator can be found the group will be appended to the
+    root node.
+
+Label
+
+    The name of the account.
+
+Password
+
+    The password as plain text.
+
+User Name
+
+    The user name for the account.
+
+Email
+
+    The e-mail address used for the account.
+
+URL
+
+    The URL used for the account.
+
+Created On
+
+    The creation date used for the account. The format is YYYY-MM-DD , e. g.
+    2010-12-01.
+
+Expires On
+
+    The expiration date used for the account. The format is YYYY-MM-DD , e. g.
+    2010-12-01.
+
+Comment
+
+    The comment used for the account. May contain linebreaks.
+
+Example 2. CSV Example File
+
+
+"Group","Label","Password","User Name","Email","URL","Created On","Expires On","Comment"
+,"Account placed to the root","hhsgww2l","foo",,,,,
+"Shopping","Amazon",32362187361,"amazon.foo","mail@bar.de","http://www.amazon.de",,,"amazon account"
+"Newly created group","Blahblah",1234,"user@foo.bar","user@foo.bar",,,,
+"Lifestyle##Shopping","eBay","hgfhda4342","buyer","foo@bar.com","http://www.ebay.de",,,
+"Work##Job 1","Computer Job 1","secret","john.doe","john.doe@company.com","http://portal.company.com","2010-10-21",,"Another comment"
+"Work##Job 2","Enterprise Password","foobar","karl.mustermann","karl@mustermann.de","Http://portal.foo.com","2009-12-24","2010-11-23","That is just a comment.
+With
+Multiple lines"
+"##","Account placed to the root 2","ÄÖÜölöö","another@user.de","another@user.de","http://foo.bar",,,"Another comment
+With multiple lines"
+"##Shopping","Bücher.de","3211fssaDD","mybuecher","foo@bar.com","http://www.buecher.de","2008-01-27",,"No comment"
+"Others##Invalid Accounts","Wrong Expiration date","rhiurhewf","foo","foo@bar.com",,,01.01.10,"Wrong expiration date"
+"Others##Invalid Accounts","Wrong creation date","rhiurhewf","foo","foo@bar.com",,01.01.10,,"Wrong creation date"
+"Others##Invalid Accounts",,,,,,,,
+
+
+
+
+Notice the header in the first line and 11 different data rows. The order in
+the column header is not important. You don't have to provide values for each
+possible column. You could use the header Label, Password as well and omit the
+other column values ( the rest will be filled with predefined standard values).
+But if you have defined two columns in the header, each data row MUST provide
+two columns as well (but a column may be empty).
+
+In this example the field-delimiter is ','. You can chose any other character
+if you want to. Put the field values in "" if the field-delimiter may be found
+inside the value, e. g. comments and text fields.
+
+Get the example OpenOffice.org Calc spreadsheet and try out.
+
+
+Important
+
+An import-action cannot be made undone. Please save your KisKis™ file before
+you start the import.
+
+Note that the imported accounts will be typed as “Network Accounts” and will be
+added to the opened file.
+
+Options and preferences
+
+Open the menu item Edit/Options... to edit your personal preferences. A new
+dialog will appear.
+
+General
+
+In the general tab you can find options for appearance and some automatisms
+making your life easier.
+
+Figure 21. General Options Tab
+
+                              General Options Tab
+
+
+General options
+
+Choose Look&Feel-classname
+
+    Choose a classname of an javax.swing.LookAndFeel -implementation.
+
+    The default value is the great
+    com.incors.plaf.kunststoff.KunststoffLookAndFeel .
+
+Choose font for password field
+
+    You can choose a font of all available fonts which is used for the password
+    fields.
+
+    The default is Monospaced and should be sufficient for most platforms.
+
+Lock program after N minutes
+
+    Enter the number of minutes of inactivity here that should pass before 
+    KisKis™ will be locked. Inactivity means that KisKis™ did not receive any
+    mouse event or key stroke, e. g. because the window is in the background.
+    When KisKis™ is locked you need the password of the currently opened file
+    to unlock it again. So you might leave your computer alone for a moment.
+
+    A value of 0 will disable this option.
+
+    The default is 5 minutes.
+
+Mark items as viewed after N seconds
+
+    Enter the number of seconds here that should pass before KisKis™ will mark
+    the currently opened account as viewed. This means, when you opened the
+    GMail account its last viewed date and view counter will be updated after N
+    seconds. This is useful if you want to keep track of your favorite
+    accounts. If you switch to another account before N seconds passed these
+    values will remain the same as before.
+
+    A value of 0 will disable this option.
+
+    The default is 10 seconds.
+
+Buffer password
+
+    Should the password stay in memory as long as the password file is opened?
+    On a single user machine this is no problem. On a multiuser server, e. g.
+    Citrix, it would be safer to disable this option.
+
+    The default is checked .
+
+Dispose password after N minutes
+
+    If buffer password is enabled the buffered password can be disposed from
+    memory automatically after N minutes. This is useful if you run KisKis™ on
+    a multiuser platform without losing much convenience.
+
+    A value of 0 will disable this option. The password will never disposed.
+
+    The default is 0 .
+
+Default password expiry time
+
+    This value is used when a new account is created for computation of the
+    expiration date. The default expiration date will be today + N days.
+
+    The default is 365 days.
+
+Export user preferences on exit
+
+    If you want to run KisKis™ from a USB-stick on multiple computers it is
+    useful to share the preferences. Check this box and the preferences will be
+    saved in a file $KISKIS_HOME/kiskis.preferences . If you start KisKis™ the
+    next time it will restore the preferences from this file.
+
+    The default is not checked .
+
+Check updates on startup
+
+    If you want to get a short message when a new version of KisKis™ is
+    available you need to check this box. KisKis™ will ask the server http://
+    kiskis.sourceforge.net/download if a new version is available. No
+    information from you will be sent to the server for this operation. This is
+    just a simple HTTP-GET . These requests will not be saved to any logfile
+    from the KisKis™ -authors.
+
+    The default is checked .
+
+Load & Save
+
+In this tab you can find options for the load and save operation.
+
+Figure 22. Load & Save Options Tab
+
+                            Load & Save Options Tab
+
+
+Load & Save options
+
+Default encryption algorithm
+
+    Select your favorite encryption algorithm. OpenPGP - AES (256) is the
+    strongest algorithm available. You can use other algorithms if you want to,
+    even 3DES which does not use PGP at all.
+
+    The default value is OpenPGP - AES (256) . If the JCE is not installed on
+    your machine OpenPGP - AES (128) will be the default.
+
+Enable auto save
+
+    Enable this option if KisKis™ should save your changed password file
+    automatically.
+
+    The default value is checked .
+
+Save every N minutes
+
+    Tell KisKis™ how many minutes it should wait to save the document
+    automatically after the password file has been modified.
+
+    The default value is 5 minutes.
+
+Max. number of backup files
+
+    KisKis™ can make backups when saving the document automatically. All
+    attachments will be backed up as well. You can find the backup files in the
+    directory where your password file is saved. The filenames follow the
+    simple rule <password file>.backup.<timestamp> .
+
+    The default value is 5 backups.
+
+Applications
+
+You can define your own applications that shoul be used for opening URLs here.
+In the list you can find prefixes and regular expressions for URLs associated
+with commands for external applications. The list has to be read from top to
+bottom. The first matching prefix/regular expression for a given URL will be
+used to start an external application.
+
+Figure 23. Applications Options Tab
+
+                           Applications Options Tab
+
+
+As you can see in the picture above three different entries exist. URLs
+starting with https://www.myjob.de/ will be started with firefox and all other
+http -URLs will be passed to the machines default browser . It is important
+that the more specific prefixes will be placed on top of the more general ones.
+
+Applications options
+
+New
+
+    Creates a new empty entry in the list. Make a double click on it to define
+    its values.
+
+Edit
+
+    Edit the selected entry.
+
+                                   [025_option]
+
+    Regular expression or prefix for URL
+
+        This pattern or prefix is used to match a given URL. It answers the
+        question: Should this entry be used to open the URL X? .
+
+        Define a prefix, e .g http . You can define Java-like regular
+        expressions ^[6] as well if you need more complicated patterns and
+        logic.
+
+    Associated command
+
+        Define your command, which starts the application here. You may use
+        placeholders as %url , %pwd and %username . These placeholders will be
+        filled with the values of the specific account when you click Open URL
+        .
+
+        The command <default browser> %url will use the Java-standard mechanism
+        to detect the default browser on your machine.
+
+Delete
+
+    Remove the selected entry.
+
+Cracklib Dictionary
+
+Here you can define your own dictionary that is used to check passwords if you
+want to. The standard dictionary contains more than 1.6 million words and
+typical passwords. Most of the words are in German and English.
+
+Figure 24. Cracklib Options Tab
+
+                             Cracklib Options Tab
+
+
+Cracklib dictionary directory
+
+    Define the relative or absolute path to a cracklib directory here. This
+    directory contains the dictionary which consists of three cracklib files (
+    cracklib.hwd , cracklib.pwd and cracklib.pwi ).
+
+Select an existing dictionary file
+
+    Use this action to select an existing directory containing the three
+    cracklib files . A directory selection dialog will appear. The selected
+    directory will be validated and the absolute directory pathname is shown in
+    the textbox afterwards. Otherwise an error message will appear.
+
+Create a new Dictionary from wordlist
+
+    You can define your own textfiles with your own words as a dictionary. That
+    is quite simple. Create a file wordlist.txt with a text editor (e. g. 
+    notepad on Windows). This file should look like as follows:
+
+    Example 3. Sample wordlist
+
+
+    a
+    aa
+    aron
+    berta
+    ...
+    julia
+    z
+    zz
+    zoron
+
+
+
+
+
+    Empty lines and case will be ignored.
+
+    A file selection dialog will appear if you click this action. Select the
+    file you created first and Select . A progress indicator will appear as
+    long as this action has not been finished.
+
+    The dictionary files will be created on the file system in the directory
+    specified in the textbox. So, you should define the target directory in the
+    textbox first. The import of the file cannot be cancelled and may take a
+    while. Please be patient.
+
+    You can find the standard wordlist in the Version Control System .
+
+Warranty
+
+This program is provided under the GPL-license and is absolutely free and comes
+„AS IS“. You use it on your own risk. There is no liability for data losses,
+hardware defects, loss in cash and so on of anyone other than yourself.
+
+See LICENSE-file for further information.
+
+Cryptography Verification
+
+To build-up trust in the encryption-algorithm, you can verify the encrypted
+data-files with GnuPG (http://www.gnupg.org) for example.
+
+Just call
+
+        $> gpg –-list-packets <datafile>
+
+
+on command line or test de- and encrypting directly:
+
+        $> gpg --decrypt <datafile> > tmp 
+        $> gpg --symmetric --armor --cipher-algo AES tmp 
+        $> java -jar kiskis.jar -file tmp.asc
+        $> rm -i tmp*
+
+
+Download
+
+Get the latest informations and releases from the project homepage at
+Sourceforge.net.
+
+You can try KisKis™ online with Java Web Start
+
+                                   [sflogo]
+
+Alternatively you can download the application from heise.de .
+
+[download_l]
+
+Help!
+
+Any help with { coding, usability improvements, bug reports, appearance
+improvements, translations } would be very much welcomed.
+
+I also would appreciate any other related feedback.
+
+Please feel free to send me an email or to donate some money if you have to
+much of this stuff ;-)
+
+                                 [project-su]
+
+Contributions
+
+Many thanks to Patrick Spinler, Ruth Betcher and Brent Vrieze for the
+integration of the cracklib-library.
+
+Contact
+
+
+        Tobias
+        Buchloh
+        <kiskis [at] gmx [dot] eu>
+        Germany
+      
+
+My public PGP key: resources/tbuchloh_pubkey.asc
+
+Fingerprint: 2716 3A96 25FF 5C6D C7FE 34B1 02D9 2BEA 071C 5F25
+
+
+━━━━━━━━━━━━━━
+
+^[1] OK, you need a well chosen master password that cannot be guessed ;-).
+Please read Password Quality chapter.
+
+^[2] http://www.youtube.com/watch?v=N5DtvR056J4
+
+^[3] http://de.wikipedia.org/wiki/Advanced_Encryption_Standard
+
+^[4] http://de.wikipedia.org/wiki/OpenPGP
+
+^[5] http://www.pgp.com/
+
+^[6] http://download.oracle.com/javase/1.4.2/docs/api/java/util/regex/
+Pattern.html
+

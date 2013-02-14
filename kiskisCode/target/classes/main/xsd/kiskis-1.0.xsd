@@ -1,0 +1,222 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://kiskis.sourceforge.net/model/v1.0/"
+	xmlns:tns="http://kiskis.sourceforge.net/model/v1.0/">
+
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="xml.xsd" />
+
+	<xsd:element name="Password">
+		<xsd:complexType>
+			<xsd:attribute name="created" type="xsd:dateTime" use="required" />
+			<xsd:attribute name="expires" type="xsd:date" use="required" />
+			<xsd:attribute name="pwd" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Attachments">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:Attachment" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Attachment">
+		<xsd:complexType>
+			<xsd:attribute name="id" type="xsd:integer" use="required" />
+			<xsd:attribute name="key" type="xsd:string" use="required" />
+			<xsd:attribute name="description" type="xsd:string" use="required" />
+			<xsd:attribute name="uuid" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="AttachmentRef">
+		<xsd:complexType>
+			<xsd:attribute name="attachmentUuid" type="xsd:string"
+				use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="PasswordHistory">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:Password" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Comment">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute ref="xml:space" />
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="SecuredElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:Comment" />
+				<xsd:sequence>
+					<xsd:element ref="tns:Password" />
+					<xsd:element ref="tns:PasswordHistory" />
+					<xsd:element ref="tns:AttachmentRef" minOccurs="0"
+						maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:sequence>
+			<xsd:attribute name="creationDate" type="xsd:dateTime" use="required" />
+			<xsd:attribute name="expiresNever" type="xsd:boolean" use="required" />
+			<xsd:attribute name="lastChangeDate" type="xsd:dateTime"
+				use="required" />
+			<xsd:attribute name="lastViewedDate" type="xsd:dateTime"
+				use="required" />
+			<xsd:attribute name="viewCounter" type="xsd:integer" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="archivedOnDate" type="xsd:dateTime"
+				use="optional" />
+			<xsd:attribute name="uuid" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="BankAccount">
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="tns:SecuredElement" />
+					<xsd:element ref="tns:TANList" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+				<xsd:sequence>
+					<xsd:element ref="tns:TANList" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element ref="tns:SecuredElement" />
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:attribute name="bank" type="xsd:string" use="required" />
+			<xsd:attribute name="bankID" type="xsd:string" use="required" />
+			<xsd:attribute name="number" type="xsd:string" use="required" />
+			<xsd:attribute name="telebankingPin" type="xsd:string"
+				use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="CreditCard">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:SecuredElement" />
+			</xsd:sequence>
+			<xsd:attribute name="deployer" type="xsd:string" use="required" />
+			<xsd:attribute name="number" type="xsd:string" use="required" />
+			<xsd:attribute name="pin" type="xsd:string" use="required" />
+			<xsd:attribute name="cardValidationCode" type="xsd:string"
+				use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Group">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:Comment" />
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="tns:BankAccount" />
+					<xsd:element ref="tns:CreditCard" />
+					<xsd:element ref="tns:GenericAccount" />
+					<xsd:element ref="tns:Group" />
+					<xsd:element ref="tns:NetAccount" />
+					<xsd:element ref="tns:SecuredFile" />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="archivedOnDate" type="xsd:string"
+				use="optional" />
+			<xsd:attribute name="uuid" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="NetAccount">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:SecuredElement" />
+			</xsd:sequence>
+			<xsd:attribute name="email" type="xsd:string" use="required" />
+			<xsd:attribute name="url" type="xsd:string" use="required" />
+			<xsd:attribute name="username" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="SecuredFile">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:SecuredElement" />
+			</xsd:sequence>
+			<xsd:attribute name="file" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TAN">
+		<xsd:complexType>
+			<xsd:attribute name="id" type="xsd:integer" use="required" />
+			<xsd:attribute name="number" type="xsd:string" use="required" />
+			<xsd:attribute name="used" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TANList">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:TAN" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="created" type="xsd:dateTime" use="required" />
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="TPMDocument">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:AccountType" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xsd:element ref="tns:Group" />
+				<xsd:element ref="tns:Attachments" />
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" use="required" />
+			<xsd:attribute name="uuid" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="GenericAccount">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:AccountPropertyValue" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xsd:element ref="tns:SecuredElement" />
+			</xsd:sequence>
+			<xsd:attribute name="type" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="AccountType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:AccountProperty" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="AccountProperty">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="type" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="AccountPropertyValue">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="type" type="xsd:string" use="required" />
+			<xsd:attribute name="value" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

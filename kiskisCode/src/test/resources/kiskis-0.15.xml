@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE TPMDocument SYSTEM "kiskis-0.15.dtd">
+<TPMDocument version="0.15">
+  <AccountType name="Just a New Template">
+    <AccountProperty name="My Date" type="Date"/>
+    <AccountProperty name="My String" type="String"/>
+    <AccountProperty name="My Secret Field" type="String"/>
+    <AccountProperty name="My URL" type="URL"/>
+    <AccountProperty name="Foo" type="Date"/>
+  </AccountType>
+  <AccountType name="My Credit Card">
+    <AccountProperty name="Just A Date" type="Date"/>
+  </AccountType>
+  <AccountType name="My Template">
+    <AccountProperty name="My String" type="String"/>
+    <AccountProperty name="My Secret" type="Password"/>
+    <AccountProperty name="My URL" type="URL"/>
+  </AccountType>
+  <Group name="My Passwords" comment="this   is   a   tiny   comment">
+    <Group name="Computer Accounts" comment="Diese Gruppe enth&#xE4;lt alle meine Computerzug&#xE4;nge.">
+      <Group name="Private" comment="">
+        <NetAccount email="foo@bar.de" username="foo" url="http://www.google.de">
+          <SecuredElement name="My Computer" comment="" creationDate="2004-10-09T18:32:32" lastChangeDate="2004-10-10T10:38:04" expiresNever="false" lastViewedDate="2005-01-07T11:30:16" viewCounter="16">
+            <Password pwd="OfIlOT546878" expires="2002-10-08" created="2004-10-10T10:38:04"/>
+            <PasswordHistory>
+              <Password pwd="" expires="2002-10-08" created="2004-10-10T10:37:03"/>
+            </PasswordHistory>
+          <Comment/></SecuredElement>
+        </NetAccount>
+        <GenericAccount type="My Template">
+          <AccountPropertyValue name="My String" type="String" value="Some String"/>
+          <AccountPropertyValue name="My Secret" type="Password" value="e{eCWNic"/>
+          <AccountPropertyValue name="My URL" type="URL" value="http://secret.account.com/"/>
+          <SecuredElement name="That's new" comment="" creationDate="2005-01-07T12:39:49" lastChangeDate="2005-01-07T12:41:55" expiresNever="true" lastViewedDate="2005-01-07T12:39:54" viewCounter="1">
+            <Password pwd="DAYEM003" expires="2006-01-07" created="2005-01-07T12:41:55"/>
+            <PasswordHistory>
+              <Password pwd="" expires="2006-01-07" created="2005-01-07T12:39:49"/>
+            </PasswordHistory>
+          <Comment/></SecuredElement>
+        </GenericAccount>
+      <Comment/></Group>
+      <Group name="Work" comment="">
+        <NetAccount email="foo@bar.de" username="foo" url="pop://mail.server.de/%username%">
+          <SecuredElement name="Mail Server" comment="" creationDate="2005-01-07T11:31:11" lastChangeDate="2005-01-07T11:32:10" expiresNever="true" lastViewedDate="2005-01-07T11:31:16" viewCounter="1">
+            <Password pwd="231323213" expires="2006-01-07" created="2005-01-07T11:32:10"/>
+            <PasswordHistory>
+              <Password pwd="" expires="2006-01-07" created="2005-01-07T11:31:11"/>
+            </PasswordHistory>
+          <Comment/></SecuredElement>
+        </NetAccount>
+        <NetAccount email="" username="name" url="fish://foo.bar">
+          <SecuredElement name="My Desktop" comment="" creationDate="2004-10-10T10:40:13" lastChangeDate="2004-10-10T10:40:50" expiresNever="false" lastViewedDate="2005-01-07T11:30:50" viewCounter="2">
+            <Password pwd="?nI0jPKZ.qa|" expires="2005-10-10" created="2004-10-10T10:40:50"/>
+            <PasswordHistory>
+              <Password pwd="" expires="2005-10-10" created="2004-10-10T10:40:13"/>
+            </PasswordHistory>
+          <Comment/></SecuredElement>
+        </NetAccount>
+      <Comment/></Group>
+    <Comment>Diese Gruppe enthält alle meine Computerzugänge.</Comment></Group>
+    <Group name="Files" comment="Diese Gruppe enth&#xE4;lt alle passwort gesicherten Dateien.">
+      <SecuredFile file="/home/gandalf/Projects/KisKis">
+        <SecuredElement name="My GPG Key" comment="" creationDate="2004-10-10T10:45:55" lastChangeDate="2004-10-10T12:17:12" expiresNever="false" lastViewedDate="2005-01-11T19:38:32" viewCounter="16">
+          <Password pwd="?&amp;y&gt;cs?Y!O0|)vTZ{k!DWBw#" expires="2004-10-05" created="2004-10-10T12:17:12"/>
+          <PasswordHistory>
+            <Password pwd="" expires="2005-10-10" created="2004-10-10T10:45:55"/>
+          </PasswordHistory>
+        <Comment/></SecuredElement>
+      </SecuredFile>
+    <Comment>Diese Gruppe enthält alle passwort gesicherten Dateien.</Comment></Group>
+    <Group name="Financial" comment="">
+      <Group name="Citibank" comment="">
+        <BankAccount bank="Deutsche Bank" bankID="12345678" number="12345678" telebankingPin="1221">
+          <TANList id="1234" created="2004-10-10T10:43:41">
+            <TAN number="1"/>
+            <TAN number="2" used="2004-10-10T10:44:01"/>
+            <TAN number="3" used="2004-10-10T10:44:01"/>
+            <TAN number="4"/>
+            <TAN number="5"/>
+            <TAN number="6"/>
+          </TANList>
+          <SecuredElement name="Account" comment="Huha, ein Kommentar." creationDate="2004-10-09T19:51:01" lastChangeDate="2004-10-10T10:44:23" expiresNever="true" lastViewedDate="2005-01-09T10:46:13" viewCounter="6">
+            <Password pwd="" expires="2005-10-09" created="2004-10-10T10:44:23"/>
+            <PasswordHistory/>
+          <Comment>Huha, ein Kommentar.</Comment></SecuredElement>
+        </BankAccount>
+        <CreditCard deployer="Deutsche Bank" number="122212212" pin="1223">
+          <SecuredElement name="Mastercard" comment="" creationDate="2004-10-09T19:51:11" lastChangeDate="2004-10-10T10:45:11" expiresNever="false" lastViewedDate="2004-10-10T10:44:30" viewCounter="2">
+            <Password pwd="oZ&quot;O(1rp&lt;1:h" expires="2005-10-09" created="2004-10-10T10:45:11"/>
+            <PasswordHistory>
+              <Password pwd="" expires="2005-10-09" created="2004-10-09T19:51:11"/>
+            </PasswordHistory>
+          <Comment/></SecuredElement>
+        </CreditCard>
+      <Comment/></Group>
+    <Comment/></Group>
+    <Group name="Special" comment="">
+      <GenericAccount type="My Template">
+        <SecuredElement name="My Special Template" comment="" creationDate="2004-10-14T20:37:51" lastChangeDate="2004-10-16T10:40:17" expiresNever="true" lastViewedDate="2005-01-12T15:59:09" viewCounter="18">
+          <Password pwd="1234" expires="2005-10-14" created="2004-10-16T10:40:17"/>
+          <PasswordHistory>
+            <Password pwd="" expires="2005-10-14" created="2004-10-14T21:04:26"/>
+          </PasswordHistory>
+        <Comment/></SecuredElement>
+      </GenericAccount>
+      <GenericAccount type="My Credit Card">
+        <SecuredElement name="unnamed" comment="" creationDate="2005-01-07T12:08:25" lastChangeDate="2005-01-07T12:08:25" expiresNever="true" lastViewedDate="2005-01-07T12:08:30" viewCounter="1">
+          <Password pwd="" expires="2006-01-07" created="2005-01-07T12:08:25"/>
+          <PasswordHistory/>
+        <Comment/></SecuredElement>
+      </GenericAccount>
+    <Comment/></Group>
+  <Comment>this   is   a   tiny   comment</Comment></Group>
+</TPMDocument>

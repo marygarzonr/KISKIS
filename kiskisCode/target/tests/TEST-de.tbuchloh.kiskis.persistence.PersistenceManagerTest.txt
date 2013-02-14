@@ -1,0 +1,527 @@
+Testsuite: de.tbuchloh.kiskis.persistence.PersistenceManagerTest
+Tests run: 8, Failures: 1, Errors: 0, Time elapsed: 9,262 sec
+------------- Standard Output ---------------
+<?xml version="1.0" encoding="UTF-8"?>
+<TPMDocument uuid="N65537" version="1.0.2" xsi:schemaLocation="http://kiskis.sourceforge.net/model/v1.0/ kiskis-1.0.xsd" xmlns="http://kiskis.sourceforge.net/model/v1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AccountType name="My Template 1">
+    <AccountProperty name="My Date Property" type="Date"/>
+    <AccountProperty name="My Password Property" type="Password"/>
+    <AccountProperty name="My String Property" type="String"/>
+    <AccountProperty name="My URL Property" type="URL"/>
+  </AccountType>
+  <AccountType name="My Template 2">
+    <AccountProperty name="mpd" type="Date"/>
+    <AccountProperty name="mpd1" type="Date"/>
+    <AccountProperty name="mpp" type="Password"/>
+    <AccountProperty name="mpp2" type="Password"/>
+    <AccountProperty name="msp" type="String"/>
+    <AccountProperty name="msp2" type="String"/>
+    <AccountProperty name="mup" type="URL"/>
+    <AccountProperty name="mup2" type="URL"/>
+  </AccountType>
+  <Group uuid="N65580" name="My Passwords">
+    <Comment xml:space="preserve"/>
+    <Group uuid="N65584" name="Group 1">
+      <Comment xml:space="preserve">34
+23rweefsdvyd
+vcawdqwde
+d
+s
+fa
+sdf
+
+
+
+
+fsdffewwe</Comment>
+      <Group uuid="N65589" name="Group 1.1">
+        <Comment xml:space="preserve">dsadsad
+sad
+asdsd
+g5z
+65#
+uj
+hnm
+jgk
+jf
+f</Comment>
+        <CreditCard deployer="SSK Foobar" cardValidationCode=" " number="2737278189343" pin="3604">
+          <SecuredElement uuid="N65598" name="My Credit Card" creationDate="2006-09-07T17:55:50" lastChangeDate="2006-09-07T17:56:38" expiresNever="false" lastViewedDate="2006-09-07T17:55:50" viewCounter="0">
+            <Comment xml:space="preserve">ewqeqweqwewqewqeqwe
+wq
+ewq
+e
+wq
+ewq
+re
+wqre
+r
+ewr</Comment>
+            <Password pwd="%B/RF^/&gt;N\Z0e" expires="2007-07-07" created="2006-09-07T17:56:38"/>
+            <PasswordHistory>
+              <Password pwd="%B/RF^/&gt;N\Z0" expires="2007-07-07" created="2006-09-07T17:56:31"/>
+              <Password pwd="%B/RF^/&gt;N\Z0ewqe" expires="2007-07-07" created="2006-09-07T17:56:34"/>
+            </PasswordHistory>
+          </SecuredElement>
+        </CreditCard>
+      </Group>
+      <Group uuid="N65620" name="Group 1.2">
+        <Comment xml:space="preserve">dsadsadsad
+sad
+sa
+d
+asdasdsadasd
+</Comment>
+        <BankAccount bank="SSK Foobar" bankID="266647372" number="28883929211119" telebankingPin="66372">
+          <TANList id="My TAN-List" created="2006-11-07T17:58:22">
+            <TAN id="1" number="2312322" used="2006-09-07T17:58:56"/>
+            <TAN id="2" number="3232322" used="2006-09-07T17:58:57"/>
+            <TAN id="3" number="3332221" used="2006-09-07T17:58:57"/>
+            <TAN id="4" number="3334432"/>
+            <TAN id="5" number="223342"/>
+            <TAN id="6" number="2233342"/>
+          </TANList>
+          <TANList id="My TAN-List 2" created="2006-05-07T17:59:12">
+            <TAN id="1" number="323123"/>
+            <TAN id="2" number="321313"/>
+            <TAN id="3" number="4235345"/>
+            <TAN id="4" number="32323" used="2006-09-07T17:59:36"/>
+            <TAN id="5" number="32457657" used="2006-09-07T17:59:35"/>
+            <TAN id="6" number="07898876" used="2006-09-07T17:59:35"/>
+          </TANList>
+          <SecuredElement uuid="N65678" name="My Bank Account" creationDate="2006-09-07T17:57:30" lastChangeDate="2006-09-07T17:59:40" expiresNever="true" lastViewedDate="2006-09-07T17:57:30" viewCounter="0">
+            <Comment xml:space="preserve">ewewqewqe	we
+w
+ewq
+e
+qweewqeqwe</Comment>
+            <Password pwd="16CDPiaA53" expires="2007-09-07" created="2006-09-07T17:59:40"/>
+            <PasswordHistory/>
+          </SecuredElement>
+        </BankAccount>
+      </Group>
+      <SecuredFile file="/mnt/hda8/apps/projects/KisKis/build.xml">
+        <SecuredElement uuid="N65694" name="My File" creationDate="2006-09-07T17:46:53" lastChangeDate="2006-09-07T17:47:16" expiresNever="true" lastViewedDate="2006-09-07T17:46:53" viewCounter="0">
+          <Comment xml:space="preserve">ewqeqwewqewqe
+ewq
+e
+qw
+e
+qw
+e
+qwe</Comment>
+          <Password pwd="JOMECu53" expires="2007-09-07" created="2006-09-07T17:47:16"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </SecuredFile>
+    </Group>
+    <Group uuid="N65708" name="Group 2">
+      <Comment xml:space="preserve"/>
+      <GenericAccount type="My Template 1">
+        <AccountPropertyValue name="My URL Property" type="URL" value="http://www.url.de"/>
+        <AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:04:06"/>
+        <AccountPropertyValue name="My Password Property" type="Password" value="password"/>
+        <AccountPropertyValue name="My String Property" type="String" value="string"/>
+        <SecuredElement uuid="N65730" name="My Template Account 1" creationDate="2006-09-07T18:02:30" lastChangeDate="2006-09-07T18:04:10" expiresNever="true" lastViewedDate="2006-09-07T18:02:30" viewCounter="0">
+          <Comment xml:space="preserve">dwqesadsdasd
+</Comment>
+          <Password pwd="yekiVU810445" expires="2007-09-07" created="2006-09-07T18:04:10"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+      <GenericAccount type="My Template 1">
+        <AccountPropertyValue name="My URL Property" type="URL" value="http://wwjfjd.de"/>
+        <AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:03:19"/>
+        <AccountPropertyValue name="My Password Property" type="Password" value="passw"/>
+        <AccountPropertyValue name="My String Property" type="String" value="deiwqeoiq"/>
+        <SecuredElement uuid="N65762" name="My Template Account 2" creationDate="2006-09-07T18:03:19" lastChangeDate="2006-09-07T18:04:04" expiresNever="false" lastViewedDate="2006-09-07T18:03:19" viewCounter="0">
+          <Comment xml:space="preserve">rerewrewr
+ewr
+we
+r
+ewr
+werew</Comment>
+          <Password pwd="geheim" expires="2007-09-07" created="2006-09-07T18:04:04"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+      <GenericAccount type="My Template 2">
+        <AccountPropertyValue name="msp2" type="String" value="eqwewqeqweqwe"/>
+        <AccountPropertyValue name="mup" type="URL" value="http://www.123.de"/>
+        <AccountPropertyValue name="mup2" type="URL" value="http://www.abc.de"/>
+        <AccountPropertyValue name="mpp2" type="Password" value="efdsf"/>
+        <AccountPropertyValue name="mpd" type="Date" value="2006-10-07T18:04:18"/>
+        <AccountPropertyValue name="mpp" type="Password" value="ewqe"/>
+        <AccountPropertyValue name="msp" type="String" value="qwe213e12"/>
+        <AccountPropertyValue name="mpd1" type="Date" value="2006-08-07T18:04:18"/>
+        <SecuredElement uuid="N65810" name="My Template Account 2" creationDate="2006-09-07T18:04:18" lastChangeDate="2006-09-07T18:05:07" expiresNever="true" lastViewedDate="2006-09-07T18:04:18" viewCounter="0">
+          <Comment xml:space="preserve">43242342w
+wqewe
+wq
+edwq
+re
+</Comment>
+          <Password pwd="AtArosAzu174" expires="2007-09-07" created="2006-09-07T18:05:07"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+    </Group>
+    <NetAccount email="foo@bar.de" username="My_User_Name" url="http://www.url.de/foo/bar">
+      <SecuredElement uuid="N65828" name="My Net Account" creationDate="2006-09-07T17:45:14" lastChangeDate="2006-09-07T17:46:06" expiresNever="false" lastViewedDate="2006-09-07T17:45:14" viewCounter="0">
+        <Comment xml:space="preserve">eqweqewqeqew
+qwe
+qw
+e
+qweqwewqewqewqeqw
+e
+qwe
+qweqw</Comment>
+        <Password pwd="pUbUW191eqweqw" expires="2007-11-07" created="2006-09-07T17:46:06"/>
+        <PasswordHistory>
+          <Password pwd="pUbUW191" expires="2007-11-07" created="2006-09-07T17:45:31"/>
+        </PasswordHistory>
+      </SecuredElement>
+    </NetAccount>
+  </Group>
+  <Attachments/>
+</TPMDocument>
+<?xml version="1.0" encoding="UTF-8"?>
+<TPMDocument uuid="N65537" version="1.0.2" xsi:schemaLocation="http://kiskis.sourceforge.net/model/v1.0/ kiskis-1.0.xsd" xmlns="http://kiskis.sourceforge.net/model/v1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AccountType name="My Template 1">
+    <AccountProperty name="My Date Property" type="Date"/>
+    <AccountProperty name="My Password Property" type="Password"/>
+    <AccountProperty name="My String Property" type="String"/>
+    <AccountProperty name="My URL Property" type="URL"/>
+  </AccountType>
+  <AccountType name="My Template 2">
+    <AccountProperty name="mpd" type="Date"/>
+    <AccountProperty name="mpd1" type="Date"/>
+    <AccountProperty name="mpp" type="Password"/>
+    <AccountProperty name="mpp2" type="Password"/>
+    <AccountProperty name="msp" type="String"/>
+    <AccountProperty name="msp2" type="String"/>
+    <AccountProperty name="mup" type="URL"/>
+    <AccountProperty name="mup2" type="URL"/>
+  </AccountType>
+  <Group uuid="N65580" name="My Passwords">
+    <Comment xml:space="preserve"/>
+    <Group uuid="N65584" name="Group 1">
+      <Comment xml:space="preserve">34
+23rweefsdvyd
+vcawdqwde
+d
+s
+fa
+sdf
+
+
+
+
+fsdffewwe</Comment>
+      <Group uuid="N65589" name="Group 1.1">
+        <Comment xml:space="preserve">dsadsad
+sad
+asdsd
+g5z
+65#
+uj
+hnm
+jgk
+jf
+f</Comment>
+        <CreditCard deployer="SSK Foobar" cardValidationCode=" " number="2737278189343" pin="3604">
+          <SecuredElement uuid="N65598" name="My Credit Card" creationDate="2006-09-07T17:55:50" lastChangeDate="2006-09-07T17:56:38" expiresNever="false" lastViewedDate="2006-09-07T17:55:50" viewCounter="0">
+            <Comment xml:space="preserve">ewqeqweqwewqewqeqwe
+wq
+ewq
+e
+wq
+ewq
+re
+wqre
+r
+ewr</Comment>
+            <Password pwd="%B/RF^/&gt;N\Z0e" expires="2007-07-07" created="2006-09-07T17:56:38"/>
+            <PasswordHistory>
+              <Password pwd="%B/RF^/&gt;N\Z0" expires="2007-07-07" created="2006-09-07T17:56:31"/>
+              <Password pwd="%B/RF^/&gt;N\Z0ewqe" expires="2007-07-07" created="2006-09-07T17:56:34"/>
+            </PasswordHistory>
+          </SecuredElement>
+        </CreditCard>
+      </Group>
+      <Group uuid="N65620" name="Group 1.2">
+        <Comment xml:space="preserve">dsadsadsad
+sad
+sa
+d
+asdasdsadasd
+</Comment>
+        <BankAccount bank="SSK Foobar" bankID="266647372" number="28883929211119" telebankingPin="66372">
+          <TANList id="My TAN-List" created="2006-11-07T17:58:22">
+            <TAN id="1" number="2312322" used="2006-09-07T17:58:56"/>
+            <TAN id="2" number="3232322" used="2006-09-07T17:58:57"/>
+            <TAN id="3" number="3332221" used="2006-09-07T17:58:57"/>
+            <TAN id="4" number="3334432"/>
+            <TAN id="5" number="223342"/>
+            <TAN id="6" number="2233342"/>
+          </TANList>
+          <TANList id="My TAN-List 2" created="2006-05-07T17:59:12">
+            <TAN id="1" number="323123"/>
+            <TAN id="2" number="321313"/>
+            <TAN id="3" number="4235345"/>
+            <TAN id="4" number="32323" used="2006-09-07T17:59:36"/>
+            <TAN id="5" number="32457657" used="2006-09-07T17:59:35"/>
+            <TAN id="6" number="07898876" used="2006-09-07T17:59:35"/>
+          </TANList>
+          <SecuredElement uuid="N65678" name="My Bank Account" creationDate="2006-09-07T17:57:30" lastChangeDate="2006-09-07T17:59:40" expiresNever="true" lastViewedDate="2006-09-07T17:57:30" viewCounter="0">
+            <Comment xml:space="preserve">ewewqewqe	we
+w
+ewq
+e
+qweewqeqwe</Comment>
+            <Password pwd="16CDPiaA53" expires="2007-09-07" created="2006-09-07T17:59:40"/>
+            <PasswordHistory/>
+          </SecuredElement>
+        </BankAccount>
+      </Group>
+      <SecuredFile file="/mnt/hda8/apps/projects/KisKis/build.xml">
+        <SecuredElement uuid="N65694" name="My File" creationDate="2006-09-07T17:46:53" lastChangeDate="2006-09-07T17:47:16" expiresNever="true" lastViewedDate="2006-09-07T17:46:53" viewCounter="0">
+          <Comment xml:space="preserve">ewqeqwewqewqe
+ewq
+e
+qw
+e
+qw
+e
+qwe</Comment>
+          <Password pwd="JOMECu53" expires="2007-09-07" created="2006-09-07T17:47:16"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </SecuredFile>
+    </Group>
+    <Group uuid="N65708" name="Group 2">
+      <Comment xml:space="preserve"/>
+      <GenericAccount type="My Template 1">
+        <AccountPropertyValue name="My URL Property" type="URL" value="http://www.url.de"/>
+        <AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:04:06"/>
+        <AccountPropertyValue name="My String Property" type="String" value="string"/>
+        <AccountPropertyValue name="My Password Property" type="Password" value="password"/>
+        <SecuredElement uuid="N65730" name="My Template Account 1" creationDate="2006-09-07T18:02:30" lastChangeDate="2006-09-07T18:04:10" expiresNever="true" lastViewedDate="2006-09-07T18:02:30" viewCounter="0">
+          <Comment xml:space="preserve">dwqesadsdasd
+</Comment>
+          <Password pwd="yekiVU810445" expires="2007-09-07" created="2006-09-07T18:04:10"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+      <GenericAccount type="My Template 1">
+        <AccountPropertyValue name="My URL Property" type="URL" value="http://wwjfjd.de"/>
+        <AccountPropertyValue name="My Date Property" type="Date" value="2006-07-07T18:03:19"/>
+        <AccountPropertyValue name="My String Property" type="String" value="deiwqeoiq"/>
+        <AccountPropertyValue name="My Password Property" type="Password" value="passw"/>
+        <SecuredElement uuid="N65762" name="My Template Account 2" creationDate="2006-09-07T18:03:19" lastChangeDate="2006-09-07T18:04:04" expiresNever="false" lastViewedDate="2006-09-07T18:03:19" viewCounter="0">
+          <Comment xml:space="preserve">rerewrewr
+ewr
+we
+r
+ewr
+werew</Comment>
+          <Password pwd="geheim" expires="2007-09-07" created="2006-09-07T18:04:04"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+      <GenericAccount type="My Template 2">
+        <AccountPropertyValue name="msp2" type="String" value="eqwewqeqweqwe"/>
+        <AccountPropertyValue name="mup" type="URL" value="http://www.123.de"/>
+        <AccountPropertyValue name="mpp2" type="Password" value="efdsf"/>
+        <AccountPropertyValue name="mup2" type="URL" value="http://www.abc.de"/>
+        <AccountPropertyValue name="mpd" type="Date" value="2006-10-07T18:04:18"/>
+        <AccountPropertyValue name="mpp" type="Password" value="ewqe"/>
+        <AccountPropertyValue name="msp" type="String" value="qwe213e12"/>
+        <AccountPropertyValue name="mpd1" type="Date" value="2006-08-07T18:04:18"/>
+        <SecuredElement uuid="N65810" name="My Template Account 2" creationDate="2006-09-07T18:04:18" lastChangeDate="2006-09-07T18:05:07" expiresNever="true" lastViewedDate="2006-09-07T18:04:18" viewCounter="0">
+          <Comment xml:space="preserve">43242342w
+wqewe
+wq
+edwq
+re
+</Comment>
+          <Password pwd="AtArosAzu174" expires="2007-09-07" created="2006-09-07T18:05:07"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+    </Group>
+    <NetAccount email="foo@bar.de" username="My_User_Name" url="http://www.url.de/foo/bar">
+      <SecuredElement uuid="N65828" name="My Net Account" creationDate="2006-09-07T17:45:14" lastChangeDate="2006-09-07T17:46:06" expiresNever="false" lastViewedDate="2006-09-07T17:45:14" viewCounter="0">
+        <Comment xml:space="preserve">eqweqewqeqew
+qwe
+qw
+e
+qweqwewqewqewqeqw
+e
+qwe
+qweqw</Comment>
+        <Password pwd="pUbUW191eqweqw" expires="2007-11-07" created="2006-09-07T17:46:06"/>
+        <PasswordHistory>
+          <Password pwd="pUbUW191" expires="2007-11-07" created="2006-09-07T17:45:31"/>
+        </PasswordHistory>
+      </SecuredElement>
+    </NetAccount>
+  </Group>
+  <Attachments/>
+</TPMDocument>
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+2013-02-13 23:54:10,457 WARN  [main                              ][XMLProcessing] - Info: The document "testfile-all.xml.gpg" was created with version "0.19.2" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:54:10,808 ERROR [main                              ][XMLProcessing] - nu.xom.ValidityException: Attribute "id" must be declared for element type "TAN". at line 37, column 221
+nu.xom.ValidityException: Attribute "id" must be declared for element type "TAN". at line 37, column 221
+	at nu.xom.Builder$ValidityRequired.error(Builder.java:1227)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.addDTDDefaultAttrsAndValidate(XMLDTDValidator.java:1275)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.handleStartElement(XMLDTDValidator.java:1940)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.emptyElement(XMLDTDValidator.java:785)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:377)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2756)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:647)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+	at nu.xom.Builder.build(Builder.java:1127)
+	at nu.xom.Builder.build(Builder.java:586)
+	at de.tbuchloh.kiskis.persistence.XMLReader.parseDocument(XMLReader.java:621)
+	at de.tbuchloh.kiskis.persistence.XMLReader.load(XMLReader.java:589)
+	at de.tbuchloh.kiskis.persistence.PersistenceManager.load(PersistenceManager.java:550)
+	at de.tbuchloh.kiskis.persistence.PersistenceManagerTest.testLoadInvalidDocument(PersistenceManagerTest.java:133)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906)
+Caused by: org.xml.sax.SAXParseException: Attribute "id" must be declared for element type "TAN".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	... 35 more
+2013-02-13 23:54:10,973 WARN  [main                              ][XMLProcessing] - Info: The document "invalid-document.xml" was created with version "0.19.2" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:54:11,043 ERROR [main                              ][XMLProcessing] - DTD for null, kiskis-32.2.dtd not found!
+2013-02-13 23:54:11,048 ERROR [main                              ][XMLProcessing] - nu.xom.ValidityException: Element type "TPMDocument" must be declared. at line 3, column 31
+nu.xom.ValidityException: Element type "TPMDocument" must be declared. at line 3, column 31
+	at nu.xom.Builder$ValidityRequired.error(Builder.java:1227)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.handleStartElement(XMLDTDValidator.java:1929)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:764)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3104)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:921)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:647)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+	at nu.xom.Builder.build(Builder.java:1127)
+	at nu.xom.Builder.build(Builder.java:586)
+	at de.tbuchloh.kiskis.persistence.XMLReader.parseDocument(XMLReader.java:621)
+	at de.tbuchloh.kiskis.persistence.XMLReader.load(XMLReader.java:589)
+	at de.tbuchloh.kiskis.persistence.PersistenceManager.load(PersistenceManager.java:550)
+	at de.tbuchloh.kiskis.persistence.PersistenceManagerTest.testLoadInvalidDTDDocument(PersistenceManagerTest.java:159)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906)
+Caused by: org.xml.sax.SAXParseException: Element type "TPMDocument" must be declared.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	... 36 more
+2013-02-13 23:54:11,108 ERROR [main                              ][XMLProcessing] - DTD for null, kiskis-32.2.dtd not found!
+2013-02-13 23:54:11,113 ERROR [main                              ][XMLProcessing] - de.tbuchloh.util.xml.migration.NoTransformationException: Could not import the file!
+No stylesheet for SYSTEM-ID "kiskis-32.2.dtd" has been defined!
+de.tbuchloh.util.xml.migration.NoTransformationException: Could not import the file!
+No stylesheet for SYSTEM-ID "kiskis-32.2.dtd" has been defined!
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:119)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.checkNext(DocTransformer.java:117)
+	at de.tbuchloh.util.xml.migration.DocTransformer.convert(DocTransformer.java:104)
+	at de.tbuchloh.util.xml.migration.DocTransformer.transform(DocTransformer.java:96)
+	at de.tbuchloh.kiskis.persistence.XMLReader.transformDoc(XMLReader.java:625)
+	at de.tbuchloh.kiskis.persistence.XMLReader.load(XMLReader.java:598)
+	at de.tbuchloh.kiskis.persistence.PersistenceManager.load(PersistenceManager.java:550)
+	at de.tbuchloh.kiskis.persistence.PersistenceManagerTest.testLoadInvalidDTDDocument(PersistenceManagerTest.java:171)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906)
+2013-02-13 23:54:11,323 WARN  [main                              ][XMLProcessing] - Info: The document "kiskis-0.13.xml" was created with version "0.13.1" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:54:11,438 WARN  [main                              ][XMLProcessing] - Info: The document "kiskis-0.24-w-attachments.xml" was created with version "0.24" but "1.0.2" is expected! Make a backup ...
+------------- ---------------- ---------------
+
+Testcase: test01LoadDocument took 1,393 sec
+Testcase: test02SaveDocument took 0,099 sec
+Testcase: test03ReloadDocument took 0,142 sec
+Testcase: testLoadInvalidDocument took 0,25 sec
+Testcase: testLoadInvalidDTDDocument took 0,135 sec
+	FAILED
+Nachricht enthält nicht 'Daten konnten nicht importiert werden'! e=Could not import the file!
+No stylesheet for SYSTEM-ID "kiskis-32.2.dtd" has been defined!
+junit.framework.AssertionFailedError: Nachricht enthält nicht 'Daten konnten nicht importiert werden'! e=Could not import the file!
+No stylesheet for SYSTEM-ID "kiskis-32.2.dtd" has been defined!
+	at de.tbuchloh.kiskis.persistence.PersistenceManagerTest.testLoadInvalidDTDDocument(PersistenceManagerTest.java:178)
+
+Testcase: testTransformDocument took 0,215 sec
+Testcase: testAttachments took 6,991 sec
+Testcase: testBackupExtension took 0 sec

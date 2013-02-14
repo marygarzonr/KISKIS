@@ -1,0 +1,13 @@
+Testsuite: de.tbuchloh.kiskis.model.cracklib.DictionaryTest
+Tests run: 7, Failures: 0, Errors: 0, Time elapsed: 3,615 sec
+------------- Standard Output ---------------
+Dictionary[filename=target/valid_wordlist_dict,packer=org.solinger.cracklib.Packer@7745c859]
+------------- ---------------- ---------------
+
+Testcase: testCreateDictionaryFromUnknownWordlist took 0,21 sec
+Testcase: testCreateDictionaryWithInvalidTargetFile took 0,75 sec
+Testcase: testCreateDictionaryWithInvalidWordlist took 2,066 sec
+Testcase: testCreateDictionaryWithValidWordlist took 0,547 sec
+Testcase: testOpen took 0,008 sec
+Testcase: testOpenDeletedDictionary took 0 sec
+Testcase: testOpenInvalidDictionary took 0,001 sec

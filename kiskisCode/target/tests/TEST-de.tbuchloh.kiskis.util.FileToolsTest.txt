@@ -1,0 +1,10 @@
+Testsuite: de.tbuchloh.kiskis.util.FileToolsTest
+Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0,045 sec
+
+Testcase: testGetShortAbsoluteFilename took 0,021 sec
+	FAILED
+expected:<[/]test.xml> but was:<[C:\]test.xml>
+junit.framework.AssertionFailedError: expected:<[/]test.xml> but was:<[C:\]test.xml>
+	at de.tbuchloh.kiskis.util.FileToolsTest.assertShortFilename(FileToolsTest.java:52)
+	at de.tbuchloh.kiskis.util.FileToolsTest.testGetShortAbsoluteFilename(FileToolsTest.java:43)
+

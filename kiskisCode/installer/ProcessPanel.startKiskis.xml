@@ -1,0 +1,18 @@
+<processing>
+	<!-- 
+    <job name="Cleanup existing preferences">
+		<executefile name="$JAVA_HOME/bin/java">
+			<arg>-jar</arg>
+			<arg>$INSTALL_PATH/kiskis.jar</arg>
+			<arg>-reset</arg>
+		</executefile>
+	</job>
+    -->
+	<job name="Start KisKis!">
+		<executefile name="$JAVA_HOME/bin/java">
+			<arg>-jar</arg>
+			<arg>$INSTALL_PATH/kiskis.jar</arg>
+			<arg>-selftest</arg>
+		</executefile>
+	</job>
+</processing>

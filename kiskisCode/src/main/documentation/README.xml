@@ -1,0 +1,2733 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<article>
+
+	<articleinfo>
+
+		<title>Keep It Secret! Keep It Safe!</title>
+
+		<subtitle>The Cross Platform Password Manager</subtitle>
+
+		<author>
+			<firstname>Tobias</firstname>
+			<surname>Buchloh</surname>
+			<email>kiskis [at] gmx [dot] eu</email>
+		</author>
+
+		<copyright>
+			<year>2004-2012</year>
+			<holder role="mailto:tbuchloh@users.sourceforge.net">Tobias Buchloh</holder>
+		</copyright>
+
+		<releaseinfo>
+			Latest Build: Version @project.version@ on @build.date@
+			@build.time@
+		</releaseinfo>
+
+		<abstract>
+			<para>
+				The basic idea of
+				<productname>KisKis</productname>
+				-project is to create an application that allows you to store all
+				your passwords and sensitive/personal
+				information in a secure file
+				that you can carry
+				with you all the time and that can be opened on
+				different computers. So
+				you can
+				access your passwords whenever you
+				need to. You might even give this file your worst enemy because it
+				would
+				be useless for him
+				without the master password
+				<footnote>
+					<para>
+						OK, you need a well chosen master password that cannot be guessed
+						;-). Please read
+						<link linkend="section.passwordQuality">Password Quality</link>
+						chapter.
+					</para>
+				</footnote>
+				.
+			</para>
+			<para>
+				<productname>KisKis</productname>
+				will help you to follow the rules for secure password usage. It
+				checks your
+				passwords quality and enables you to use one
+				password for
+				exactly one account, even if you need to access hundreds of
+				different
+				accounts. There is only one master password you need to
+				remember.
+			</para>
+			<para>
+				Please visit our
+				<ulink url="http://www.youtube.com/watch?v=N5DtvR056J4">Screencast Tutorial on youtube</ulink>
+				<footnote>
+					<para>
+						<ulink url="http://www.youtube.com/watch?v=N5DtvR056J4" />
+					</para>
+				</footnote>
+				for a short introduction.
+			</para>
+			<para>
+				Try
+				<ulink url="http://kiskis.sourceforge.net/jaws/latest/kiskis.jnlp">Java Web Start</ulink>
+				to run the application without any installation effort on your
+				machine.
+			</para>
+			<para>
+				<emphasis>Have a lot of fun!</emphasis>
+				and let me know if you like
+				<productname>KisKis</productname>
+				.
+			</para>
+		</abstract>
+
+	</articleinfo>
+
+	<sect1>
+		<title>Introduction</title>
+		<para>
+			<productname>KisKis</productname>
+			is an easy to use platform manager written in Java.
+			So it runs on any
+			platform with an appropriate Java
+			Virtual Machine (JVM)
+			available
+			(e. g.
+			Windows, Linux,
+			Solaris,
+			Mac
+			OS, ...)
+		</para>
+		<para>
+			<productname>KisKis</productname>
+			allows you to manage passwords and other secret information
+			for many
+			different purposes such as network,
+			mail or internet
+			accounts,
+			credit
+			card pins, bank accounts witn TAN lists and password
+			secured files.
+			Each account
+			can be described by multiple
+			attributes
+			(e. g.
+			user name,
+			URL, expiry date) and comments. The
+			<emphasis>history of each password change</emphasis>
+			can be tracked.
+			<emphasis>Multiple file attachments</emphasis>
+			can be added to each account. You can define your own
+			<emphasis>account templates</emphasis>
+			with custom data fields to meet your needs.
+		</para>
+
+		<para>
+			<figure>
+				<title>Editing a bank account with TAN-lists and PINs.</title>
+				<graphic align="center" fileref="images/001_bank_account.png"
+					format="PNG" />
+			</figure>
+		</para>
+
+		<para>
+			The accounts can be grouped hierarchically within a
+			<emphasis>tree structure</emphasis>
+			. A simple search function filters the tree view for what
+			you are
+			looking for. You will not lose track of all your
+			data even if you have
+			hundreds of different accounts.
+		</para>
+
+		<para>
+			New
+			<emphasis>passwords can be generated automatically</emphasis>
+			in three distinct ways. The first one is a secure approach generating
+			totally randomized passwords with many special characters -
+			hard
+			to
+			read and hard to remember. The second approach generates much more
+			readable passwords.
+			At last you can generate passwords from a
+			user
+			defined
+			template. The password quality is visualized as well. You
+			can
+			test your passwords with an
+			<emphasis>internal password cracker</emphasis>
+			against a dictionary with more than 1.6 million words.
+		</para>
+
+		<para>
+			All passwords are stored in a single XML file encrypted by a
+			single
+			"master password".
+			<emphasis>
+				AES-{128, 256}
+				<footnote>
+					<para>
+						<ulink url="http://de.wikipedia.org/wiki/Advanced_Encryption_Standard" />
+					</para>
+				</footnote>
+			</emphasis>
+			, Blowfish, Twofish and other encryption algorithms can be used. The
+			encryption algorithms suffice the
+			<emphasis>OpenPGP-standard</emphasis>
+			<footnote>
+				<para>
+					<ulink url="http://de.wikipedia.org/wiki/OpenPGP" />
+				</para>
+			</footnote>
+			, so you can verify the implementation with GnuPG (GPG) or Pretty
+			Good
+			Privacy (PGP)
+			<footnote>
+				<para>
+					<ulink url="http://www.pgp.com/" />
+				</para>
+			</footnote>
+			. That means you don't have to believe me
+			that your secrets are kept
+			safe you can verify it easily ;-)
+		</para>
+
+		<para>
+			An
+			<emphasis>open architecture</emphasis>
+			is the key to build up trust and security.
+			You can export all your
+			data into different formats if you are fed
+			up with
+			<productname>KisKis</productname>
+			and if you
+			switch to another password manager.
+		</para>
+
+		<para>Existing data can be imported via comma separated value files
+			(CSV).</para>
+	</sect1>
+
+	<sect1>
+		<title>Features</title>
+		<para>
+			<itemizedlist>
+				<title>Current features</title>
+				<listitem>
+					<para>Runs on multiple platforms and fits on an USB-stick</para>
+				</listitem>
+
+				<listitem>
+					<para>OpenPGP-standard file encryption with AES</para>
+				</listitem>
+
+				<listitem>
+					<para>XML file format allows easy and automatically migration of
+						your data</para>
+				</listitem>
+
+				<listitem>
+					<para>Hierarchical tree structure for account organization</para>
+				</listitem>
+
+				<listitem>
+					<para>Quick search functionality</para>
+				</listitem>
+
+				<listitem>
+					<itemizedlist>
+						<title>Different attributes for:</title>
+						<listitem>
+							<para>
+								internet and network accounts</para>
+						</listitem>
+
+						<listitem>
+							<para>
+								credit cards</para>
+						</listitem>
+
+						<listitem>
+							<para>
+								password secured files</para>
+						</listitem>
+
+						<listitem>
+							<para>
+								bank accounts</para>
+						</listitem>
+
+						<listitem>
+							<para>
+								user-defined account templates</para>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+
+				<listitem>
+					<para>Multiple file attachments for each account </para>
+				</listitem>
+
+				<listitem>
+					<para>History of each account (when created, associated passwords,
+						...) </para>
+				</listitem>
+
+				<listitem>
+					<para>Comments for each item</para>
+				</listitem>
+
+				<listitem>
+					<para>Auto lock hides the desktop after N minutes of inactivity
+					</para>
+				</listitem>
+
+				<listitem>
+					<itemizedlist>
+						<title>Random password generator for variable length with multiple
+							engines</title>
+
+						<listitem>
+							<para>human readable passwords</para>
+						</listitem>
+
+						<listitem>
+							<para>secure
+								hard-to-read-and-comprehend passwords</para>
+						</listitem>
+
+						<listitem>
+							<para>user defined password templates</para>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+
+				<listitem>
+					<para>Password strength analyzer</para>
+				</listitem>
+
+				<listitem>
+					<para>Password cracker using a cracklib dictionary</para>
+				</listitem>
+
+				<listitem>
+					<para>Support for transaction numbers (TAN lists)</para>
+				</listitem>
+
+				<listitem>
+					<para>Ability to start a browser or application associated with an
+						account URL</para>
+				</listitem>
+
+				<listitem>
+					<para>Quick selection of recently- and most-used accounts</para>
+				</listitem>
+
+				<listitem>
+					<para>Import of Comma-Separated-Value-Files</para>
+				</listitem>
+
+				<listitem>
+					<para>Export to XHTML, XML and CSV. User-defined XSLT-stylesheets
+						are supported as well.</para>
+				</listitem>
+
+				<listitem>
+					<para>Hide the application in system tray</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+
+	<sect1>
+		<title>Installation</title>
+		<para>
+			<productname>KisKis</productname>
+			comes with a simple installation routine. Download the file
+			<filename>kiskis-installer.jar</filename>
+			and run
+			<screen>
+				<command>
+					$> java -jar kiskis-installer.jar
+        </command>
+			</screen>
+			After that you need to follow the instructions. The installer
+			provides all libraries needed and will create start links in the
+			start
+			menu if you want to.
+		</para>
+		<note>
+			<para>
+				You will find a zip-file in the
+				<link linkend="section.download">Download</link>
+				chapter as well which requires no installation. This zip-file can be
+				unpacked to any USB-stick or directory.
+			</para>
+			<para>
+				Go to the destination directory and start the application with one
+				of the start-scripts provided
+				(Windows:
+				<filename>kiskis.bat</filename>
+				, *ix:
+				<filename>kiskis.sh</filename>
+				).
+			</para>
+		</note>
+
+		<sect2>
+			<title>Runtime Dependencies</title>
+			<para>
+				For running
+				<productname>KisKis</productname>
+				you have to make sure, that the following libraries are available
+				within your
+				<varname>CLASSPATH</varname>
+				. The installer and zip files contain all libraries needed. You need
+				to install a Java Runtime Environment.
+
+				<itemizedlist>
+					<title>
+						<productname>KisKis</productname>
+						is using:
+					</title>
+
+					<listitem>
+						<para>
+							Java Runtime 6 or equivalent with
+							<link linkend="section.installation.jce">Java Cryptography Extension (JCE)</link>
+							,
+							<ulink
+								url="http://www.oracle.com/technetwork/java/javase/downloads/index.html" />
+						</para>
+						<para>
+							<productname>KisKis</productname>
+							works fine with
+							<ulink url="http://openjdk.java.net/">OpenJDK</ulink>
+							as well.
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							Legion Of The Bouncy Castle Crypto API 1.45 or later,
+							<ulink url="http://www.bouncycastle.org" />
+							(you will need the provider- and the OpenPGP-library)
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							xom 1.1 or later,
+							<ulink url="http://www.xom.org" />
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>Kunststoff
+							Look&amp;Feel 2.0.2,
+							<ulink url="http://www.incors.org/archive/" />
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							Java-based Cracklib-implementation 0.5,
+							<ulink url="http://sourceforge.net/projects/solinger/" />
+						</para>
+					</listitem>
+
+				</itemizedlist>
+			</para>
+
+			<sect3 id="section.installation.jce">
+				<title>How to install Java Cryptography Extension</title>
+				<para>If you want to use full 256-bit encryption you need to install
+					some policy files from Oracle in your JRE installation due to legal
+					export policies.</para>
+				<para>
+					That is quite simple:
+					<itemizedlist>
+						<listitem>
+							<para>
+								Download "Java Cryptography Extension Policy Files" for
+								your specific JRE installation.
+								Please google for "Java
+								Cryptography Extension (JCE) Unlimited
+								Strength Jurisdiction
+								Policy Files" and your java version used.
+							</para>
+							<para>
+								The files for Java 6 you may find
+								<ulink
+									url="http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html">here</ulink>
+								.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								Open the ZIP-file and read the installation instructions in
+								README.txt file.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								Follow the instructions. That means you have to copy some jars
+								in a specific directory of your JRE installation, e. g.
+								<varname>$JRE_HOME/lib/security</varname>
+								. Please make a backup of the files you will overwrite in this
+								place.
+							</para>
+						</listitem>
+                        <listitem>
+                            <para>
+                                That's all. Please start <productname>KisKis</productname> and run the self-test.
+                            </para>
+                        </listitem>						
+					</itemizedlist>
+				</para>
+				<para></para>
+			</sect3>
+
+		</sect2>
+
+		<sect2>
+			<title>
+				Running
+				<productname>KisKis</productname>
+			</title>
+
+			<para>
+				Go to the
+				<productname>KisKis</productname>
+				installation directory and start the program with the following
+				commands
+
+				<screen>
+					<command>$> &lt;start-script-name&gt; [-file &lt;datafile&gt;]
+					</command>
+				</screen>
+
+				or
+
+				<screen>
+					<command>$> java -jar kiskis.jar [-file &lt;datafile&gt;]</command>
+				</screen>
+
+				or
+
+				<screen>
+					<command>$> java -classpath kiskis.jar:&lt;lib/*.jar&gt;
+						de.tbuchloh.kiskis.KisKis \</command>
+					<command> [-file &lt;datafile&gt;]</command>
+				</screen>
+			</para>
+
+			<note>
+				<para>
+					<filename>&lt;lib/*.jar&gt;</filename>
+					has to be replaced with
+					a sequence of JAR-files found in the
+					<filename>lib</filename>
+					-directory.
+				</para>
+			</note>
+
+			<sect3>
+				<title>Command line options</title>
+				<para>
+					<table>
+						<title>Command line options</title>
+						<tgroup cols="2">
+							<thead>
+								<row>
+									<entry>Options</entry>
+									<entry>Description</entry>
+								</row>
+							</thead>
+							<tbody>
+								<row>
+									<entry>-help</entry>
+									<entry>shows the options supported.</entry>
+								</row>
+								<row>
+									<entry>-file &lt;datafile&gt;</entry>
+									<entry>open
+										&lt;datafile&gt; immediately.</entry>
+								</row>
+								<row>
+									<entry>-lastFile</entry>
+									<entry>open the most
+										recently used file.</entry>
+								</row>
+								<row>
+									<entry>-hide</entry>
+									<entry>hide in
+										system tray at startup.</entry>
+								</row>
+								<row>
+									<entry>-reset</entry>
+									<entry>delete all stored
+										user preferences and exit
+										(window
+										positions and sizes, recently
+										used files,
+										default-look-and-feel,
+										...).</entry>
+								</row>
+								<row>
+									<entry>-validate</entry>
+									<entry>activate XML-validation for debugging.</entry>
+								</row>
+								<row>
+									<entry>-selftest</entry>
+									<entry>All encryption algorithms will be checked for correct
+										functionality.</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</table>
+				</para>
+			</sect3>
+		</sect2>
+
+		<sect2>
+			<title>Building from source</title>
+			<para>
+				<productname>KisKis</productname>
+				can be compiled easily from source using Ant. Therefore you have to
+				install the following libraries
+				and tools:
+
+				<itemizedlist>
+					<listitem>
+						<para>Apache Ant 1.7 or equivalent, http://ant.apache.org</para>
+					</listitem>
+
+					<listitem>
+						<para>JUnit 4 or equivalent, http://www.junit.org</para>
+					</listitem>
+
+					<listitem>
+						<para>Apache Log4J 1.2.8 or
+							equivalent,
+							http://logging.apache.org/log4j/docs</para>
+					</listitem>
+
+				</itemizedlist>
+			</para>
+
+			<para>
+				Once installed you only have to type
+				<screen>
+					<command>$> ant create-dist</command>
+				</screen>
+				in the project root directory. Then
+				the binary-jars are build in the
+				<filename>target/dist/</filename>
+				-directory.
+			</para>
+
+			<para>
+				You can obtain the code and libraries from the SVN at
+				sourceforge.net:
+				<screen>
+					<command>$> svn co
+						https://kiskis.svn.sourceforge.net/svnroot/kiskis/kiskis-application/trunk
+					</command>
+				</screen>
+			</para>
+
+		</sect2>
+
+	</sect1>
+
+	<sect1>
+		<title>Manual</title>
+
+		<sect2>
+			<title>Getting started</title>
+
+			<para>
+				Please take a look on our
+				<ulink url="http://www.youtube.com/watch?v=N5DtvR056J4">Screencast Tutorial on youtube</ulink>
+				for a short introduction.
+			</para>
+			<para>
+				@html.object.youtube@
+      </para>
+		</sect2>
+
+		<sect2>
+			<title>Account types explained</title>
+
+			<para>
+				<productname>KisKis</productname>
+				provides some basic account types for different purposes, such as
+				“Network Accounts”, “Bank Accounts”, “Secured Files”
+				and
+				“Credit
+				Cards”. However, if the attributes of them doesn't meet your needs,
+				you can
+				define your own account types in an easy
+				way.
+
+				<figure>
+					<title>A network account</title>
+					<graphic align="center" fileref="images/002_network_account.png"
+						format="PNG" />
+				</figure>
+
+
+			</para>
+
+			<para>
+				All accounts can be archived. Select the
+				<command>In archive?</command>
+				-checkbox if the account will not be used in the near future.
+				Checked accounts will normally not be visible in the tree view. You
+				can
+				make them visible again with the
+				<command>View/Show archived items</command>
+				menu item.
+			</para>
+
+			<para>
+				The
+				<command>Apply</command>
+				-action will be enabled when the account was changed. Click on this
+				button if you want to "commit" your changes.
+			</para>
+
+			<sect3>
+				<title>Common properties</title>
+				<para>
+					All account types define the following properties in common.
+					That
+					means they have a name, password, can expire on a specific
+					date
+					and collect some statistics.
+        </para>
+				<para>
+					<figure>
+						<title>Label, password and expiration date</title>
+						<graphic align="center" fileref="images/003_common_name.png"
+							format="PNG" />
+					</figure>
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>Label</term>
+							<listitem>
+								<para>A simple name for the account which is used in the tree
+									view.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term id="item.passwordElement">Password</term>
+							<listitem>
+								<para>
+									The password used for this account. Normally it will be
+									hidden,
+									but you can display it if necessary.
+                </para>
+								<para>
+									You can create new passwords automatically if the password
+									field is empty with the
+									<command id="item.createPassword">Create</command>
+									-action. Click on
+									<command>Create</command>
+									and a menu with
+									<link linkend="section.generatingPasswords">three generators</link>
+									is displayed.
+								</para>
+								<para>
+									If a password exists you can display the password
+									using the
+									<command>Show</command>
+									-button.
+								</para>
+								<para>
+									You can copy the password to the clipboard even when it is
+									hidden with the
+									<command>Copy to clipboard</command>
+									-action from the context menu.
+								</para>
+								<para>
+									The
+									<command id="item.testPassword">Test</command>
+									-action checks if the password can be found in a dictionary.
+									You can define your own dictionary to use as described in the
+									<link linkend="section.cracklibDictionary">Cracklib Options Tab</link>
+									.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Password-Quality</term>
+							<listitem>
+								<para>
+									This
+									<link linkend="item.passwordQualityBar">progress bar</link>
+									shows the
+									<link linkend="section.passwordQuality">password quality</link>
+									on the fly.
+								</para>
+								<para>
+									The tooltip shows you some more detailed information about
+									the
+									quality.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Expires</term>
+							<listitem>
+								<para>
+									A password might expire on a specific date. You can enter this
+									date here or mark the
+									<command>Never</command>
+									-checkbox if it never will expire.
+								</para>
+								<para>
+									Expired passwords can be found with the "Reports/Expired
+									Accounts
+									..."-action from the menu bar.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>History</term>
+							<listitem>
+								<para>
+									Displays a dialog with all recent used passwords for this
+									account.
+
+									<figure>
+										<title>Password history</title>
+										<graphic align="center" fileref="images/008_password_history.png"
+											format="PNG" />
+									</figure>
+								</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+				<para>
+					Attachments are arbitrary files which will be encrypted and stored
+					next to the account.
+					<figure>
+						<title>Attachments</title>
+						<graphic align="center" fileref="images/004_common_attachments.png"
+							format="PNG" />
+					</figure>
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>New</term>
+							<listitem>
+								<para>Shows a file selection dialog. Select a file and it will
+									be shown in the list afterwards.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Save as</term>
+							<listitem>
+								<para>Decrypt the attachment and save it on the disc.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Delete</term>
+							<listitem>
+								<para>Delete the attachment from the account. The encrypted file
+									will be removed as well.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+				<para>
+					All physical operations will be done when the document is saved. An
+					<command>Apply</command>
+					alone will not change any data on the disc. The source files will
+					not be touched at all. That means you have to remove them from
+					disc
+					manually if necessary.
+					<note>
+						<title>Technical notes about attachments</title>
+						<para>Normally you should not be bothered with the manual
+							decryption of attachments, but here is how it works.</para>
+						<para>
+							File attachments are stored as separate files which are
+							associated with the password-file (e. g.
+							<filename>c:\foo\bar\kiskis.xml.gpg</filename>
+							) by name for efficiency reasons. All attachments of
+							<filename>c:\foo\bar\kiskis.xml.gpg</filename>
+							can be found as
+							<filename>c:\foo\bar\kiskis.xml.gpg.attachment.&lt;i&gt;
+							</filename>
+							encrypted as separate PGP-Messages. Each attachment is encrypted
+							with a new random key which you can find within the
+							<filename>c:\foo\bar\kiskis.xml.gpg</filename>
+							-file in the
+							&lt;Attachment&gt;-element.
+						</para>
+						<para>
+							So, a typical
+							<productname>KisKis</productname>
+							-directory
+							<filename>c:\foo\bar</filename>
+							with a passwordfile
+							<filename>kiskis.xml.gpg</filename>
+							will look like:
+
+							<screen>
+								<computeroutput>
+            <![CDATA[
+gandalf@valinor-LINUX:/foo/bar/$ dir
+insgesamt 192
+-rw------- 1 gandalf gandalf 6419 2010-11-15 14:17 kiskis.xml.gpg
+-rw-r--r-- 1 gandalf gandalf  159 2010-11-10 18:00 kiskis.xml.gpg.attachment.1
+-rw-r--r-- 1 gandalf gandalf  543 2010-11-10 15:55 kiskis.xml.gpg.attachment.2
+-rw-r--r-- 1 gandalf gandalf  231 2010-11-10 15:55 kiskis.xml.gpg.attachment.5                                                                                                                                                                   
+-rw-r--r-- 1 gandalf gandalf 1223 2010-11-10 15:55 kiskis.xml.gpg.attachment.6                                                                                                                                                                                                                                                                                                                                                            
+-rw-r--r-- 1 gandalf gandalf  326 2010-11-10 15:55 kiskis.xml.gpg.attachment.7                                                                                                                                                                                                                                                                                                                                                             
+-rw-r--r-- 1 gandalf gandalf  492 2010-11-10 18:00 kiskis.xml.gpg.attachment.8                                                                                                                                                                                                                                                                                                                                                           
+-rw-r--r-- 1 gandalf gandalf  159 2010-11-10 18:00 kiskis.xml.gpg.attachment.9    
+              ]]>
+								</computeroutput>
+							</screen>
+						</para>
+					</note>
+				</para>
+				<para>
+					Each account collects some statistics. So you can see when it was
+					used the last time and how often it has been viewed.
+					<figure>
+						<title>Statistics</title>
+						<graphic align="center" fileref="images/005_common_statistics.png"
+							format="PNG" />
+					</figure>
+				</para>
+				<para>
+					Plain text can be added to each account using the
+					<command>Comment</command>
+					-tab.
+					<figure>
+						<title>Account comment</title>
+						<graphic align="center" fileref="images/006_common_comment.png"
+							format="PNG" />
+					</figure>
+				</para>
+			</sect3>
+
+			<sect3>
+				<title>Network Account</title>
+				<para>
+					This is the most often used account type. It can be used for
+					computer
+					logins, mailserver authentications, internet services
+					and
+					so
+					on.
+        </para>
+
+				<figure>
+					<title>Network account options</title>
+					<graphic align="center" fileref="images/007_network_account_options.png"
+						format="PNG" />
+				</figure>
+
+				<para>
+					<variablelist>
+						<title>The network account provides additional attributes for:
+						</title>
+						<varlistentry>
+							<term>User name</term>
+							<listitem>
+								<para>Typical use is the login name of an internet service or
+									computer account. This might be an e-mail address as well.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>URL</term>
+							<listitem>
+								<para>
+									The location where the service or
+									computer can be found. This
+									URL can be delivered to the
+									<link linkend="section.applicationStarter">Build-in Application Starter</link>
+									,
+									so that you can associate your preferred application to it.
+									Therefore, you would have to click on the button
+									<command>Open URL</command>
+									.
+
+									<example>
+										<title>URL with placeholders</title>
+										<para>
+											<command>http://www.foo.de/?un=%username&amp;pwd=%pwd
+											</command>
+											or
+											<command>pop://mail.foo.de/</command>
+										</para>
+									</example>
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>E-mail</term>
+							<listitem>
+								<para>If a service wants to know an email address you can type
+									it in here. This is very useful if you have multiple email
+									accounts and if
+									you want to keep track which account knows which
+									email
+									address, especially if you use such services like
+									spamgourmet.com.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</sect3>
+
+			<sect3>
+				<title>Bank Account</title>
+				<para>
+					This account type models a typical money account on a bank. It
+					provides
+					some additional attributes needed for financial
+					transactions such as “telephone pin”, “account number”, “TAN lists”
+					and more.
+				</para>
+
+				<para>
+					<figure>
+						<title>Bank account options</title>
+						<graphic align="center" fileref="images/009_bank_account_options.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					<variablelist>
+						<title>The bank account provides additional attributes for:
+						</title>
+						<varlistentry>
+							<term>Bank Name</term>
+							<listitem>
+								<para>The name of the bank, e. g. "Deutsche Bank".
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Bank Identifier</term>
+							<listitem>
+								<para>
+									The identifier of the bank. This may be a IBAN, BLZ or
+									something
+									else.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Telephone PIN</term>
+							<listitem>
+								<para>This is a password or PIN which is used for telephone
+									banking.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Account Number</term>
+							<listitem>
+								<para>This is the number that identifies the account.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+
+				<para>
+					Notice the TAN list field for transaction numbers (TAN). It is
+					used to
+					define sets of TANs. Each TAN list is identified by an
+					ID and
+					a
+					creation date. Within the following dialog the TANs can be added,
+					removed
+					or marked as used.
+        </para>
+
+				<para>
+					<variablelist>
+						<title>TAN lists:</title>
+						<varlistentry>
+							<term>New</term>
+							<listitem>
+								<para>Creates a new empty TAN list.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Edit</term>
+							<listitem>
+								<para>
+									Open the selected TAN list in a TAN list editor dialog.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Delete</term>
+							<listitem>
+								<para>Deletes the selected TAN list.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+
+				<para>
+					<figure>
+						<title>TAN list dialog</title>
+						<graphic align="center" fileref="images/010_tan_list_dialog.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					<variablelist>
+						<title>TAN list dialog options:</title>
+						<varlistentry>
+							<term>TAN list ID</term>
+							<listitem>
+								<para>An identifier which is usually written on the TAN list by
+									the bank.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Created on</term>
+							<listitem>
+								<para>
+									The date when the bank created the list.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>TAN ID</term>
+							<listitem>
+								<para>A consecutive number which identifies a TAN.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Value</term>
+							<listitem>
+								<para>The value of the TAN, usually a 6-digit random number.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Used?</term>
+							<listitem>
+								<para>Checked if used. When checked is clicked, the field "Used
+									On"" will be updated as well.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Used On</term>
+							<listitem>
+								<para>The date when the TAN was used.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</sect3>
+
+			<sect3>
+				<title>Credit Card</title>
+				<para>
+					A “Credit Card” is usually associated with a bank and has a
+					tiny pin
+					used for ATMs. Though, the most interesting part is its
+					number which can be entered as well. 
+        </para>
+
+				<para>
+					<figure>
+						<title>Credit card options</title>
+						<graphic align="center" fileref="images/011_credit_card_options.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					<variablelist>
+						<title>The credit card account provides additional attributes for:
+						</title>
+						<varlistentry>
+							<term>Bank Name</term>
+							<listitem>
+								<para>The name of the bank, e. g. "Deutsche Bank".
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Credit Card Number</term>
+							<listitem>
+								<para>The number written on the card.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>PIN</term>
+							<listitem>
+								<para>The PIN needed for ATMs.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Card Validation Code</term>
+							<listitem>
+								<para>
+									The card security code (CSC) provides increased protection
+									against credit card fraud
+									<ulink url="http://en.wikipedia.org/wiki/Card_security_code">Wikipedia</ulink>
+									.
+								</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</sect3>
+
+			<sect3>
+				<title>Secured File</title>
+				<para>
+					Sometimes files can be opened with a passphrase only. So you
+					can define an
+					account which is linked to the file. This files can
+					be
+					opened with your preferred filemanager. You can encrypt or decrypt
+					them with OpenPGP if you want to.
+        </para>
+
+				<para>
+					<figure>
+						<title>Secured file options</title>
+						<graphic align="center" fileref="images/012_secured_file_options.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					<variablelist>
+						<title>The secured file account provides additional attributes
+							for:</title>
+						<varlistentry>
+							<term>File</term>
+							<listitem>
+								<para>A relative or absolute path to an arbitrary file. This
+									could be "project plan", "word document", "keystore" or
+									something else.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Status</term>
+							<listitem>
+								<para>Shows if the file could be found or if it is a directory
+									or if it is missing.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Decrypt</term>
+							<listitem>
+								<para>Decrypts the file using the password given above. It is
+									activated only if the file is a PGP file. This is checked
+									automatically.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Encrypt</term>
+							<listitem>
+								<para>Encrypts the file using the password given above. It is
+									activated only if the file is not a PGP file. This is checked
+									automatically.
+                </para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</sect3>
+
+			<sect3>
+				<title>User-defined Account Template</title>
+				<para>
+					If you need some extra attributes or even simpler accounts you can
+					define your own account templates.
+					In the standard
+					<productname>KisKis</productname>
+					document you can find two examples. The first example is the
+					"Password only" type,
+					the second example is the "Complex type
+					example"
+					type. You can change these examples if you want to. Think
+					about an
+					account type as a blueprint for multiple occurences which
+					all
+					need some specific properties.
+				</para>
+
+				<para id="item.passwordOnly">
+					<figure>
+						<title>"Password only" type options</title>
+						<graphic align="center" fileref="images/013_templates_options_simple.png"
+							format="PNG" />
+					</figure>
+
+					As you can see this account type does not define any additional
+					attributes. So, the detail area is not visible anymore. You can
+					use
+					this account if you need a "label/password" pair only.
+				</para>
+
+				<para>
+					<figure id="item.complexTemplateExample">
+						<title>"Complex type example" type options</title>
+						<graphic align="center" fileref="images/014_templates_options_complex.png"
+							format="PNG" />
+					</figure>
+
+					This account type is just an example. You can see all field types
+					available. Look at
+					<link linkend="section.managingTemplates">Managing your own account templates</link>
+					for further information.
+				</para>
+			</sect3>
+
+			<sect3 id="section.managingTemplates">
+				<title>Managing your own account templates</title>
+				<para>
+					Open the menu item
+					<command>“Edit/Manage account templates”</command>
+					to open the template overview dialog.
+				</para>
+
+				<warning>
+					<para>
+						Be careful when modifying a template you have already
+						instantiated
+						and filled with important data. New properties aren't
+						a problem
+						at
+						all. But keep in mind, that
+						<emphasis>deleting</emphasis>
+						a property
+						will delete ALL associated values from the instances as
+						well. You
+						should also note that deleting a template will delete
+						all
+						instances.
+					</para>
+				</warning>
+
+				<para>
+					<figure>
+						<title>Manage account templates dialog</title>
+						<graphic align="center" fileref="images/015_templates_overview_dialog.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					Here you can see all your defined account templates. In this case,
+					two types were already defined. Note that an item is uniquely
+					identified by its name (case-sensitive). So you cannot have a
+					second item called
+					<link linkend="item.passwordOnly">“Password only”</link>
+					. All the templates are stored within your current datafile.
+				</para>
+
+				<para>
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>New</term>
+							<listitem>
+								<para>
+									Click
+									<command>New</command>
+									and a newly created template will appear in the list. It will
+									be initially called "new template".
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Edit</term>
+							<listitem>
+								<para>
+									Select an existing template and click
+									<command>Edit</command>
+									to manipulate the template. A new "template editor dialog" will
+									appear. You can do a double-click in the list as well.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Delete</term>
+							<listitem>
+								<para>
+									Select an existing template and click
+									<command>Delete</command>
+									to remove the template. If the item is currently instanciated a
+									warning will be shown.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Import</term>
+							<listitem>
+								<para>
+									You can import existing templates from other
+									<productname>KisKis</productname>
+									files with the
+									<command>Import</command>
+									-button. Select a
+									<productname>KisKis</productname>
+									file, enter the password and all the templates will be copied
+									to the current file. In case of
+									naming collisions you can
+									change
+									the template names before
+									<command>OK</command>
+									is pressed.
+								</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+
+				<para>
+					<figure>
+						<title>Template editor dialog</title>
+						<graphic align="center" fileref="images/016_templates_editor_dialog.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					Name your
+					template and add some tiny properties with
+					<command>New</command>
+					.
+					You can order the properties using the arrow buttons on the right
+					panel.
+
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>Template Name</term>
+							<listitem>
+								<para>
+									Enter a unique name for the template. There is no other
+									constraint
+									for the name.
+                  </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>New</term>
+							<listitem>
+								<para>
+									Opens the
+									<link linkend="item.propertyEditorDialog">property editor dialog</link>
+									.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Edit</term>
+							<listitem>
+								<para>
+									Select an existing property and click
+									<command>Edit</command>
+									. The
+									<link linkend="item.propertyEditorDialog">property editor dialog</link>
+									will be shown.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Delete</term>
+							<listitem>
+								<para>
+									Select an existing property and click
+									<command>Delete</command>
+									. The currently selected item will be removed from the list. If
+									the property is still used by an instance
+									a warning will be
+									shown.
+								</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+
+				<para>
+					<figure id="item.propertyEditorDialog">
+						<title>Property editor dialog</title>
+						<graphic align="center" fileref="images/016_templates_editor_dialog.png"
+							format="PNG" />
+					</figure>
+				</para>
+
+				<para>
+					Give each property a unqiue name within the
+					template and choose a
+					type out of the combo-box. As you can see, the
+					following
+					types are
+					supported:
+
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>Date</term>
+							<listitem>
+								<para>
+									Will be rendered as a date field
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Password</term>
+							<listitem>
+								<para>
+									Will be rendered as a password field.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>String</term>
+							<listitem>
+								<para>
+									Will be rendered as a simple text field.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>URL</term>
+							<listitem>
+								<para>
+									Will be rendered as a URL-input field which allows you to
+									start an
+									associated
+									application.
+                </para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>RichText</term>
+							<listitem>
+								<para>
+									Will be rendered as a text area.
+                </para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+
+					Take a look at the
+					<link linkend="item.complexTemplateExample">Complex template example</link>
+					.
+				</para>
+			</sect3>
+
+		</sect2>
+
+		<sect2 id="section.generatingPasswords">
+			<title>Generating passwords automatically</title>
+			<para>
+				Secure passwords should be only known by you and the service you are
+				using. It is not recommended to reuse passwords for multiple
+				services. That means you need one unique password for each account
+				which cannot be derived from another password of a different
+				account. Therefor,
+				<productname>KisKis</productname>
+				provides multiple password generators which make it easy for you to
+				follow these rules.
+				<variablelist>
+					<title>
+						Three different generators are available when you want to
+						<link linkend="item.createPassword">create a new password</link>
+					</title>
+					<varlistentry>
+						<term>human readable</term>
+						<listitem>
+							<para>
+								Human readable passwords do not use sophisticated special
+								characters. Furthermore the generator mixes
+								consonants
+								and vocals
+								in
+								a friendly manner. The passwords created should always be
+								readable, e. g.
+								<constant>NuHuxo770165</constant>
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>secure</term>
+						<listitem>
+							<para>
+								Secure passwords use all displayable characters in a complete
+								random order. These passwords may be hard to read
+								and
+								comprehend
+								but are secure, e. g.
+								<constant>du"|]Z0ku&amp;"E</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>by template</term>
+						<listitem>
+							<para>
+								This option opens a new password generator dialog.
+              </para>
+							<para>
+								<figure id="item.passwordGeneratorDialog">
+									<title>Password generator dialog</title>
+									<graphic align="center"
+										fileref="images/017_password_generator_dialog.png" format="PNG" />
+								</figure>
+								<variablelist>
+									<title />
+									<varlistentry>
+										<term>Template</term>
+										<listitem>
+											<para>
+												Enter a string, defining your template, here.
+                      </para>
+											<para>A template consists of a user-defined password pattern
+												string with a length greater than zero.
+												Each pattern
+												character represents a set of characters which can be placed
+												on this
+												position randomly.</para>
+											<para>
+												<screen>
+													<computeroutput><![CDATA[
+c,C - a consonant (b, c, d, ...)
+v,V - a vocal (a, e, i, o, u)
+a,A - an alphabetic character
+9 - a digit (0-9)
+n,N - a combination of 'a' and '9'
+# - a special character (+, $, %, ...)
+? - any character
+                        ]]></computeroutput>
+												</screen>
+											</para>
+											<para>
+												<emphasis>Example:</emphasis>
+												<constant>cVCvaA99#?</constant>
+												can generate
+												<constant>kIFaaT40[F</constant>
+												,
+												<constant>wUJan042:%</constant>
+												and so on.
+											</para>
+										</listitem>
+									</varlistentry>
+									<varlistentry>
+										<term>Count</term>
+										<listitem>
+											<para>
+												The number of passwords to generate. You can pick one
+												of them
+												out of the list.
+                      </para>
+										</listitem>
+									</varlistentry>
+									<varlistentry>
+										<term>Mix case</term>
+										<listitem>
+											<para>
+												If upper case and lower case should be chosen randomly
+												you can
+												activate this box.
+                      </para>
+										</listitem>
+									</varlistentry>
+								</variablelist>
+							</para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</para>
+		</sect2>
+
+		<sect2 id="section.passwordQuality">
+			<title>Checking password quality</title>
+			<para>
+				When you need to choose a password you may ask yourself "What
+				is a good
+				password and how do I know it is well chosen?". However,
+				at
+				first
+				you need to know the how an intruder would try to get your
+				password.
+			</para>
+
+			<para>
+				The easiest way to get a password is
+				<emphasis>guessing</emphasis>
+				or
+				<ulink
+					url="http://en.wikipedia.org/wiki/Social_engineering_%28security%29">
+					<emphasis>social engineering</emphasis>
+				</ulink>
+				. Many people are using passwords of things or family members they
+				can remember easily. "The name of the pet", "the childs
+				birthday",
+				"an anniversary" or such things are often used and can be guessed
+				by
+				an intruder easily. Think about all the information
+				the web knows
+				abaout you. Google, Facebook and Xing are a very useful
+				source for
+				such information. Even if you did not publish such
+				sensitive
+				information, the intruder might know you better than you
+				think.
+			</para>
+
+			<important>
+				<para>
+					You can protect yourself from those attacks easily.
+					<emphasis>Do not use any information of your social environment as
+						passwords!</emphasis>
+				</para>
+			</important>
+
+			<para>
+				An automated way to hack an account is to use a
+				<ulink
+					url="http://en.wikipedia.org/wiki/Password_cracking#Dictionary_attacks">
+					<emphasis>dictionary attack</emphasis>
+				</ulink>
+				. Therefor a computer will try each entry of a dictionary to access
+				your account. Those dictionaries contain millions of entries
+				with
+				the
+				most common passwords used all over the world. Our fast
+				computers do
+				not need much time to find the right solution if the
+				password can be
+				found in the dictionary. Did you know that "qwertz"
+				or "{[]}\" are
+				often used passwords? That is the case because
+				these character
+				sequences constist of characters which are close to each
+				other on the
+				keyboard.
+			</para>
+
+			<important>
+				<para>
+					You can protect yourself from those attacks easily.
+					<emphasis>Do not use simple words or character sequences,
+						consisting of characters which are close to each other on the
+						keyboard,
+						as
+						passwords! Passwords should never be found in a
+						dictionary!
+					</emphasis>
+				</para>
+			</important>
+
+			<para>
+				Another way to get your password is to use a
+				<ulink
+					url="http://en.wikipedia.org/wiki/Password_cracking#Brute_force_attack">
+					<emphasis>brute force attack</emphasis>
+				</ulink>
+				. The algorithms are very simple. "Try each possible variation of
+				characters and numbers up to a defined length."
+				The longer your
+				password and the more different characters your password contains
+				the more
+				variations need to be tried.
+			</para>
+
+			<important>
+				<para>
+					You can protect yourself from those attacks easily.
+					<emphasis>Use long passwords with at least 10 characters mixed with
+						numbers, special characters, upper case and lower case!
+          </emphasis>
+				</para>
+			</important>
+
+			<para>You can check your password quality with two internal tools.
+			</para>
+
+			<para>
+				The first is a
+				<emphasis>simple password analyzer</emphasis>
+				which tests the strength of your
+				password depending on the character
+				set used. A character set describes
+				numbers, lower-case letters,
+				upper-case letters,
+				punctuation, ... The more different character
+				sets a password uses and the
+				longer it is, the more secure the
+				password is because a brute force attack needs to take more possible
+				variations into account.
+			</para>
+
+			<para>
+				<figure id="item.passwordQualityBar">
+					<title>Password quality bar</title>
+					<graphic align="center" fileref="images/018_password_quality_bar.png"
+						format="PNG" />
+				</figure>
+
+				As you type the password in the
+				<link linkend="item.passwordElement">password element</link>
+				it will be checked automatically. Depending on the characters you
+				typed the number of possible variations is
+				computed. It is assumed,
+				that an intruder might get the information about the character set
+				used,
+				i. e. if you use numbers only as a password the intruder
+				would
+				try numbers only in a brute force attack to reduce the number of
+				possible variations.
+
+				The tooltip shows you more information
+				about the
+				password quality. So you can see the number of possible
+				variations.
+			</para>
+
+			<para>
+				The second way is a
+				<link linkend="item.testPassword">dictionary-based check</link>
+				using cracklib. The password is validated against a dictionary. If
+				cracklib is able
+				to find parts of the word in its dictionary you
+				should use another password because a dictionary-based attack on
+				your
+				account could
+				succeed with a high probability.
+			</para>
+
+			<para>
+				<figure>
+					<title>Password crack dialog</title>
+					<graphic align="center" fileref="images/019_password_crack_dialog.png"
+						format="PNG" />
+				</figure>
+
+				This dialog gives you some information about the password, e. g. if
+				it was found in the dictionary or if it violates some other
+				password
+				rules.
+			</para>
+
+		</sect2>
+
+		<sect2>
+			<title>Importing CSV files</title>
+			<para>
+				<productname>KisKis</productname>
+				provides a basic feature to import existent data via
+				"comma-separated-value”-files (CSV). You can create CSV files easily
+				with
+				Microsoft Excel or
+				<ulink url="http://download.openoffice.org">OpenOffice Calc</ulink>
+				.
+			</para>
+
+			<para>
+				Open the
+				<productname>KisKis</productname>
+				file you want to add the imported accounts to and activate the menu
+				item “File/Import” to start the procedure. A
+				file selection
+				dialog
+				opens. Select the CSV file you want to import and click
+				<command>OK</command>
+				. The accounts will be added.
+			</para>
+
+			<para>
+				A CSV file must start with a header line and may contain multiple
+				data lines. Each data line represents one account and must contain
+				as much as fields as defined in the header.
+
+				<variablelist>
+					<title>The header with pre-defined values must be included:</title>
+					<varlistentry>
+						<term>Group</term>
+						<listitem>
+							<para>
+								The name of the group. An empty group name means that the
+								account should be append to the root. A
+								<emphasis>group path</emphasis>
+								can be defined using the character sequence "
+								<command>##</command>
+								" as a path separator. A group name "
+								<command>Shopping##Books#My Favorite Bookstores</command>
+								" would result in the following tree path:
+							</para>
+							<para>
+								<graphic align="center" fileref="images/020_csv_import_treepath.png"
+									format="PNG" />
+							</para>
+							<para>
+								If no group path separator can be found the group will be
+								appended
+								to the root node.
+              </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Label</term>
+						<listitem>
+							<para>
+								The name of the account.
+            </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Password</term>
+						<listitem>
+							<para>
+								The password as plain text.
+            </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>User Name</term>
+						<listitem>
+							<para>
+								The user name for the account.
+            </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Email</term>
+						<listitem>
+							<para>
+								The e-mail address used for the account.
+            </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>URL</term>
+						<listitem>
+							<para>
+								The URL used for the account.
+            </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Created On</term>
+						<listitem>
+							<para>
+								The creation date used for the account. The format is
+								<constant>YYYY-MM-DD</constant>
+								, e. g. 2010-12-01.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Expires On</term>
+						<listitem>
+							<para>
+								The expiration date used for the account. The format is
+								<constant>YYYY-MM-DD</constant>
+								, e. g. 2010-12-01.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Comment</term>
+						<listitem>
+							<para>
+								The comment used for the account. May contain linebreaks.
+							</para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</para>
+
+			<example>
+				<title>CSV Example File</title>
+				<screen>
+					<computeroutput><![CDATA[
+"Group","Label","Password","User Name","Email","URL","Created On","Expires On","Comment"
+,"Account placed to the root","hhsgww2l","foo",,,,,
+"Shopping","Amazon",32362187361,"amazon.foo","mail@bar.de","http://www.amazon.de",,,"amazon account"
+"Newly created group","Blahblah",1234,"user@foo.bar","user@foo.bar",,,,
+"Lifestyle##Shopping","eBay","hgfhda4342","buyer","foo@bar.com","http://www.ebay.de",,,
+"Work##Job 1","Computer Job 1","secret","john.doe","john.doe@company.com","http://portal.company.com","2010-10-21",,"Another comment"
+"Work##Job 2","Enterprise Password","foobar","karl.mustermann","karl@mustermann.de","Http://portal.foo.com","2009-12-24","2010-11-23","That is just a comment.
+With
+Multiple lines"
+"##","Account placed to the root 2","ÄÖÜölöö","another@user.de","another@user.de","http://foo.bar",,,"Another comment
+With multiple lines"
+"##Shopping","Bücher.de","3211fssaDD","mybuecher","foo@bar.com","http://www.buecher.de","2008-01-27",,"No comment"
+"Others##Invalid Accounts","Wrong Expiration date","rhiurhewf","foo","foo@bar.com",,,01.01.10,"Wrong expiration date"
+"Others##Invalid Accounts","Wrong creation date","rhiurhewf","foo","foo@bar.com",,01.01.10,,"Wrong creation date"
+"Others##Invalid Accounts",,,,,,,,
+]]>
+					</computeroutput>
+				</screen>
+				<para>
+					Notice the header in the first line and 11 different data rows. The
+					order in the column header is not important.
+
+					You don't have to
+					provide values for each possible column. You could use the header
+					<constant>Label, Password</constant>
+					as well and omit the other column values ( the rest will be filled
+					with predefined standard values). But
+					if you have defined two
+					columns in the header, each data row MUST provide two columns as
+					well (but
+					a column may be empty).
+				</para>
+
+				<para>
+					In this example the field-delimiter is ','. You can chose any
+					other
+					character if you want to. Put the field values in
+					<constant>""</constant>
+					if the field-delimiter may be found inside the value, e. g.
+					comments and text fields.
+				</para>
+
+				<para>
+					Get the
+					<ulink url="resources/example-import.ods">example OpenOffice.org Calc spreadsheet</ulink>
+					and try out.
+				</para>
+			</example>
+
+			<important>
+				<title>Important</title>
+				<para>
+					An import-action cannot be made undone. Please save your
+					<productname>KisKis</productname>
+					file
+					<emphasis>before</emphasis>
+					you start the import.
+				</para>
+				<para>
+					Note that the imported accounts will be typed as “Network
+					Accounts” and
+					will be added to the opened file.
+        </para>
+			</important>
+
+		</sect2>
+
+		<sect2>
+			<title>Options and preferences</title>
+			<toc></toc>
+			<lot></lot>
+			<para>
+				Open the menu item
+				<command>Edit/Options...</command>
+				to edit your personal preferences. A new dialog will appear.
+			</para>
+			<sect3>
+				<title>General</title>
+				<para>
+					In the general tab you can find options for appearance and
+					some
+					automatisms making your life easier.
+        </para>
+				<figure>
+					<title>General Options Tab</title>
+					<graphic align="center" fileref="images/021_options_general.png"
+						format="PNG" />
+				</figure>
+				<variablelist>
+					<title>General options</title>
+					<varlistentry>
+						<term>Choose Look&amp;Feel-classname</term>
+						<listitem>
+							<para>
+								Choose a classname of an
+								<classname>javax.swing.LookAndFeel</classname>
+								-implementation.
+							</para>
+							<para>
+								The default value is the great
+								<classname>com.incors.plaf.kunststoff.KunststoffLookAndFeel
+								</classname>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Choose font for password field</term>
+						<listitem>
+							<para>
+								You can choose a font of all available fonts which is used
+								for the
+								password fields.
+                </para>
+							<para>
+								The default is
+								<constant>Monospaced</constant>
+								and should be sufficient for most platforms.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Lock program after N minutes</term>
+						<listitem>
+							<para>
+								Enter the number of minutes of inactivity here that should pass
+								before
+								<productname>KisKis</productname>
+								will be locked. Inactivity means that
+								<productname>KisKis</productname>
+								did not receive any mouse event or key stroke, e. g. because the
+								window is in the background. When
+								<productname>KisKis</productname>
+								is locked
+								you need the password of the currently opened file to
+								unlock it
+								again. So you might leave your computer alone for a
+								moment.
+							</para>
+							<para>
+								A value of
+								<constant>0</constant>
+								will disable this option.
+							</para>
+							<para>
+								The default is
+								<constant>5</constant>
+								minutes.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Mark items as viewed after N seconds</term>
+						<listitem>
+							<para>
+								Enter the number of seconds here that should pass before
+								<productname>KisKis</productname>
+								will mark the currently opened account as viewed. This
+								means,
+								when you opened the
+								<constant>GMail</constant>
+								account its
+								<varname>last viewed date</varname>
+								and
+								<varname>view counter</varname>
+								will be updated after N seconds. This is useful if you want to
+								keep track of your favorite accounts. If you switch to
+								another
+								account before N seconds passed these values will remain the
+								same as before.
+							</para>
+							<para>
+								A value of
+								<constant>0</constant>
+								will disable this option.
+							</para>
+							<para>
+								The default is
+								<constant>10</constant>
+								seconds.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term id="option.bufferPassword">Buffer password</term>
+						<listitem>
+							<para>
+								Should the password stay in memory as long as the password
+								file is
+								opened? On a single user machine this is no problem.
+								On a
+								multiuser server, e. g. Citrix, it would be safer to disable
+								this option.
+              </para>
+							<para>
+								The default is
+								<constant>checked</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Dispose password after N minutes</term>
+						<listitem>
+							<para>
+								If
+								<link linkend="option.bufferPassword">buffer password</link>
+								is enabled the buffered password can be disposed from memory
+								automatically after N minutes. This is useful if you run
+								<productname>KisKis</productname>
+								on a multiuser platform without losing much convenience.
+							</para>
+							<para>
+								A value of
+								<constant>0</constant>
+								will disable this option. The password will never disposed.
+							</para>
+							<para>
+								The default is
+								<constant>0</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Default password expiry time</term>
+						<listitem>
+							<para>
+								This value is used when a new account is created for computation
+								of the expiration date. The default expiration date will be
+								<varname>today</varname>
+								+
+								<varname>N</varname>
+								days.
+							</para>
+							<para>
+								The default is
+								<constant>365</constant>
+								days.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Export user preferences on exit</term>
+						<listitem>
+							<para>
+								If you want to run
+								<productname>KisKis</productname>
+								from a USB-stick on multiple computers it is useful to share the
+								preferences. Check this box and
+								the preferences will be
+								saved
+								in a
+								file
+								<filename>$KISKIS_HOME/kiskis.preferences</filename>
+								. If you start
+								<productname>KisKis</productname>
+								the next time it will restore the preferences from this file.
+							</para>
+							<para>
+								The default is
+								<constant>not checked</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Check updates on startup</term>
+						<listitem>
+							<para>
+								If you want to get a short message when a new version of
+								<productname>KisKis</productname>
+								is available you need to check this box.
+								<productname>KisKis</productname>
+								will ask the
+								server
+								<ulink url="http://kiskis.sourceforge.net/download" />
+								if a new version is available. No information from you will be
+								sent to the server for this operation. This is just a simple
+								<constant>HTTP-GET</constant>
+								. These requests will not be saved to any logfile from the
+								<productname>KisKis</productname>
+								-authors.
+							</para>
+							<para>
+								The default is
+								<constant>checked</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</sect3>
+
+
+			<sect3>
+				<title>Load &amp; Save</title>
+				<para>
+					In this tab you can find options for the load and save
+					operation.
+				</para>
+				<figure>
+					<title>Load &amp; Save Options Tab</title>
+					<graphic align="center" fileref="images/022_options_load.png"
+						format="PNG" />
+				</figure>
+				<variablelist>
+					<title>Load &amp; Save options</title>
+					<varlistentry>
+						<term>Default encryption algorithm</term>
+						<listitem>
+							<para>
+								Select your favorite encryption algorithm.
+								<emphasis>OpenPGP - AES (256)</emphasis>
+								is the strongest algorithm available. You can use other
+								algorithms if you want to, even
+								<emphasis>3DES</emphasis>
+								which does not use PGP at all.
+							</para>
+							<para>
+								The default value is
+								<constant>OpenPGP - AES (256)</constant>
+								. If the
+								<link linkend="section.installation.jce">JCE</link>
+								is not installed on your machine
+								<constant>OpenPGP - AES (128)</constant>
+								will be the default.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Enable auto save</term>
+						<listitem>
+							<para>
+								Enable this option if
+								<productname>KisKis</productname>
+								should save your changed password file automatically.
+							</para>
+							<para>
+								The default value is
+								<constant>checked</constant>
+								.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Save every N minutes</term>
+						<listitem>
+							<para>
+								Tell
+								<productname>KisKis</productname>
+								how many minutes it should wait to save the document
+								automatically after the password file has been
+								modified.
+							</para>
+							<para>
+								The default value is
+								<constant>5</constant>
+								minutes.
+							</para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Max. number of backup files</term>
+						<listitem>
+							<para>
+								<productname>KisKis</productname>
+								can make backups when saving the document automatically. All
+								attachments will be backed up as well. You can find
+								the
+								backup
+								files in the directory where your password file is saved. The
+								filenames follow the simple rule
+								<filename>&lt;password file&gt;.backup.&lt;timestamp&gt;
+								</filename>
+								.
+							</para>
+							<para>
+								The default value is
+								<constant>5</constant>
+								backups.
+							</para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</sect3>
+
+			<sect3 id="section.applicationStarter">
+				<title>Applications</title>
+				<para>
+					You can define your own applications that shoul be used for
+					opening
+					URLs here. In the list you can find prefixes and regular
+					expressions for URLs associated with commands for external
+					applications. The list has to be read from top to bottom. The
+					first
+					matching prefix/regular expression for a given URL will be used to
+					start an
+					external application.
+        </para>
+				<figure>
+					<title>Applications Options Tab</title>
+					<graphic align="center" fileref="images/023_options_applications.png"
+						format="PNG" />
+				</figure>
+				<para>
+					As you can see in the picture above three different entries exist.
+					URLs starting with
+					<constant>https://www.myjob.de/</constant>
+					will be started with
+					<constant>firefox</constant>
+					and all other
+					<constant>http</constant>
+					-URLs will be passed to the machines
+					<emphasis>default browser</emphasis>
+					. It is important that the more specific prefixes will be placed on
+					top of the more general ones.
+				</para>
+				<variablelist>
+					<title>Applications options</title>
+					<varlistentry>
+						<term>New</term>
+						<listitem>
+							<para>
+								Creates a new empty entry in the list. Make a double click
+								on it to
+								define its values.
+              </para>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Edit</term>
+						<listitem>
+							<para>
+								Edit the selected entry.
+              </para>
+							<graphic align="center" fileref="images/025_options_applications_edit.png"
+								format="PNG" />
+							<variablelist>
+								<title></title>
+								<varlistentry>
+									<term>Regular expression or prefix for URL</term>
+									<listitem>
+										<para>
+											This pattern or prefix is used to match a given URL. It
+											answers the question:
+											<emphasis>Should this entry be used to open the URL X?
+											</emphasis>
+											.
+										</para>
+										<para>
+											Define a prefix, e .g
+											<emphasis>http</emphasis>
+											. You can define Java-like regular expressions
+											<footnote>
+												<para>
+													<ulink
+														url="http://download.oracle.com/javase/1.4.2/docs/api/java/util/regex/Pattern.html" />
+												</para>
+											</footnote>
+											as well if you need more complicated patterns and logic.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry>
+									<term>Associated command</term>
+									<listitem>
+										<para>
+											Define your command, which starts the application here. You
+											may use placeholders as
+											<constant>%url</constant>
+											,
+											<constant>%pwd</constant>
+											and
+											<constant>%username</constant>
+											. These placeholders will be filled with the values of the
+											specific account when you click
+											<command>Open URL</command>
+											.
+										</para>
+										<para>
+											The command
+											<command>&lt;default browser&gt; %url</command>
+											will use the Java-standard mechanism to detect the default
+											browser on your machine.
+										</para>
+									</listitem>
+								</varlistentry>
+							</variablelist>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Delete</term>
+						<listitem>
+							<para>
+								Remove the selected entry.
+              </para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</sect3>
+
+			<sect3 id="section.cracklibDictionary">
+				<title>Cracklib Dictionary</title>
+				<para>
+					Here you can define your own dictionary that is used to check
+					passwords
+					if you want to. The standard dictionary contains more
+					than
+					1.6 million words and typical passwords. Most of the words are in
+					German and English.
+        </para>
+				<figure>
+					<title>Cracklib Options Tab</title>
+					<graphic align="center" fileref="images/024_options_cracklib.png"
+						format="PNG" />
+				</figure>
+				<para>
+					<variablelist>
+						<title></title>
+						<varlistentry>
+							<term>Cracklib dictionary directory</term>
+							<listitem>
+								<para>
+									Define the relative or absolute path to a cracklib directory
+									here. This directory contains the dictionary which consists
+									of
+									<anchor id="item.cracklibFiles" />
+									three cracklib files (
+									<filename>cracklib.hwd</filename>
+									,
+									<filename>cracklib.pwd</filename>
+									and
+									<filename>cracklib.pwi</filename>
+									).
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Select an existing dictionary file</term>
+							<listitem>
+								<para>
+									Use this action to select an existing directory containing the
+									<link linkend="item.cracklibFiles">three cracklib files</link>
+									. A directory selection dialog will appear. The selected
+									directory will be validated and the absolute directory pathname
+									is
+									shown in the textbox afterwards. Otherwise an error message
+									will appear.
+								</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>Create a new Dictionary from wordlist</term>
+							<listitem>
+								<para>
+									You can define your own textfiles with your own words as a
+									dictionary. That is quite simple. Create a file
+									<filename>wordlist.txt</filename>
+									with a text editor (e. g.
+									<command>notepad</command>
+									on Windows). This file should look like as follows:
+									<example>
+										<title>Sample wordlist</title>
+										<screen>
+											<computeroutput><![CDATA[
+a
+aa
+aron
+berta
+...
+julia
+z
+zz
+zoron
+]]>
+											</computeroutput>
+										</screen>
+									</example>
+									Empty lines and case will be ignored.
+								</para>
+								<para>
+									A file selection dialog will appear if you click this action.
+									Select the file you created first and
+									<command>Select</command>
+									. A progress indicator will appear as long as this action has
+									not been finished.
+								</para>
+								<para>
+									The
+									<link linkend="item.cracklibFiles">dictionary files</link>
+									will be created on the file system in the directory specified
+									in the textbox. So, you should define the
+									target directory
+									in
+									the
+									textbox first. The import of the file cannot be cancelled and
+									may take a while. Please be patient.
+								</para>
+								<para>
+									You can find the standard wordlist in the
+									<ulink
+										url="http://kiskis.svn.sourceforge.net/viewvc/kiskis/kiskis-application/trunk/tools/dictionaries/raw/allwords.txt?view=log">Version Control System</ulink>
+									.
+								</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</sect3>
+		</sect2>
+	</sect1>
+
+	<sect1>
+
+		<title>Warranty</title>
+
+		<para>
+			This program is provided under the GPL-license and is absolutely
+			free and
+			comes „AS IS“. You use it on your own risk. There is no
+			liability
+			for data losses, hardware defects, loss in cash and so on of
+			anyone
+			other than yourself.
+    </para>
+
+		<para>
+			See LICENSE-file for further information.
+    </para>
+
+	</sect1>
+
+	<sect1>
+
+		<title>Cryptography Verification</title>
+
+		<para>To build-up trust in the encryption-algorithm, you can verify
+			the encrypted data-files with GnuPG (http://www.gnupg.org) for
+			example.</para>
+
+		<para>
+			Just call
+			<screen>
+				<command>$> gpg –-list-packets &lt;datafile&gt;</command>
+			</screen>
+			on command line or test de- and encrypting directly:
+			<screen>
+				<command>$> gpg --decrypt &lt;datafile&gt; > tmp </command>
+				<command>$> gpg --symmetric --armor --cipher-algo AES tmp </command>
+				<command>$> java -jar kiskis.jar -file tmp.asc</command>
+				<command>$> rm -i tmp*</command>
+			</screen>
+		</para>
+
+	</sect1>
+
+	<sect1 id="section.download">
+
+		<title>Download</title>
+
+		<para>
+			Get the latest informations and releases from the
+			<ulink url="http://www.sourceforge.net/projects/kiskis">project homepage</ulink>
+			at Sourceforge.net.
+		</para>
+
+		<para>
+			You can try
+			<productname>KisKis</productname>
+			online with
+			<ulink url="http://kiskis.sourceforge.net/jaws/latest/kiskis.jnlp">Java Web Start</ulink>
+		</para>
+
+		<para>
+			<graphic align="center" fileref="images/sflogo.png" format="PNG" />
+		</para>
+
+		<para>
+			Alternatively you can download the application from
+			<ulink url="http://www.heise.de/software/download/kiskis/26125">
+				heise.de
+      </ulink>
+			.
+		</para>
+
+		<para>
+			<ulink url="http://www.heise.de/software/download/kiskis/26125">
+				<inlinegraphic align="center"
+					fileref="http://www.heise.de/software/icons/download_logo1.png" />
+			</ulink>
+		</para>
+
+	</sect1>
+
+	<sect1>
+
+		<title>Help!</title>
+
+		<para>
+			Any help with { coding, usability improvements, bug reports,
+			appearance
+			improvements, translations } would be very much welcomed.
+		</para>
+
+		<para>
+			I also would appreciate any other related feedback.
+    </para>
+
+		<para>
+			Please feel free to send me an email or to
+			<ulink url="https://sourceforge.net/donate/index.php?group_id=108090">donate some money</ulink>
+			if you have to much of this stuff ;-)
+
+			<graphic align="center" fileref="images/project-support.jpg"
+				format="JPG" />
+		</para>
+
+	</sect1>
+
+	<sect1>
+
+		<title>Contributions</title>
+
+		<para>
+			Many thanks to Patrick Spinler, Ruth Betcher and Brent Vrieze
+			for the
+			integration of the cracklib-library.
+    </para>
+
+	</sect1>
+
+	<sect1>
+
+		<title>Contact</title>
+
+		<para>
+			<address>
+				<firstname>Tobias</firstname>
+				<surname>Buchloh</surname>
+				<email>kiskis [at] gmx [dot] eu</email>
+				<country>Germany</country>
+			</address>
+		</para>
+
+		<para>
+			My public PGP key:
+			<ulink url="resources/tbuchloh_pubkey.asc" />
+		</para>
+
+		<para>
+			Fingerprint:
+			<constant>2716 3A96 25FF 5C6D C7FE 34B1 02D9 2BEA 071C 5F25
+			</constant>
+		</para>
+	</sect1>
+
+</article>

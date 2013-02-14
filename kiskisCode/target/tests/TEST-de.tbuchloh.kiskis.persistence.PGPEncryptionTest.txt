@@ -1,0 +1,7 @@
+Testsuite: de.tbuchloh.kiskis.persistence.PGPEncryptionTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1,145 sec
+
+Testcase: test01SavePGPDocument took 0,785 sec
+Testcase: test02SavePGPDocumentWithBackup took 0,235 sec
+Testcase: test03LoadPGPDocument took 0,075 sec
+Testcase: testEquals took 0,045 sec

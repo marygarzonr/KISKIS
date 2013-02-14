@@ -1,0 +1,110 @@
+Testsuite: de.tbuchloh.kiskis.persistence.XMLReaderTest
+Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0,683 sec
+------------- Standard Output ---------------
+<?xml version="1.0"?>
+<TPMDocument xmlns="http://kiskis.sourceforge.net/model/v1.0/" uuid="1ddc4605-e929-40db-85aa-56180e412f08" version="0.24">
+	<AccountType name="Komplexes Vorlagenbeispiel">
+		<AccountProperty name="Eine Zeichenkette" type="String" />
+		<AccountProperty name="Ein Passwort" type="Password" />
+		<AccountProperty name="Ein Datum" type="Date" />
+		<AccountProperty name="Eine Internet-Adresse" type="URL" />
+		<AccountProperty name="Etwas mehr Text" type="Text" />
+	</AccountType>
+	<AccountType name="Nur Passwort" />
+	<Group uuid="b3b40c78-26ee-4d85-a73c-f011f171842f" name="Meine Passwörter">
+		<Comment xml:space="preserve">Kommentar mit
+Zeilenumbrüchen,
+1
+2
+3
+</Comment>
+		<Group uuid="156478f7-f6bc-4d2d-ba10-209c6ed7d6eb" name="Arbeit">
+			<Comment xml:space="preserve">Speichern Sie hier alles, was mit ihrer Arbeit zu tun hat.</Comment>
+			<NetAccount email="t.buchloh@gmx.net" username="tobias" url="">
+				<SecuredElement uuid="90c367d7-eb3d-431a-af9e-9f7761a19f60" name="Konto 1" creationDate="2010-10-27T19:35:18" lastChangeDate="2010-10-27T19:38:38" expiresNever="true" lastViewedDate="2010-10-27T19:35:23" viewCounter="1">
+					<Comment xml:space="preserve" />
+					<Password pwd="ofAtoT82" expires="2011-10-27" created="2010-10-27T19:38:38" />
+					<PasswordHistory>
+						<Password pwd="goGi9120" expires="2011-10-27" created="2010-10-27T19:35:37" />
+					</PasswordHistory>
+					<AttachmentRef attachmentUuid="04dacafe-c5b5-4cc2-829b-67164403b14a" />
+					<AttachmentRef attachmentUuid="08439fd5-92c1-4285-95c8-e3674c711089" />
+				</SecuredElement>
+			</NetAccount>
+		</Group>
+		<Group uuid="02bb9f1c-1460-464a-a40c-45627941646e" name="Banken &amp; Finanzen">
+			<Comment xml:space="preserve">Hier können sie ihre Kreditkarten, Bankkonten, etc. ablegen.</Comment>
+		</Group>
+		<Group uuid="86cdf0fc-3a7a-4038-97bf-e1a0f974c3af" name="Computer, Kommunikation &amp; E-Mail">
+			<Comment xml:space="preserve">Legen Sie hier alles ab, was mit E-Mail, Telefon und
+				Computerzugängen zu tun hat.</Comment>
+		</Group>
+		<Group uuid="263bd570-a5db-443a-ac36-bedeae995f9c" name="Einkaufen">
+			<Comment xml:space="preserve">Hier können Sie ihre Amazon-, eBay- oder bücher.de-Zugänge
+				ablegen.</Comment>
+			<NetAccount email="test@test.de" username="test" url="">
+				<SecuredElement uuid="e6e93f2a-ffa5-4deb-b6fe-50d8b0be7f1c" name="Konto 3" creationDate="2010-10-27T19:39:23" lastChangeDate="2010-10-27T19:39:59" expiresNever="true" lastViewedDate="2010-10-27T19:39:28" viewCounter="1">
+					<Comment xml:space="preserve" />
+					<Password pwd="faVa0749" expires="2011-10-27" created="2010-10-27T19:39:59" />
+					<PasswordHistory />
+					<AttachmentRef attachmentUuid="321d0aa6-655d-4a71-8344-bd4713b6e8cd" />
+					<AttachmentRef attachmentUuid="b188c1ee-262a-45c6-9187-999a4fb86e28" />
+					<AttachmentRef attachmentUuid="a3c86196-793e-4724-a109-df3bb363f97f" />
+				</SecuredElement>
+			</NetAccount>
+		</Group>
+		<Group uuid="88636557-e891-43ca-9d41-7b6e713ab510" name="Freizeit &amp; Hobbys">
+			<Comment xml:space="preserve">Hier können Sie alles ablegen was mit ihrer Freizeit und
+				ihren Hobbies zu tun hat.</Comment>
+		</Group>
+		<Group uuid="2afc9fbf-f78a-4e70-9e25-cbab43631176" name="Portale">
+			<Comment xml:space="preserve">Hier können Sie ihre netvibes-, iGoogle-, ...-Konten
+				ablegen.</Comment>
+			<NetAccount email="foo@bar.de" username="gandalf" url="">
+				<SecuredElement uuid="bcb0db4f-1f17-4c51-aec0-014299c7efd2" name="Konto 2" creationDate="2010-10-27T19:38:43" lastChangeDate="2010-10-27T19:39:13" expiresNever="true" lastViewedDate="2010-10-27T19:38:48" viewCounter="1">
+					<Comment xml:space="preserve" />
+					<Password pwd="qANaBE27" expires="2011-10-27" created="2010-10-27T19:39:13" />
+					<PasswordHistory />
+					<AttachmentRef attachmentUuid="fd4fedae-c341-479b-8bc1-ad22a142baa1" />
+				</SecuredElement>
+			</NetAccount>
+		</Group>
+		<Group uuid="d2e14f3d-a83d-40ac-9723-15a4f5cdb052" name="Sonstige">
+			<Comment xml:space="preserve">Packen Sie hier alles rein, von dem Sie nicht wissen wo es
+				sonst hin soll.</Comment>
+		</Group>
+		<Group uuid="407d4634-261c-4f4f-8330-f5e5a7799641" name="Soziale Netzwerke">
+			<Comment xml:space="preserve">Hier können Sie ihre Facebook-, Xing- oder Twitter-Zugänge
+				ablegen.</Comment>
+		</Group>
+	</Group>
+<Attachments><Attachment id="1" uuid="04dacafe-c5b5-4cc2-829b-67164403b14a" key="a2Fn_Z&gt;yENCh" description="CHANGELOG" /><Attachment id="2" uuid="08439fd5-92c1-4285-95c8-e3674c711089" key="K}gY&quot;6CaGV+y" description="AUTHORS" /><Attachment id="4" uuid="321d0aa6-655d-4a71-8344-bd4713b6e8cd" key="oJKbB+I.%w3?" description="README" /><Attachment id="5" uuid="b188c1ee-262a-45c6-9187-999a4fb86e28" key="%\`VoZT+6Ewp" description="LICENSE" /><Attachment id="6" uuid="a3c86196-793e-4724-a109-df3bb363f97f" key="J@@0{g97Ks:u" description="build.xml" /><Attachment id="3" uuid="fd4fedae-c341-479b-8bc1-ad22a142baa1" key="B=_$D?z7vq4N" description="LICENSE" /></Attachments></TPMDocument>
+
+------------- ---------------- ---------------
+
+Testcase: testTransform024ToCurrent took 0,663 sec
+	FAILED
+expected:<...entar mit
+Zeilenumbr[Ã¼]chen,
+1
+2
+3
+> but was:<...entar mit
+Zeilenumbr[ü]chen,
+1
+2
+3
+>
+junit.framework.AssertionFailedError: expected:<...entar mit
+Zeilenumbr[Ã¼]chen,
+1
+2
+3
+> but was:<...entar mit
+Zeilenumbr[ü]chen,
+1
+2
+3
+>
+	at de.tbuchloh.kiskis.persistence.XMLReaderTest.testTransform024ToCurrent(XMLReaderTest.java:65)
+

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TPMDocument uuid="2bb801a5-1cc1-4bdc-b7e6-b03ce3c4df62" version="1.0.0-RC7" xsi:schemaLocation="http://kiskis.sourceforge.net/model/v1.0/ kiskis-1.0.xsd" xmlns="http://kiskis.sourceforge.net/model/v1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AccountType name="Complex Template Example">
+    <AccountProperty name="A string field" type="String"/>
+    <AccountProperty name="A password field" type="Password"/>
+    <AccountProperty name="A date field" type="Date"/>
+    <AccountProperty name="An URL" type="URL"/>
+    <AccountProperty name="Some text" type="Text"/>
+  </AccountType>
+  <AccountType name="Password only"/>
+  <Group uuid="fae52129-451b-4a87-9eb0-ad8141e8424b" name="My Passwords">
+    <Comment xml:space="preserve"/>
+    <Group uuid="9feb57ee-c9a3-41c1-adc6-b5b4b2ebe783" name="Banking &amp; Finance">
+      <Comment xml:space="preserve">Insert all your money related accounts here.</Comment>
+      <Group uuid="0ee5875a-9b37-4ca8-9611-530a1de261ca" name="Deutsche Bank">
+        <Comment xml:space="preserve"/>
+        <BankAccount bank="Deutsche Bank" bankID="2502231123" number="992844455" telebankingPin="9976">
+          <TANList id="C441522" created="2010-11-16T15:03:47">
+            <TAN id="1" number="992563"/>
+            <TAN id="2" number="374932"/>
+            <TAN id="3" number="264542"/>
+            <TAN id="4" number="129212"/>
+            <TAN id="5" number="374281" used="2010-11-16T15:05:14"/>
+            <TAN id="6" number="963442" used="2010-11-16T15:05:15"/>
+            <TAN id="7" number="445321"/>
+            <TAN id="8" number="384332"/>
+            <TAN id="9" number="227349"/>
+            <TAN id="10" number="837328"/>
+            <TAN id="11" number="333720"/>
+            <TAN id="12" number="335289"/>
+            <TAN id="13" number="857743"/>
+            <TAN id="14" number="355261"/>
+            <TAN id="15" number="886604"/>
+            <TAN id="16" number="453552"/>
+            <TAN id="17" number="122212"/>
+            <TAN id="18" number="393992"/>
+            <TAN id="19" number="333242"/>
+            <TAN id="20" number="983632"/>
+          </TANList>
+          <TANList id="3747377" created="2008-09-16T15:21:29">
+            <TAN id="1" number="" used="2010-11-16T15:21:12"/>
+            <TAN id="2" number="" used="2010-11-16T15:21:13"/>
+            <TAN id="3" number="" used="2010-11-16T15:21:13"/>
+            <TAN id="4" number="" used="2010-11-16T15:21:15"/>
+            <TAN id="5" number="" used="2010-11-16T15:21:14"/>
+            <TAN id="6" number="" used="2010-11-16T15:21:14"/>
+            <TAN id="7" number="" used="2010-11-16T15:21:16"/>
+            <TAN id="8" number="" used="2010-11-16T15:21:17"/>
+            <TAN id="9" number="" used="2010-11-16T15:21:17"/>
+            <TAN id="10" number="" used="2010-11-16T15:21:17"/>
+          </TANList>
+          <SecuredElement uuid="45fd0d01-32df-4803-ae0c-83d31f87c93c" name="Deutsche Bank" creationDate="2010-11-16T15:00:38" lastChangeDate="2010-11-16T15:21:25" expiresNever="true" lastViewedDate="2010-11-19T16:02:35" viewCounter="7">
+            <Comment xml:space="preserve">Bank Account
+Comment with
+multiple lines</Comment>
+            <Password pwd="22543" expires="2011-11-16" created="2010-11-16T15:21:25"/>
+            <PasswordHistory/>
+          </SecuredElement>
+        </BankAccount>
+        <CreditCard deployer="Deutsche Bank" cardValidationCode="231" number="3262-1223-2211-22" pin="3221">
+          <SecuredElement uuid="854d84b4-0fa4-4388-9b3e-bebd09a68b7a" name="MasterCard" creationDate="2010-11-16T15:09:27" lastChangeDate="2010-11-16T15:09:58" expiresNever="true" lastViewedDate="2010-11-22T11:43:01" viewCounter="3">
+            <Comment xml:space="preserve"/>
+            <Password pwd="" expires="2011-11-16" created="2010-11-16T15:09:58"/>
+            <PasswordHistory/>
+          </SecuredElement>
+        </CreditCard>
+      </Group>
+    </Group>
+    <Group uuid="969f2cc9-c0c8-4a71-adfb-ff5ec57549cc" name="Computers, Communication &amp; e-mail">
+      <Comment xml:space="preserve">Insert all your computer, phone and e-mail related stuff here.</Comment>
+      <Group uuid="071f5372-9677-4438-b8cb-dd88c8abc238" name="E-Mail">
+        <Comment xml:space="preserve"/>
+        <NetAccount email="foo@bar.com" username="googlemailer" url="https://mail.google.com/">
+          <SecuredElement uuid="ab8fa2b6-fbec-403c-90ed-0e39189e9c04" name="Gmail" creationDate="2010-11-16T15:06:17" lastChangeDate="2010-11-22T11:42:46" expiresNever="false" lastViewedDate="2010-11-19T11:07:40" viewCounter="3">
+            <Comment xml:space="preserve">Just a plain text comment.
+
+And more text.</Comment>
+            <Password pwd="fh347fejjjfderu3Sdf2" expires="2011-11-16" created="2010-11-22T11:42:46"/>
+            <PasswordHistory>
+              <Password pwd="fh347fejjjfderu3Sdfh" expires="2011-11-16" created="2010-11-19T11:36:13"/>
+              <Password pwd="fh347fejjjfderu3Sdfg" expires="2011-11-16" created="2010-11-19T12:03:03"/>
+              <Password pwd="fh347fejjjfderu3Sdf4" expires="2011-11-16" created="2010-11-19T12:03:06"/>
+            </PasswordHistory>
+          </SecuredElement>
+        </NetAccount>
+      </Group>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="ab9d5bdb-d73d-4a96-a024-a97d13bc69b0" name="ICQ" creationDate="2010-11-16T15:19:45" lastChangeDate="2010-11-16T15:19:50" expiresNever="true" lastViewedDate="2010-11-16T15:19:45" viewCounter="0">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:19:50"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+      <GenericAccount type="Password only">
+        <SecuredElement uuid="48bdf08c-b19b-4c7a-b5fc-d47d080c0aa4" name="My PGP Key" creationDate="2010-11-16T15:18:31" lastChangeDate="2010-11-16T15:18:48" expiresNever="true" lastViewedDate="2010-11-19T16:38:21" viewCounter="3">
+          <Comment xml:space="preserve"/>
+          <Password pwd="144434365tfhgcfghcv" expires="2011-11-16" created="2010-11-16T15:18:48"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="3f8e16cc-285d-4215-bfbc-910eb6cae80e" name="Skype" creationDate="2010-11-16T15:19:56" lastChangeDate="2010-11-16T15:20:00" expiresNever="true" lastViewedDate="2010-11-16T15:20:06" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:20:00"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="d29c8dd1-ad13-44a7-ad0e-10ac01d6740f" name="Hobbies">
+      <Comment xml:space="preserve">Insert all your hobby related items here.</Comment>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="40728cd8-15cd-4333-bb9c-4ece35333ce7" name="Divemaster.com" creationDate="2010-11-16T15:17:35" lastChangeDate="2010-11-16T15:17:43" expiresNever="true" lastViewedDate="2010-11-16T15:17:35" viewCounter="0">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:17:43"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="fc1af5ac-3924-4c1c-b49b-5b167ba05291" name="jogmap.de" creationDate="2010-11-16T15:19:00" lastChangeDate="2010-11-16T15:19:07" expiresNever="true" lastViewedDate="2010-11-16T15:19:00" viewCounter="0">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:19:07"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="e5411bc9-0e1c-4e9d-99f9-253668ba0f67" name="Lifestyle">
+      <Comment xml:space="preserve">Insert everything related to cooking, living and so on here.</Comment>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="7b08d611-1b9b-4269-8a9a-93faf21570b9" name="chefkoch.de" creationDate="2010-11-16T15:17:52" lastChangeDate="2010-11-16T15:17:58" expiresNever="true" lastViewedDate="2010-11-16T15:18:02" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:17:58"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="057abf52-1423-4ef2-94c4-24bfda6a242c" name="Others">
+      <Comment xml:space="preserve">Insert everything here you don't know where to put in else.</Comment>
+      <GenericAccount type="Complex Template Example">
+        <AccountPropertyValue name="A date field" type="Date" value="2010-11-16T16:46:38"/>
+        <AccountPropertyValue name="A password field" type="Password" value="12345"/>
+        <AccountPropertyValue name="An URL" type="URL" value="http://www.google.de"/>
+        <AccountPropertyValue name="Some text" type="Text" value="Give me some Text."/>
+        <AccountPropertyValue name="A string field" type="String" value="a string value"/>
+        <SecuredElement uuid="03b4f457-3a89-411b-a7f6-804f9ff9ec26" name="A complex account template" creationDate="2010-11-16T15:20:12" lastChangeDate="2010-11-19T16:47:09" expiresNever="true" lastViewedDate="2010-11-22T11:40:21" viewCounter="5">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-19T16:47:09"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </GenericAccount>
+    </Group>
+    <Group uuid="1b4c65ec-69c3-4fb6-b2c6-c5cf2e5a5f21" name="Portals">
+      <Comment xml:space="preserve">Insert your portal accounts like netvibes, iGoogle, ... here.</Comment>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="2d5fc93f-6c37-40fa-8948-ff189fd6fafa" name="igoogle.com" creationDate="2010-11-16T15:19:16" lastChangeDate="2010-11-16T15:19:24" expiresNever="true" lastViewedDate="2010-11-16T15:19:26" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2011-11-16" created="2010-11-16T15:19:24"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="faf82349-a97d-4c4d-bf20-96c4c0608d93" name="Netvibes" creationDate="2010-11-16T15:17:02" lastChangeDate="2010-11-16T15:17:22" expiresNever="true" lastViewedDate="2010-11-16T15:17:19" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="iPEYOlicas17" expires="2011-11-16" created="2010-11-16T15:17:22"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="63009b45-b12c-4708-b6f0-d2e008d66250" name="Shopping">
+      <Comment xml:space="preserve">Insert your amazon, ebay, ... accounts here.</Comment>
+      <NetAccount email="foobar@gmx.eu" username="foobar@gmx.eu" url="http://www.amazon.com">
+        <SecuredElement uuid="894b4aa8-389b-4fc6-9153-ddb72b45d783" name="amazon.com" creationDate="2010-11-16T15:14:48" lastChangeDate="2010-11-16T15:15:25" expiresNever="true" lastViewedDate="2010-11-16T15:14:58" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="fjhoeru23984kfbdsfcb" expires="2011-11-16" created="2010-11-16T15:15:25"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+      <NetAccount email="foobar@foo.com" username="foobar" url="http://www.ebay.com">
+        <SecuredElement uuid="9f3b072f-df00-4e3e-b674-639d57ea2419" name="ebay" creationDate="2010-11-16T15:15:33" lastChangeDate="2010-11-16T15:16:02" expiresNever="true" lastViewedDate="2010-11-16T15:15:43" viewCounter="1" archivedOnDate="2009-11-12T15:15:43">
+          <Comment xml:space="preserve"/>
+          <Password pwd="CohIVUPUtaz8" expires="2011-11-16" created="2010-11-16T15:16:02"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="1cca4980-1888-47ee-97d0-9369a7194819" name="Social Networks">
+      <Comment xml:space="preserve">Insert your facebook, xing, twitter accounts here.</Comment>
+      <NetAccount email="foo@gmx.eu" username="foo@gmx.eu" url="http://www.linkedin.com">
+        <SecuredElement uuid="1380f639-aaa7-473d-8e1d-a5812cc99e37" name="LinkedIn" creationDate="2010-11-16T15:16:11" lastChangeDate="2010-11-16T15:16:47" expiresNever="true" lastViewedDate="2010-11-16T15:16:21" viewCounter="1">
+          <Comment xml:space="preserve"/>
+          <Password pwd="4,]?/B1fJKqr" expires="2011-11-16" created="2010-11-16T15:16:47"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+      <NetAccount email="" username="" url="">
+        <SecuredElement uuid="b36878f1-4bbb-4251-8d1e-e6d7585bb602" name="StudiVZ" creationDate="2010-11-16T15:19:32" lastChangeDate="2010-11-16T15:19:37" expiresNever="true" lastViewedDate="2010-11-16T15:19:32" viewCounter="0">
+          <Comment xml:space="preserve"/>
+          <Password pwd="" expires="2028-11-16" created="2010-11-16T15:19:37"/>
+          <PasswordHistory/>
+        </SecuredElement>
+      </NetAccount>
+    </Group>
+    <Group uuid="ce503998-e4e2-4f26-a061-e15a65895285" name="Work">
+      <Comment xml:space="preserve">Insert your stuff needed for your work here.</Comment>
+      <Group uuid="2cea290e-6447-4edc-a97e-e9577b9f875e" name="How to take over the world">
+        <Comment xml:space="preserve"/>
+        <SecuredFile file="xml/secretplan.mpp">
+          <SecuredElement uuid="d63ef505-fbe5-4e02-ae56-743397a3c575" name="My Secret Project Plan" creationDate="2008-01-16T15:10:39" lastChangeDate="2010-11-16T15:12:59" expiresNever="false" lastViewedDate="2010-11-22T11:57:54" viewCounter="5">
+            <Comment xml:space="preserve"/>
+            <Password pwd="yoKuDaReyi42" expires="2021-10-19" created="2010-11-16T15:12:59"/>
+            <PasswordHistory/>
+          </SecuredElement>
+        </SecuredFile>
+      </Group>
+    </Group>
+  </Group>
+  <Attachments/>
+</TPMDocument>

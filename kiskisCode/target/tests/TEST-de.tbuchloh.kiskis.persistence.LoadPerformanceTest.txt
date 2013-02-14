@@ -1,0 +1,9 @@
+Testsuite: de.tbuchloh.kiskis.persistence.LoadPerformanceTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 6,757 sec
+------------- Standard Error -----------------
+2013-02-13 23:54:00,573 WARN  [main                              ][XMLProcessing] - Info: The document "testfile-all.xml.gpg" was created with version "0.19.2" but "1.0.2" is expected! Make a backup ...
+2013-02-13 23:54:01,787 WARN  [main                              ][XMLProcessing] - Info: The document "testfile-all.xml.gpg" was created with version "0.19.2" but "1.0.2" is expected! Make a backup ...
+------------- ---------------- ---------------
+
+Testcase: testLoad took 2,662 sec
+Testcase: testSave took 4,081 sec

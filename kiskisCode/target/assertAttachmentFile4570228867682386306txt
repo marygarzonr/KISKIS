@@ -1,0 +1,505 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1'?>
+<project basedir="." name="Kis!Kis!" default="compile">
+	<description>
+        compiles the "Keep It Secret! Keep It Safe!"-password manager
+        written by Tobias Buchloh
+        $Id: build.xml,v 1.49 2007/12/09 12:41:41 tbuchloh Exp $
+    </description>
+
+	<property file="build.properties" />
+
+	<!-- set global properties for this build -->
+	<property name="lib.dir" location="lib" />
+	<property name="lib.buildtime.dir" location="${lib.dir}/buildtime" />
+
+	<property name="debug" value="true" />
+	<property name="optimize" value="true" />
+	<property name="verbose" value="false" />
+
+	<property name="project.bin.dir" location="target/classes/main" />
+	<property name="project.bin.main" value="de.tbuchloh.kiskis.KisKis" />
+	<property name="project.src.dir" location="src/main/java" />
+	<property name="project.documenation.dir" location="src/main/documentation" />
+	<property name="project.config.dir" location="src/main/config" />
+	<property name="project.res.dir" location="src/main/resources" />
+	<property name="project.doc.dir" location="." />
+
+	<property name="test.bin.dir" value="target/classes/tests" />
+	<property name="test.bin.main" value="de.tbuchloh.kiskis.AllTests" />
+	<property name="test.src.dir" location="src/test/java" />
+	<property name="test.res.dir" location="src/test/resources" />
+
+	<property name="build.properties" location="${project.bin.dir}/kiskis_build.properties" />
+	<property name="log4j.level" value="WARN" />
+
+	<property name="target.doc.dir" value="target/doc" />
+	<property name="target.jaws.dir" value="target/doc/htdocs/jaws" />
+	<property name="target.releases.dir" value="target/releases" />
+	<property name="target.dist.dir" value="target/dist" />
+	<property name="target.tests.dir" value="target/tests" />
+	<property name="target.artifact.jar" value="${target.dist.dir}/${project.name}.jar" />
+
+	<property name="artifact.installer.jar" value="kiskis-installer-${project.version}" />
+
+	<property file="keystore.properties" prefix="keystore" />
+
+	<!-- ******************************************************************* -->
+	<!-- *   Path and Filesets                                               -->
+	<!-- ******************************************************************* -->
+
+	<path id="project.class.path">
+		<dirset dir="${project.bin.dir}" />
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement path="${java.class.path}/" />
+	</path>
+
+	<path id="test.class.path">
+		<path refid="project.class.path" />
+		<dirset dir="${test.bin.dir}" />
+	</path>
+
+	<fileset id="documents.for.delivery" dir=".">
+		<include name="LICENSE" />
+		<include name="README" />
+		<include name="CHANGELOG" />
+		<include name="AUTHORS" />
+	</fileset>
+
+	<fileset id="external.runtime.libs" dir="${lib.dir}">
+		<include name="*.jar" />
+		<exclude name="buildtime/**" />
+	</fileset>
+
+	<fileset id="documentation.resources" dir="${project.documenation.dir}">
+		<exclude name="**/.svn/*" />
+		<exclude name="README.xml" />
+	</fileset>
+
+	<!-- ******************************************************************* -->
+	<!-- *   Taskdefs                                                        -->
+	<!-- ******************************************************************* -->
+
+	<taskdef name="izpack" classname="com.izforge.izpack.ant.IzPackTask" classpath="installer/standalone-compiler.jar" />
+
+	<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		<classpath>
+			<pathelement location="${lib.buildtime.dir}/aspectjtools.jar" />
+		</classpath>
+	</taskdef>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="${lib.buildtime.dir}/ant-contrib.jar" />
+		</classpath>
+	</taskdef>
+
+	<!-- ******************************************************************* -->
+	<!-- *   Targets                                                         -->
+	<!-- ******************************************************************* -->
+
+	<target name="rebuild" depends="clean,init,compile" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${project.bin.dir}" />
+		<mkdir dir="${test.bin.dir}" />
+		<mkdir dir="${target.dist.dir}" />
+		<mkdir dir="${target.releases.dir}" />
+		<mkdir dir="${target.doc.dir}/manual" />
+		<mkdir dir="${target.jaws.dir}" />
+		<mkdir dir="${target.tests.dir}" />
+
+		<propertyfile comment="Build Information for ${project.title}" file="${build.properties}">
+			<entry key="build.date" type="date" pattern="EEEE MMM dd, yyyy" value="now" />
+			<entry key="build.time" type="date" pattern="kk:mm:ss" value="now" />
+			<entry key="build.timestamp" type="date" pattern="yyyy-MM-dd'T'HH:mm:ss" value="now" />
+			<entry key="build.title" value="${project.title}" />
+			<entry key="build.subtitle" value="${project.subtitle}" />
+			<entry key="build.authors" value="${project.author.name} &lt;${project.author.email}&gt;" />
+			<entry key="build.version" value="${project.version}" />
+			<!--<entry key="build.organization" value="${project.organization}" />-->
+			<entry key="build.website" value="${project.website}" />
+			<entry key="build.copyright" value="${project.copyright}" />
+		</propertyfile>
+
+		<property file="${build.properties}" />
+
+		<copy todir="${project.bin.dir}" filtering="true" overwrite="true">
+			<fileset dir="${project.config.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+			<filterset>
+				<filter token="level" value="${log4j.level}" />
+				<filter token="update.site" value="${project.update.site}" />
+			</filterset>
+		</copy>
+
+	</target>
+
+	<target name="init-eclipse" depends="init">
+		<copy file="${build.properties}" todir="target/eclipse/main" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: documentation
+         - - - - - - - - - - - - - - - - - -->
+
+	<target name="init-documentation" depends="init">
+		<property name="target.docbook.file" value="${target.doc.dir}/README.xml" />
+		<copy filtering="true" file="src/main/documentation/README.xml" tofile="${target.docbook.file}">
+			<filterset>
+				<filter token="build.date" value="${build.date}" />
+				<filter token="build.time" value="${build.time}" />
+				<filter token="project.version" value="${project.version}" />
+				<filter token="project.copyright" value="${project.copyright}" />
+			</filterset>
+		</copy>
+	</target>
+
+	<target name="create-documentation" depends="init-documentation, create-documentation-manual, create-documentation-website, create-documentation-readme">
+		<copy todir="${project.bin.dir}/de/tbuchloh/kiskis/gui">
+			<fileset refid="documents.for.delivery" />
+		</copy>
+	</target>
+
+	<target name="create-documentation-manual" depends="init-documentation">
+		<property name="docbook.manual.tmp.dir" value="target/manual.tmp" />
+		<!--<exec executable="xmlto">
+			<arg line="-o ${docbook.manual.tmp.dir}" />
+			<arg value="html" />
+			<arg file="${target.docbook.file}" />
+		</exec> -->
+
+		<copy todir="${target.doc.dir}/manual">
+			<fileset refid="documentation.resources" />
+		</copy>
+
+		<!--<copy filtering="true" todir="${target.doc.dir}/manual">
+			<filterset>
+				<filtersfile file="${project.documenation.dir}/youtube.properties" />
+			</filterset>
+			<fileset dir="${docbook.manual.tmp.dir}">
+				<include name="**/*.html" />
+			</fileset>
+		</copy>-->
+	</target>
+
+	<target name="create-documentation-website" depends="init-documentation">
+		<property name="docbook.website.tmp.dir" value="target/htdocs.tmp" />
+		<!--<exec executable="xmlto">
+			<arg line="-o ${docbook.website.tmp.dir}" />
+			<arg value="html" />
+			<arg file="${target.docbook.file}" />
+		</exec>-->
+
+		<copy todir="${target.doc.dir}/htdocs">
+			<fileset refid="documentation.resources" />
+		</copy>
+
+		<copy filtering="true" todir="${target.doc.dir}/htdocs">
+			<filterset>
+				<filtersfile file="${project.documenation.dir}/youtube.properties" />
+			</filterset>
+			<fileset dir="${docbook.website.tmp.dir}">
+				<include name="**/*.html" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="create-documentation-readme" depends="init-documentation">
+		<!--<exec executable="xmlto">
+			<arg line="-o ${basedir}" />
+			<arg value="txt" />
+			<arg file="${target.docbook.file}" />
+		</exec>-->
+
+		<move file="README.txt" tofile="README" overwrite="true" />
+	</target>
+
+	<!-- ================================= 
+          target: show-documentation              
+         ================================= -->
+	<target name="show-documentation" depends="create-documentation" description="Creates the documentation and displays it in the browser">
+		<exec executable="firefox" failonerror="true">
+			<arg file="${target.doc.dir}/manual/index.html" />
+		</exec>
+	</target>
+
+
+	<target name="create-web-start" depends="create-dist">
+		<copy filtering="true" todir="${target.jaws.dir}" file="tools/jaws/index.html">
+			<filterset id="jaws.vars">
+				<filter token="project.website" value="${project.website}" />
+				<filter token="project.title" value="${project.title}" />
+				<filter token="project.author.name" value="${project.author.name}" />
+				<filter token="project.author.email" value="${project.author.email}" />
+				<filter token="project.version" value="${project.version}" />
+				<filter token="project.subtitle" value="${project.subtitle}" />
+			</filterset>
+		</copy>
+		<copy filtering="true" todir="${target.jaws.dir}/${project.version}" file="tools/jaws/kiskis.jnlp">
+			<filterset refid="jaws.vars" />
+		</copy>
+		<copy todir="${target.jaws.dir}/${project.version}">
+			<fileset dir="${target.dist.dir}">
+				<exclude name="tools/**" />
+			</fileset>
+		</copy>
+
+		<!-- create dictionary jar -->
+		<jar destfile="${target.jaws.dir}/${project.version}/kiskis-cracklib-default.jar">
+			<fileset dir="tools/dictionaries/default">
+				<exclude name=".svn/*" />
+			</fileset>
+		</jar>
+		<signjar keystore="${keystore.path}" alias="${keystore.alias}" storepass="${keystore.pwd}" keypass="${keystore.keypass}" sigfile="tbuchloh" verbose="true" jar="${target.jaws.dir}/${project.version}/kiskis-cracklib-default.jar" />
+	</target>
+
+	<target depends="init" name="compile" description="compile the source ">
+		<copy toDir="${project.bin.dir}">
+			<fileset dir="${project.src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+			<fileset dir="${project.res.dir}" />
+		</copy>
+
+		<!-- Compile the java code from ${project.src.dir} into ${project.bin.dir} -->
+		<iajc destdir="${project.bin.dir}" sourceroots="${project.src.dir}" debug="${debug}" source="${java.source}" verbose="${verbose}" showweaveinfo="${verbose}" xreweavable="false">
+			<classpath refid="project.class.path" />
+		</iajc>
+	</target>
+
+	<target name="tests" depends="compile-tests" unless="skip.tests">
+		<junit printsummary="true" haltonerror="true" fork="true" showoutput="false" newenvironment="true">
+			<batchtest todir="${target.tests.dir}">
+				<fileset dir="${test.bin.dir}" includes="**/*Test.class" excludes="**/Abstract*.class" />
+			</batchtest>
+
+			<formatter type="plain" />
+
+			<classpath>
+				<path refid="test.class.path" />
+			</classpath>
+		</junit>
+	</target>
+
+	<target name="compile-tests" depends="compile" description="compile the tests" unless="skip.tests">
+		<copy toDir="${test.bin.dir}">
+			<fileset dir="${test.res.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+
+		<!-- Compile the java code from ${project.src.dir} into ${build} -->
+		<iajc destdir="${test.bin.dir}" sourceroots="${test.src.dir}" debug="${debug}" source="${java.source}">
+			<classpath refid="project.class.path" />
+		</iajc>
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="target" />
+	</target>
+
+	<target name="bin-jar" depends="init,compile,tests" description="generates the bin-jar">
+		<!-- pack the core classes and resources -->
+		<jar jarfile="${target.artifact.jar}" basedir="${project.bin.dir}/">
+			<manifest>
+				<attribute name="Main-Class" value="${project.bin.main}" />
+				<attribute name="Sealed" value="false" />
+				<attribute name="Signature-Version" value="${project.version}" />
+				<attribute name="Implementation-Version" value="${project.version}" />
+				<attribute name="Class-Path" value="lib/commons-lang.jar lib/commons-logging.jar lib/log4j.jar lib/bcpg.jar lib/bcprov.jar lib/de.tbuchloh.util.jar lib/xom-1.1.jar lib/kunststoff.jar lib/aspectjrt.jar lib/cracklib-0.5.jar lib/opencsv.jar" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="create-dist" depends="bin-jar,create-documentation" description="generates the distribution-files">
+		<copy todir="${target.dist.dir}/lib" failonerror="true">
+			<fileset refid="external.runtime.libs" />
+		</copy>
+
+		<copy todir="${target.dist.dir}">
+			<fileset dir="scripts">
+				<include name="**/kiskis.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${target.dist.dir}/tools/dictionaries/default">
+			<fileset dir="tools/dictionaries/default">
+				<exclude name="**/.svn/*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${target.dist.dir}/doc/manual" failonerror="true">
+			<fileset dir="${target.doc.dir}/manual">
+				<exclude name="**/*.properties" />
+			</fileset>
+		</copy>
+
+		<antcall target="sign-jars" />
+
+		<antcall target="sign-file">
+			<param name="file" value="${target.dist.dir}/kiskis.jar" />
+		</antcall>
+	</target>
+
+	<target name="release" depends="clean,create-dist,create-web-start,create-installer,create-zip-files">
+		<echo>Copy downloads</echo>
+		<mkdir dir="${target.doc.dir}/htdocs/download" />
+		<copy todir="${target.doc.dir}/htdocs/download">
+			<fileset dir="${target.releases.dir}">
+				<include name="*web*" />
+			</fileset>
+		</copy>
+
+		<copy tofile="${target.doc.dir}/htdocs/download/version.properties" file="${build.properties}" />
+	</target>
+
+	<target name="sign-file">
+		<delete file="${file}.sig" failonerror="false" quiet="true" />
+		<exec executable="gpg" failifexecutionfails="true" timeout="99999999">
+			<arg value="-b" />
+			<arg value="${file}" />
+		</exec>
+	</target>
+
+	<target name="create-installer" depends="create-dist">
+		<antcall target="run-create-installer">
+			<param name="type" value="standard" />
+			<param name="installer-file" value="${target.releases.dir}/${artifact.installer.jar}" />
+		</antcall>
+	</target>
+
+	<target name="create-zip-files" depends="create-dist">
+		<property name="target.zip.dir" value="target/zip.tmp">
+		</property>
+		<delete dir="${target.zip.dir}" failonerror="false" />
+		<copy todir="${target.zip.dir}/${project.name}-${project.version}">
+			<fileset dir="${target.dist.dir}" />
+		</copy>
+		<zip destfile="${target.releases.dir}/${project.name}-${project.version}-portable.zip" whenempty="fail">
+			<fileset dir="${target.zip.dir}" />
+		</zip>
+		<antcall target="sign-file">
+			<param name="file" value="${target.releases.dir}/${project.name}-${project.version}-portable.zip" />
+		</antcall>
+	</target>
+
+	<target name="run-create-installer">
+		<tempfile property="installer.tmp" prefix="installer" destdir="target" />
+		<copy tofile="${installer.tmp}" file="installer/kiskis-installer.xml">
+			<filterchain>
+				<replacetokens>
+					<token key="project.name" value="${project.name}" />
+					<token key="project.version" value="${project.version}" />
+					<token key="project.website" value="${project.website}" />
+					<token key="project.update.site" value="${project.update.site}" />
+					<token key="project.author.name" value="${project.author.name}" />
+					<token key="project.author.email" value="${project.author.email}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+		<izpack input="${installer.tmp}" output="${installer-file}.jar" installerType="${type}" basedir="${basedir}" izPackDir="${target.dist.dir}/" />
+		<antcall target="sign-file">
+			<param name="file" value="${installer-file}.jar" />
+		</antcall>
+		<delete file="${installer.tmp}" />
+		<java jar="${installer-file}.jar" fork="true" />
+	</target>
+
+	<target name="run" depends="compile">
+		<java classname="${project.bin.main}" fork="true" classpathref="project.class.path" />
+	</target>
+
+	<target name="sign-jars">
+		<signjar keystore="${keystore.path}" alias="${keystore.alias}" storepass="${keystore.pwd}" keypass="${keystore.keypass}" sigfile="tbuchloh" verbose="true">
+			<fileset dir="${target.dist.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</signjar>
+	</target>
+
+
+	<!-- =================================
+          target: publish
+         ================================= -->
+	<target name="publish-jars" description="Copy the installer to sourceforge.net">
+	      <echo>Starting scp</echo>
+	        <exec executable="scp" failifexecutionfails="true">
+	            <arg value="-r" />
+	            <arg value="${target.releases.dir}" />
+	            <arg value="${ssh.sourceforge.webroot.dir}/${project.name}-${project.version}" />
+	        </exec>
+	        <echo>Finished scp</echo>
+	</target>
+
+	<target name="publish-htdocs">
+		<echo>Starting scp</echo>
+		<exec executable="scp" failifexecutionfails="true">
+			<arg value="-r" />
+			<arg value="${target.doc.dir}/htdocs/" />
+			<arg value="${ssh.sourceforge.webroot.dir}" />
+		</exec>
+		<echo>Finished scp</echo>
+	</target>
+
+	<target name="publish-pre-release">
+		<exec executable="scp" failifexecutionfails="true">
+			<arg value="-r" />
+			<arg value="${target.jaws.dir}" />
+			<arg value="${ssh.sourceforge.webroot.dir}/htdocs/" />
+		</exec>
+		<echo>Finished scp</echo>
+	</target>
+
+	<target name="publish-all" description="Copy the installer to sourceforge.net" depends="publish-jars,publish-htdocs" />
+
+	<property name="ejp.dir" location="/apps/programming/ejp-2.1" />
+
+	<path id="ejp.class.path">
+		<fileset dir="${ejp.dir}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: kiskis-profile
+         - - - - - - - - - - - - - - - - - -->
+	<target name="ejp-profile">
+		<property name="ejp.profile.class" value="de.tbuchloh.kiskis.persistence.LoadPerformanceTest" />
+		<!--property name="ejp.profile.class" value="de.tbuchloh.kiskis.KisKis" /-->
+
+		<java classname="${ejp.profile.class}" fork="true" newenvironment="true">
+			<classpath>
+				<path refid="project.class.path" />
+				<path refid="test.class.path" />
+				<path refid="ejp.class.path" />
+			</classpath>
+			<jvmarg value="-Xruntracer:enabled=true" />
+			<jvmarg value="-Djava.library.path=${ejp.dir}/lib" />
+		</java>
+	</target>
+
+	<!-- =================================
+          target: ejp-presenter
+         ================================= -->
+	<target name="ejp-presenter" description="--> starts the ejp-presenter">
+		<exec command="${ejp.dir}/bin/Presenter.sh">
+		</exec>
+
+	</target>
+
+	<target name="test-sf-files" description="--> downloads and verifies the uploaded sourceforge-artifacts">
+		<get src="http://belnet.dl.sourceforge.net/sourceforge/kiskis/${artifact.installer.jar}.jar" dest="/tmp/${artifact.installer.jar}.jar" verbose="true" />
+		<get src="http://belnet.dl.sourceforge.net/sourceforge/kiskis/${artifact.installer.jar}.jar.sig" dest="/tmp/${artifact.installer.jar}.jar.sig" verbose="true" />
+		<exec executable="gpg" failifexecutionfails="true" timeout="10000">
+			<arg value="--verify" />
+			<arg value="/tmp/${artifact.installer.jar}.jar.sig" />
+		</exec>
+	</target>
+</project>

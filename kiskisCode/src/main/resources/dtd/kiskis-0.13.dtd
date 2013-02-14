@@ -1,0 +1,76 @@
+<!-- 
+    DTD for Keep It Secret! Keep It Safe! from Tobias Buchloh
+    $Id: $
+-->
+
+<!ELEMENT Password EMPTY >
+<!ATTLIST Password created CDATA #REQUIRED 
+			       expires CDATA #REQUIRED 			
+                   pwd CDATA #REQUIRED >
+                   
+<!ELEMENT Attachment EMPTY >
+<!ATTLIST Attachment id CDATA #REQUIRED 
+			         key CDATA #REQUIRED 			
+                     description CDATA #REQUIRED >                   
+
+<!ELEMENT PasswordHistory ( Password* ) >
+
+<!ELEMENT SecuredElement ( Password, PasswordHistory, Attachment* ) >
+<!ATTLIST SecuredElement comment CDATA #REQUIRED  
+                         creationDate CDATA #REQUIRED 
+                         expiresNever ( false | true ) #REQUIRED 
+                         lastChangeDate CDATA #REQUIRED 
+                         lastViewedDate CDATA #REQUIRED
+                         viewCounter CDATA #REQUIRED
+                         name CDATA #REQUIRED >
+
+<!ELEMENT BankAccount 
+				(( SecuredElement, TANList* )
+                 | ( TANList*, SecuredElement )) >
+<!ATTLIST BankAccount bank CDATA #REQUIRED >
+<!ATTLIST BankAccount bankID CDATA #REQUIRED >
+<!ATTLIST BankAccount number CDATA #REQUIRED >
+<!ATTLIST BankAccount telebankingPin CDATA #REQUIRED >
+
+<!ELEMENT CreditCard ( SecuredElement ) >
+<!ATTLIST CreditCard deployer CDATA #REQUIRED >
+<!ATTLIST CreditCard number CDATA #REQUIRED >
+<!ATTLIST CreditCard pin CDATA #REQUIRED >
+
+<!ELEMENT Group ( BankAccount | CreditCard | GenericAccount | Group | NetAccount | SecuredFile )* >
+<!ATTLIST Group comment CDATA #REQUIRED >
+<!ATTLIST Group name CDATA #REQUIRED >
+
+<!ELEMENT NetAccount ( SecuredElement ) >
+<!ATTLIST NetAccount email CDATA #REQUIRED >
+<!ATTLIST NetAccount url CDATA #REQUIRED >
+<!ATTLIST NetAccount username CDATA #REQUIRED >
+
+<!ELEMENT SecuredFile ( SecuredElement ) >
+<!ATTLIST SecuredFile file CDATA #REQUIRED >
+
+<!ELEMENT TAN EMPTY >
+<!ATTLIST TAN number CDATA #REQUIRED 
+              used CDATA #IMPLIED >
+
+<!ELEMENT TANList ( TAN* ) >
+<!ATTLIST TANList created CDATA #REQUIRED >
+<!ATTLIST TANList id CDATA #REQUIRED >
+
+<!ELEMENT TPMDocument ( AccountType*, Group ) >
+<!ATTLIST TPMDocument version CDATA #REQUIRED >
+
+<!ELEMENT GenericAccount ( AccountPropertyValue*, SecuredElement ) >
+<!ATTLIST GenericAccount type CDATA #REQUIRED >
+
+<!ELEMENT AccountType ( AccountProperty* ) >
+<!ATTLIST AccountType name CDATA #REQUIRED >
+
+<!ELEMENT AccountProperty EMPTY >
+<!ATTLIST AccountProperty name CDATA #REQUIRED 
+                          type CDATA #REQUIRED >
+                          
+<!ELEMENT AccountPropertyValue EMPTY >
+<!ATTLIST AccountPropertyValue name CDATA #REQUIRED 
+                               value CDATA #REQUIRED >                          
+
