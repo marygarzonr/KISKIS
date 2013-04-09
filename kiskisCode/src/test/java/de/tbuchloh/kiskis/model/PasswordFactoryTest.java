@@ -80,13 +80,13 @@ public final class PasswordFactoryTest extends TestCase {
 		for (int i = 0; i < MAX_PWDS; ++i) {
 			int mode = -1;
 			if (i % 2 == 0) {
-				mode = PasswordFactory.SECURE;
+				mode = PasswordCallFactory.SECURE;
 			} else {
-				mode = PasswordFactory.HUMAN_READABLE;
+				mode = PasswordCallFactory.HUMAN_READABLE;
 			}
 
 			final int length = Math.max(i % MAX_PWD_LENGTH, MIN_PWD_LENGTH);
-			final Password pwd = PasswordFactory.create(mode, length);
+			final Password pwd = PasswordCallFactory.create(mode, length);
 			if (map.contains(pwd)) {
 				fail("map '" + map + "' already contains '" + pwd + "'!");
 			} else {

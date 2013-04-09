@@ -55,7 +55,7 @@ import de.tbuchloh.kiskis.gui.common.ClipboardHelper;
 import de.tbuchloh.kiskis.gui.dialogs.CrackPasswordDialog;
 import de.tbuchloh.kiskis.gui.dialogs.PasswordGeneratorDialog;
 import de.tbuchloh.kiskis.model.Password;
-import de.tbuchloh.kiskis.model.PasswordFactory;
+import de.tbuchloh.kiskis.model.PasswordCallFactory;
 import de.tbuchloh.kiskis.util.Settings;
 import de.tbuchloh.util.localization.Messages;
 import de.tbuchloh.util.swing.dialogs.MessagePane;
@@ -184,7 +184,7 @@ public final class PasswordElement extends SpecialView {
     }
 
     protected void createPassword(final int mode, final int length) {
-        final Password pwd = PasswordFactory.create(mode, length);
+        final Password pwd = PasswordCallFactory.create(mode, length);
         _pwdField.setText(new String(pwd.getPwd()));
         fireContentChangedEvent(true);
         updatePwdField();
@@ -225,11 +225,11 @@ public final class PasswordElement extends SpecialView {
     private void initCreatePopup() {
         _pwdCreateMenu = new JPopupMenu();
         final JMenuItem secure = new JMenuItem(M.getString("secure_item")); //$NON-NLS-1$
-        secure.addActionListener(new PasswordActionListener(PasswordFactory.SECURE));
+        secure.addActionListener(new PasswordActionListener(PasswordCallFactory.SECURE));
         _pwdCreateMenu.add(secure);
 
         final JMenuItem human = new JMenuItem(M.getString("human_readable_item")); //$NON-NLS-1$
-        human.addActionListener(new PasswordActionListener(PasswordFactory.HUMAN_READABLE));
+        human.addActionListener(new PasswordActionListener(PasswordCallFactory.HUMAN_READABLE));
         _pwdCreateMenu.add(human);
 
         final JMenuItem template = new JMenuItem(M.createAction(this, "onCreateByTemplate"));

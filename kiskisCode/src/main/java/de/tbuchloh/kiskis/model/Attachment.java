@@ -22,7 +22,7 @@
 
 package de.tbuchloh.kiskis.model;
 
-import static de.tbuchloh.kiskis.model.PasswordFactory.SECURE;
+import static de.tbuchloh.kiskis.model.PasswordCallFactory.SECURE;
 
 import java.io.File;
 import java.util.regex.Pattern;
@@ -76,7 +76,7 @@ public final class Attachment implements ModelNode {
         super();
         _doc = doc;
         _id = doc.getNextAttachmentId();
-        _key = PasswordFactory.create(SECURE, KEY_LENGTH).getPwd();
+        _key = PasswordCallFactory.create(SECURE, KEY_LENGTH).getPwd();
         _description = "";
         _uuid = IdGenerator.generate();
     }

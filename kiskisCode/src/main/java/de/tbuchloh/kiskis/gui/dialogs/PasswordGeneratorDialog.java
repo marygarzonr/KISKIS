@@ -44,7 +44,7 @@ import de.tbuchloh.kiskis.gui.common.LnFHelper;
 import de.tbuchloh.kiskis.gui.common.MessageBox;
 import de.tbuchloh.kiskis.gui.widgets.BasicTextField;
 import de.tbuchloh.kiskis.gui.widgets.PasswordElement;
-import de.tbuchloh.kiskis.model.PasswordFactory;
+import de.tbuchloh.kiskis.model.PasswordCallFactory;
 import de.tbuchloh.kiskis.model.PasswordTemplate;
 import de.tbuchloh.util.localization.Messages;
 import de.tbuchloh.util.swing.SpringUtilities;
@@ -229,7 +229,7 @@ public class PasswordGeneratorDialog extends KisKisDialog {
         final Vector<String> pwds = new Vector<String>();
         final int len = Integer.parseInt(length);
         for (int i = 0; i < len; ++i) {
-            pwds.add(new String(PasswordFactory.create(template, _mixCaseBox.isSelected()).getPwd()));
+            pwds.add(new String(PasswordCallFactory.create(template, _mixCaseBox.isSelected()).getPwd()));
         }
         _passwordList.setListData(pwds);
         _passwordList.setSelectedIndex(0);
