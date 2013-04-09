@@ -632,9 +632,9 @@ public final class MainFramePanel extends JPanel implements ContentChangedListen
         public synchronized char[] getPassword(File file, final boolean confirm) {
             // TODO 09.11.2010, gandalf: too complex code
             if (hasGivenPassword()) {
-                return _givenPwd.getPwd();
+                return _givenPwd.getPassword(file);
             } else if (hasBufferedPwd()) {
-                return _bufferedPwd.getPwd();
+                return _bufferedPwd.getPassword(file);
             } else {
                 return doAskForPassword(file, confirm);
             }
