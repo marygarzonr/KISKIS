@@ -22,6 +22,7 @@
 
 package de.tbuchloh.kiskis.model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import java.util.Calendar;
 
 import de.tbuchloh.kiskis.model.annotations.Observable;
 import de.tbuchloh.kiskis.model.annotations.SecretInfo;
+import de.tbuchloh.kiskis.persistence.PasswordProxy;
 import de.tbuchloh.kiskis.util.DateUtils;
 
 /**
@@ -38,7 +40,7 @@ import de.tbuchloh.kiskis.util.DateUtils;
  * @version $Id: Password.java,v 1.7 2007/02/18 14:37:29 tbuchloh Exp $
  */
 @Observable
-public final class Password implements ModelConstants, Cloneable, Serializable {
+public final class Password implements ModelConstants, Cloneable, Serializable, PasswordProxy {
 
     private static final String MSG_STRING = "{0} created {1} expires {2,date,short}";
 
@@ -269,5 +271,17 @@ public final class Password implements ModelConstants, Cloneable, Serializable {
         final Object[] p = new Object[] { _pwd, _created.getTime(),
                 _expires.getTime() };
         return MessageFormat.format(MSG_STRING, p);
+    }
+
+    @Override
+    public char[] getPassword(File file) {
+        // TODO Auto-generated method stub
+        return getPassword(file, false);
+    }
+
+    @Override
+    public char[] getPassword(File file, boolean confirm) {
+        // TODO Auto-generated method stub
+        return _pwd;
     }
 }
