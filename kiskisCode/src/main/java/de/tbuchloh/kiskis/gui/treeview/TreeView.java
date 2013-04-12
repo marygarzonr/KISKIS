@@ -217,7 +217,7 @@ PropertyChangeListener {
     }
 
     private void collapseAll() {
-        final MyTreeNode root = NodeFactory.create(getRoot().getModelNode());
+        final MyTreeNode root = NodeFactory.getInstance().create(getRoot().getModelNode());
         _treeModel.setRoot(null);
         _treeModel.reload();
         _treeModel.setRoot(root);
@@ -247,7 +247,7 @@ PropertyChangeListener {
         final ModelNode modelNode = groupNode.getModelNode();
         for (final ModelNode child : ((Group) modelNode).getChildren()) {
             if (_treeNodeFilter.isDisplayed(child)) {
-                final MyTreeNode newNode = NodeFactory.create(child);
+                final MyTreeNode newNode = NodeFactory.getInstance().create(child);
                 groupNode.add(newNode);
                 if (newNode instanceof GroupNode) {
                     expandTreeNodes((GroupNode) newNode);

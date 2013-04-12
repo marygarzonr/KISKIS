@@ -603,7 +603,7 @@ class MainView extends JComponent implements TreeSelectionListener {
      * copy the current node to clipboard.
      */
     public void copyNode() {
-        _clipboard = NodeFactory.create(_lastSelected.getModelNode().clone());
+        _clipboard = NodeFactory.getInstance().create(_lastSelected.getModelNode().clone());
 
         if (_clipboard instanceof GroupNode) {
             _tree.expandTreeNodes((GroupNode) _clipboard);
@@ -632,12 +632,11 @@ class MainView extends JComponent implements TreeSelectionListener {
         if (_lastSelected == null) {
             return;
         }
-
         final GroupNode parent = getSelectedGroupNode();
         final Group newGroup = new Group();
         newGroup.setName(Messages.getString("MainView.unnamedNode"));
         parent.getGroup().add(newGroup);
-        final MyTreeNode newGroupNode = NodeFactory.create(newGroup);
+        final MyTreeNode newGroupNode = NodeFactory.getInstance().create(newGroup);
         parent.add(newGroupNode);
         _tree.reload(parent);
         selectNode(newGroupNode);
@@ -655,7 +654,7 @@ class MainView extends JComponent implements TreeSelectionListener {
             el.setName(Messages.getString("MainView.unnamedNode"));
             final GroupNode parent = getSelectedGroupNode();
             parent.getGroup().add(el);
-            final MyTreeNode node = NodeFactory.create(el);
+            final MyTreeNode node = NodeFactory.getInstance().create(el);
             parent.add(node);
             _tree.reload(parent);
             selectNode(node);
@@ -766,8 +765,7 @@ class MainView extends JComponent implements TreeSelectionListener {
             lastSelected = _lastSelected.getModelNode();
             _lastSelected = null;
         }
-
-        _tree.setRootNode((GroupNode) NodeFactory.create(_doc.getGroups()));
+        _tree.setRootNode((GroupNode) NodeFactory.getInstance().create(_doc.getGroups()));
 
         if (lastSelected != null) {
             _tree.found(lastSelected);
@@ -792,7 +790,7 @@ class MainView extends JComponent implements TreeSelectionListener {
      */
     public void setRootNode(final TPMDocument doc) {
         _doc = doc;
-        final GroupNode root = (GroupNode) NodeFactory.create(doc.getGroups());
+        final GroupNode root = (GroupNode) NodeFactory.getInstance().create(doc.getGroups());
         _tree.setRootNode(root);
         selectNode(root);
         if (Settings.isDisplayLastViewedElement()) {
