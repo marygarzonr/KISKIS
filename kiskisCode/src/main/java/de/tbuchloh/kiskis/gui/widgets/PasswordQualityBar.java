@@ -32,6 +32,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.tbuchloh.kiskis.model.Password;
+import de.tbuchloh.kiskis.model.validation.PasswordQualityValidator;
 import de.tbuchloh.util.localization.Messages;
 
 /**
@@ -86,18 +87,10 @@ public class PasswordQualityBar extends JComponent {
             _progressBar.setValue(0);
             return;
         }
-
-        String pwdStrength = null;
-        if (entropy <= 32) {
-            pwdStrength = M.getString("weak"); //$NON-NLS-1$
-        } else if (entropy <= 64) {
-            pwdStrength = M.getString("medium"); //$NON-NLS-1$
-        } else if (entropy <= 128) {
-            pwdStrength = M.getString("good"); //$NON-NLS-1$
-        } else {
-            // > 128
-            pwdStrength = M.getString("excellent"); //$NON-NLS-1$
-        }
+        
+        PasswordQualityValidator pqv = new PasswordQualityValidator();
+        
+        String pwdStrength = pqv.validatePassword(pwd); 
 
         final int bit = (int) (Math.round(entropy));
         try {
