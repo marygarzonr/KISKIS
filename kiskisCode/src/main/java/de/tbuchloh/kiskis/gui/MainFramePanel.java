@@ -58,6 +58,7 @@ import de.tbuchloh.kiskis.model.Password;
 import de.tbuchloh.kiskis.model.SecuredElement;
 import de.tbuchloh.kiskis.model.StandardDocumentFactory;
 import de.tbuchloh.kiskis.model.TPMDocument;
+import de.tbuchloh.kiskis.model.cracklib.Dictionary;
 import de.tbuchloh.kiskis.model.validation.DictionaryPasswordValidator;
 import de.tbuchloh.kiskis.model.validation.EmptyPasswordValidator;
 import de.tbuchloh.kiskis.model.validation.WeakPasswordValidator;
@@ -561,26 +562,31 @@ public final class MainFramePanel extends JPanel implements ContentChangedListen
             return _bufferedPwd != null;
         }
 
-        private boolean checkPassword(final char[] pwd) {
-            final EmptyPasswordValidator epv = new EmptyPasswordValidator();
-            if (!epv.validatePassword(pwd)) {
+        private boolean checkPassword(final char[] pwd) {            
+            if(pwd != null && pwd.length <= 0) {
                 // confirm null-password
+                System.out.println("Password is empty............");
                 return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
                         M.getString("no_pwd_warning"));
             }
 
             if (Settings.isCheckingMasterPassword()) {
-                final WeakPasswordValidator wpv = new WeakPasswordValidator();
-                if (!wpv.validatePassword(pwd)) {
-                    final BigDecimal variations = wpv.getVariationCnt();
+                Double bitSize = Password.checkEffectiveBitSize(pwd);
+                if(bitSize < 40) {
+                    final BigDecimal two = new BigDecimal(2);
                     return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
-                            M.format("weak_pwd_warning", variations));
+                            M.format("weak_pwd_warning", two.pow(bitSize.intValue())));
                 }
-
-                final DictionaryPasswordValidator dpv = new DictionaryPasswordValidator();
-                if (!dpv.validatePassword(pwd)) {
-                    return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
-                            M.getString("dictionary_pwd_warning"));
+                
+                try {
+                   Dictionary dic = Dictionary.open(Settings.getCracklibDict());
+                   String value = dic.lookup(new String(pwd));
+                   if(value != null) {
+                       return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
+                             M.getString("dictionary_pwd_warning"));
+                   }
+                } catch (IOException e) {
+                    LOG.warn("Could not open dictionary! Maybe not installed", e);
                 }
             }
             return true;
