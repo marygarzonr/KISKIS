@@ -27,14 +27,18 @@ package de.tbuchloh.kiskis.model.validation;
  * @version $Id: $
  * @since 01.11.2010
  */
-public class EmptyPasswordValidator implements IPasswordValidator {
+public class EmptyPasswordValidator extends AbstractPasswordValidator {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean validatePassword(char[] pwd) {
-	return pwd != null && pwd.length > 0;
+    public String validatePassword(char[] pwd) {
+        if(pwd != null && pwd.length <= 0) {
+            return M.getString("no_pwd_warning");
+        }
+        return null;
     }
+
 
 }

@@ -28,6 +28,6 @@ package de.tbuchloh.kiskis.model.validation;
  */
 public interface IPasswordValidator {
 
-    boolean validatePassword(char[] pwd);
+    String validatePassword(char[] pwd);
 
 }

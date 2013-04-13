@@ -33,7 +33,7 @@ import de.tbuchloh.util.logging.LogFactory;
  * @version $Id: $
  * @since 01.11.2010
  */
-public class WeakPasswordValidator implements IPasswordValidator {
+public class WeakPasswordValidator extends AbstractPasswordValidator {
 
     /**
      * The minimum bit size means 2^40 possible variations.
@@ -51,12 +51,18 @@ public class WeakPasswordValidator implements IPasswordValidator {
      * {@inheritDoc}
      */
     @Override
-    public boolean validatePassword(char[] pwd) {
+    public String validatePassword(char[] pwd) {
         _bitSize = Password.checkEffectiveBitSize(pwd);
 
         LOG.debug("Found bit size " + _bitSize);
+        
+        if(_bitSize < MIN_BIT_SIZE) {
+            return  M.format("weak_pwd_warning", getVariationCnt());
+        }
+        
+        return null;
 
-        return _bitSize >= MIN_BIT_SIZE;
+//        return _bitSize >= MIN_BIT_SIZE;
     }
 
     public BigDecimal getVariationCnt() {
