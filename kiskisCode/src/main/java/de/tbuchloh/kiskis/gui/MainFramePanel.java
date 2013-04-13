@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -58,7 +57,9 @@ import de.tbuchloh.kiskis.model.Password;
 import de.tbuchloh.kiskis.model.SecuredElement;
 import de.tbuchloh.kiskis.model.StandardDocumentFactory;
 import de.tbuchloh.kiskis.model.TPMDocument;
-import de.tbuchloh.kiskis.model.cracklib.Dictionary;
+import de.tbuchloh.kiskis.model.validation.DictionaryPasswordValidator;
+import de.tbuchloh.kiskis.model.validation.EmptyPasswordValidator;
+import de.tbuchloh.kiskis.model.validation.WeakPasswordValidator;
 import de.tbuchloh.kiskis.persistence.FileFormats;
 import de.tbuchloh.kiskis.persistence.ICryptoContext;
 import de.tbuchloh.kiskis.persistence.PasswordCryptoContext;
@@ -559,30 +560,25 @@ public final class MainFramePanel extends JPanel implements ContentChangedListen
             return _bufferedPwd != null;
         }
 
-        private boolean checkPassword(final char[] pwd) {            
-            if(pwd != null && pwd.length <= 0) {
-                // confirm null-password
-                return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
-                        M.getString("no_pwd_warning"));
+        private boolean checkPassword(final char[] pwd) {
+            
+            EmptyPasswordValidator epv = new EmptyPasswordValidator();
+            String msg = epv.validatePassword(pwd);
+            if(msg != null) {
+                return MessageBox.showConfirmDialog(MainFrame.getInstance(), msg);
             }
 
             if (Settings.isCheckingMasterPassword()) {
-                Double bitSize = Password.checkEffectiveBitSize(pwd);
-                if(bitSize < 40) {
-                    final BigDecimal two = new BigDecimal(2);
-                    return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
-                            M.format("weak_pwd_warning", two.pow(bitSize.intValue())));
+                WeakPasswordValidator wpv = new WeakPasswordValidator();
+                msg = wpv.validatePassword(pwd);
+                if(msg != null) {
+                    return MessageBox.showConfirmDialog(MainFrame.getInstance(), msg);
                 }
                 
-                try {
-                   Dictionary dic = Dictionary.open(Settings.getCracklibDict());
-                   String value = dic.lookup(new String(pwd));
-                   if(value != null) {
-                       return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
-                             M.getString("dictionary_pwd_warning"));
-                   }
-                } catch (IOException e) {
-                    LOG.warn("Could not open dictionary! Maybe not installed", e);
+                DictionaryPasswordValidator dpv = new DictionaryPasswordValidator();
+                msg = dpv.validatePassword(pwd);
+                if(msg != null) {
+                    return MessageBox.showConfirmDialog(MainFrame.getInstance(), M.getString("dictionary_pwd_warning"));
                 }
             }
             return true;
