@@ -54,36 +54,18 @@ public class CrackPasswordDialog extends KisKisDialog implements ModelConstants,
             LOG.trace("Thread " + this + " has started!");
             final String cracklibDict = Settings.getCracklibDict();
             LOG.info("Using cracklib dictionary=" + cracklibDict);
-//            try {
-                final long crackTime = -System.currentTimeMillis();
-                
-                DictionaryPasswordValidator ipv = new DictionaryPasswordValidator();
-                final String value = ipv.validatePassword(_pwd);
-                if(value == null) {
-                    crackLibResponse.setText(M.getString("good_password"));
-                } else {
-                    crackLibResponse.setText(value);
-                }
-                
-//                final Dictionary dic = Dictionary.open(cracklibDict);
-//                final String value = dic.lookup(new String(_pwd));
-                // if this actually reaches this spot
-                // Change some dialog element to indicate if we were able
-                // to crack the password
 
-//                if (value == null) {
-//                    crackLibResponse.setText(M.getString("good_password"));
-//                } else {
-//                    crackLibResponse.setText(value);
-//                }
+            final long crackTime = -System.currentTimeMillis();
+            
+            DictionaryPasswordValidator ipv = new DictionaryPasswordValidator();
+            final String value = ipv.validatePassword(_pwd);
+            if(value == null) {
+                crackLibResponse.setText(M.getString("good_password"));
+            } else {
+                crackLibResponse.setText(value);
+            }
+                
                 crackLibTime.setText(M.format("cracktime", Long.valueOf(crackTime + System.currentTimeMillis())));
-//            } catch (final IOException e) {
-//                LOG.error(e, e);
-//                final Object[] p = new Object[] {
-//                        cracklibDict, e.getMessage()
-//                };
-//                MessageBox.showErrorMessage(M.format("err_dictionary_invalid", p));
-//            }
             _stopAction.setEnabled(false);
             LOG.trace("Thread " + this + " has finished!");
         }
