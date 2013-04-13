@@ -565,7 +565,6 @@ public final class MainFramePanel extends JPanel implements ContentChangedListen
         private boolean checkPassword(final char[] pwd) {            
             if(pwd != null && pwd.length <= 0) {
                 // confirm null-password
-                System.out.println("Password is empty............");
                 return MessageBox.showConfirmDialog(MainFrame.getInstance(), //
                         M.getString("no_pwd_warning"));
             }
