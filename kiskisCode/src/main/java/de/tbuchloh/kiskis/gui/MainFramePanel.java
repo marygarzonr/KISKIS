@@ -561,7 +561,6 @@ public final class MainFramePanel extends JPanel implements ContentChangedListen
         }
 
         private boolean checkPassword(final char[] pwd) {
-            
             EmptyPasswordValidator epv = new EmptyPasswordValidator();
             String msg = epv.validatePassword(pwd);
             if(msg != null) {
