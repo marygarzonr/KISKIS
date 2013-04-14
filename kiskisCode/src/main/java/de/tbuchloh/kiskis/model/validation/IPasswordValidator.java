@@ -21,13 +21,18 @@
  */
 package de.tbuchloh.kiskis.model.validation;
 
+import de.tbuchloh.kiskis.gui.MainFrame;
+import de.tbuchloh.util.localization.Messages;
+
 /**
  * @author Tobias Buchloh (gandalf)
  * @version $Id: $
  * @since 01.11.2010
  */
 public interface IPasswordValidator {
+    
+    Messages M = new Messages(MainFrame.class);
 
-    boolean validatePassword(char[] pwd);
+    String validatePassword(char[] pwd);
 
 }

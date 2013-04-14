@@ -51,13 +51,17 @@ public class WeakPasswordValidator implements IPasswordValidator {
      * {@inheritDoc}
      */
     @Override
-    public boolean validatePassword(char[] pwd) {
-        _bitSize = Password.checkEffectiveBitSize(pwd);
+    public String validatePassword(char[] pwd) {
+      _bitSize = Password.checkEffectiveBitSize(pwd);
 
-        LOG.debug("Found bit size " + _bitSize);
-
-        return _bitSize >= MIN_BIT_SIZE;
-    }
+      LOG.debug("Found bit size " + _bitSize);
+      
+      if(_bitSize < MIN_BIT_SIZE) {
+          return  M.format("weak_pwd_warning", getVariationCnt());
+      }
+      
+      return null;
+  }
 
     public BigDecimal getVariationCnt() {
         final BigDecimal two = new BigDecimal(2);

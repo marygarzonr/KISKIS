@@ -33,8 +33,11 @@ public class EmptyPasswordValidator implements IPasswordValidator {
      * {@inheritDoc}
      */
     @Override
-    public boolean validatePassword(char[] pwd) {
-	return pwd != null && pwd.length > 0;
-    }
+    public String validatePassword(char[] pwd) {
+      if(pwd != null && pwd.length <= 0) {
+          return M.getString("no_pwd_warning");
+      }
+      return null;
+  }
 
 }

@@ -48,15 +48,17 @@ public class DictionaryPasswordValidator implements IPasswordValidator {
      * {@inheritDoc}
      */
     @Override
-    public boolean validatePassword(char[] pwd) {
+    public String validatePassword(char[] pwd) {
         try {
             final Dictionary d = Dictionary.open(Settings.getCracklibDict());
             _match = d.lookup(new String(pwd));
-            return _match == null;
+            if(_match != null) {
+                return _match;
+            }
         } catch (final IOException e) {
             LOG.warn("Could not open dictionary! Maybe not installed", e);
-            return true;
         }
+        return null;
     }
 
     /**

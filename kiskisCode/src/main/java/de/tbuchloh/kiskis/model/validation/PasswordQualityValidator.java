@@ -9,7 +9,6 @@ public class PasswordQualityValidator implements IPasswordValidator {
         // TODO Auto-generated method stub
         final double entropy = Password.checkEffectiveBitSize(pwd);
         
-//        String pwdStrength = null;
         if (entropy <= 32) {
             return M.getString("weak"); //$NON-NLS-1$
         } else if (entropy <= 64) {
