@@ -65,7 +65,7 @@ public class CrackPasswordDialog extends KisKisDialog implements ModelConstants,
                 crackLibResponse.setText(value);
             }
                 
-                crackLibTime.setText(M.format("cracktime", Long.valueOf(crackTime + System.currentTimeMillis())));
+            crackLibTime.setText(M.format("cracktime", Long.valueOf(crackTime + System.currentTimeMillis())));
             _stopAction.setEnabled(false);
             LOG.trace("Thread " + this + " has finished!");
         }
