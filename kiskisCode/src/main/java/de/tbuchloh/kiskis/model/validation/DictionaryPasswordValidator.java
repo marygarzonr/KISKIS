@@ -35,7 +35,7 @@ import de.tbuchloh.util.logging.LogFactory;
  * @version $Id: $
  * @since 01.11.2010
  */
-public class DictionaryPasswordValidator extends AbstractPasswordValidator {
+public class DictionaryPasswordValidator implements IPasswordValidator {
 
     /**
      * Der Logger
@@ -48,17 +48,15 @@ public class DictionaryPasswordValidator extends AbstractPasswordValidator {
      * {@inheritDoc}
      */
     @Override
-    public String validatePassword(char[] pwd) {
+    public boolean validatePassword(char[] pwd) {
         try {
             final Dictionary d = Dictionary.open(Settings.getCracklibDict());
             _match = d.lookup(new String(pwd));
-            if(_match != null) {
-                return _match;
-            }
+            return _match == null;
         } catch (final IOException e) {
             LOG.warn("Could not open dictionary! Maybe not installed", e);
+            return true;
         }
-        return null;
     }
 
     /**

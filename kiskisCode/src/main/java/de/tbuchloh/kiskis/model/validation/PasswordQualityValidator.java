@@ -2,7 +2,7 @@ package de.tbuchloh.kiskis.model.validation;
 
 import de.tbuchloh.kiskis.model.Password;
 
-public class PasswordQualityValidator extends AbstractPasswordValidator {
+public class PasswordQualityValidator implements IPasswordValidator {
 
     @Override
     public String validatePassword(char[] pwd) {
